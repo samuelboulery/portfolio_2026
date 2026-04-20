@@ -1,0 +1,9 @@
+.ascii {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-s);
+  line-height: 1.3;
+  color: var(--text-primary);
+  white-space: pre;
+  user-select: all;
+}

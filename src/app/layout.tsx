@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Dock } from "@/components/os/Dock";
+import { DockBridge } from "@/components/os/DockBridge";
 import { OSBar } from "@/components/os/OSBar";
 import "./globals.css";
 
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <OSBar />
         {children}
-        <Dock />
+        <DockBridge />
       </body>
     </html>
   );

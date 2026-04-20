@@ -1,0 +1,48 @@
+.folder {
+  appearance: none;
+  background: transparent;
+  border: var(--folder-outline-width) solid var(--folder-outline-color);
+  border-radius: var(--folder-radius);
+  padding: var(--folder-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--folder-gap);
+  cursor: pointer;
+  color: var(--folder-name-color);
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.folder:hover,
+.folder:focus-visible {
+  background: var(--folder-active-bg);
+  outline: none;
+}
+
+.folder[data-active="true"] {
+  background: var(--folder-active-bg);
+  border-color: var(--folder-active-outline-color);
+}
+
+.icon {
+  width: var(--folder-icon-size);
+  height: var(--folder-icon-size);
+  display: grid;
+  place-items: center;
+  color: var(--accent-primary);
+}
+
+.icon svg {
+  width: 70%;
+  height: 70%;
+}
+
+.name {
+  font-family: var(--folder-name-font);
+  font-size: var(--folder-name-size);
+  color: var(--folder-name-color);
+  padding: 0 var(--folder-name-padding-x);
+  text-align: center;
+}

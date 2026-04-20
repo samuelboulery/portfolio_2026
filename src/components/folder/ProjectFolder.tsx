@@ -1,0 +1,42 @@
+"use client";
+
+import { Folder } from "lucide-react";
+import type { ProjectMeta } from "@/content/projects.config";
+import { projectWindowId } from "@/content/projects.config";
+import { selectWindow, useWindowStore } from "@/stores/windowStore";
+import styles from "./ProjectFolder.module.css";
+
+interface ProjectFolderProps {
+  project: ProjectMeta;
+}
+
+export function ProjectFolder({ project }: ProjectFolderProps) {
+  const openWindow = useWindowStore((state) => state.openWindow);
+  const windowState = useWindowStore(selectWindow(projectWindowId(project.slug)));
+  const isActive = Boolean(windowState?.isOpen && !windowState.isMinimized);
+
+  const handleOpen = () => {
+    openWindow({
+      id: projectWindowId(project.slug),
+      type: "project",
+      title: project.name,
+      meta: { slug: project.slug },
+    });
+  };
+
+  return (
+    <button
+      type="button"
+      className={styles.folder}
+      data-active={isActive}
+      onDoubleClick={handleOpen}
+      onClick={handleOpen}
+      aria-label={`Ouvrir le projet ${project.name}`}
+    >
+      <span className={styles.icon} aria-hidden="true">
+        <Folder strokeWidth={1.5} />
+      </span>
+      <span className={styles.name}>{project.folderLabel}</span>
+    </button>
+  );
+}
