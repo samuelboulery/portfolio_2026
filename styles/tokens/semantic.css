@@ -1,0 +1,53 @@
+/**
+ * Semantic tokens — intent-based aliases over primitives.
+ * Components consume these, not raw primitives.
+ * Switching themes replaces this layer's values.
+ */
+
+:root {
+  /* ============================================================
+   * Background
+   * ============================================================ */
+  --bg-base: var(--color-indigo-950);
+  --bg-elevated: var(--color-indigo-900);
+  --bg-surface: var(--color-indigo-800);
+  --bg-surface-alt: var(--color-indigo-700);
+  --bg-hover: var(--color-indigo-600);
+  --bg-active: var(--color-indigo-500);
+  --bg-overlay: var(--color-black-40);
+
+  /* ============================================================
+   * Border
+   * ============================================================ */
+  --border-default: var(--color-indigo-700);
+  --border-subtle: var(--color-white-10);
+  --border-strong: var(--color-white-30);
+  --border-accent: var(--color-purple-500);
+
+  /* ============================================================
+   * Text
+   * ============================================================ */
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-white-80);
+  --text-muted: var(--color-white-70);
+  --text-decorative: var(--color-white-50);
+  --text-disabled: var(--color-white-30);
+  --text-on-accent: var(--color-indigo-950);
+
+  /* ============================================================
+   * Accent — brand colors by intent
+   * ============================================================ */
+  --accent-primary: var(--color-pink-500);
+  --accent-secondary: var(--color-orange-500);
+  --accent-success: var(--color-green-500);
+  --accent-link: var(--color-cyan-500);
+  --accent-brand: var(--color-green-500);
+  --accent-muted: var(--color-purple-500);
+
+  /* ============================================================
+   * Focus ring
+   * ============================================================ */
+  --focus-ring-color: var(--color-cyan-500);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}

@@ -1,0 +1,49 @@
+/**
+ * Themes — réassignent primitives → sémantiques via un wrapper sur <html>.
+ * Pour activer : <html data-theme="light">.
+ *
+ * Le thème par défaut (dark) est défini dans semantic.css sans wrapper.
+ * Les variantes ne redéfinissent QUE la couche sémantique — les composants
+ * ne bougent pas d'une ligne.
+ */
+
+[data-theme="dark"] {
+  /* Alias explicite du défaut — utile si un ancêtre a forcé "light" et
+     qu'on veut remettre dark sur une sous-arborescence. */
+  --bg-base: var(--color-indigo-950);
+  --bg-elevated: var(--color-indigo-900);
+  --bg-surface: var(--color-indigo-800);
+  --bg-surface-alt: var(--color-indigo-700);
+  --bg-hover: var(--color-indigo-600);
+  --bg-active: var(--color-indigo-500);
+
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-white-80);
+  --text-muted: var(--color-white-70);
+  --text-decorative: var(--color-white-50);
+  --text-disabled: var(--color-white-30);
+  --text-on-accent: var(--color-indigo-950);
+}
+
+/* Test de validité du design system : doit flipper toute l'UI sans toucher un
+   seul composant ni module CSS. */
+[data-theme="light"] {
+  --bg-base: #f5f5f7;
+  --bg-elevated: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #efeff4;
+  --bg-hover: #e4e4ea;
+  --bg-active: #d8d8df;
+  --bg-overlay: rgba(0, 0, 0, 0.4);
+
+  --border-default: #d8d8df;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.24);
+
+  --text-primary: #111114;
+  --text-secondary: rgba(17, 17, 20, 0.8);
+  --text-muted: rgba(17, 17, 20, 0.64);
+  --text-decorative: rgba(17, 17, 20, 0.48);
+  --text-disabled: rgba(17, 17, 20, 0.28);
+  --text-on-accent: #ffffff;
+}

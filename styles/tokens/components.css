@@ -1,0 +1,147 @@
+/**
+ * Component tokens — scoped vars par composant, miroir des variables Figma.
+ * Chaque composant consomme UNIQUEMENT ces vars (ou semantic), jamais les primitives.
+ */
+
+:root {
+  /* ============================================================
+   * Window
+   * ============================================================ */
+  --window-bg: var(--bg-surface);
+  --window-border: var(--border-default);
+  --window-border-width: var(--border-width-s);
+  --window-radius: var(--radius-s);
+  --window-shadow: var(--shadow-l);
+  --window-min-width: 320px;
+
+  --window-bar-bg: var(--bg-elevated);
+  --window-bar-padding-x: var(--space-m);
+  --window-bar-padding-y: var(--space-s);
+  --window-bar-gap: var(--space-xs);
+  --window-bar-dot-size: 12px;
+  --window-bar-close: var(--accent-primary);
+  --window-bar-reduce: var(--accent-secondary);
+  --window-bar-expand: var(--accent-success);
+  --window-bar-title-color: var(--text-muted);
+  --window-bar-title-font: var(--font-mono);
+  --window-bar-title-size: var(--fs-mono-s);
+
+  --window-content-padding: var(--space-l);
+
+  /* ============================================================
+   * Dock
+   * ============================================================ */
+  --dock-bg: rgba(21, 12, 69, 0.6);
+  --dock-border: var(--border-subtle);
+  --dock-radius: var(--radius-l);
+  --dock-padding-x: var(--space-s);
+  --dock-padding-y: var(--space-m);
+  --dock-gap: var(--space-m);
+  --dock-blur: var(--blur-s);
+  --dock-shadow: var(--shadow-m);
+
+  --dock-app-size: 40px;
+  --dock-app-radius: var(--radius-s);
+  --dock-app-hover-bg: var(--bg-hover);
+
+  --dock-active-indicator-size: 4px;
+  --dock-active-indicator-offset: var(--space-3xs);
+  --dock-active-indicator-color: var(--accent-primary);
+
+  /* ============================================================
+   * OS Bar
+   * ============================================================ */
+  --osbar-bg: var(--bg-elevated);
+  --osbar-border: var(--border-subtle);
+  --osbar-padding-x: var(--space-l);
+  --osbar-padding-y: var(--space-s);
+  --osbar-gap: var(--space-m);
+  --osbar-text-color: var(--text-primary);
+  --osbar-text-font: var(--font-mono);
+  --osbar-text-size: var(--fs-mono-s);
+  --osbar-icon-color: var(--text-muted);
+  --osbar-icon-size: var(--size-m);
+
+  /* ============================================================
+   * Button
+   * ============================================================ */
+  --button-height: 40px;
+  --button-height-s: 32px;
+  --button-padding-x: var(--space-m);
+  --button-padding-x-icon: var(--space-s);
+  --button-gap: var(--space-xs);
+  --button-radius: var(--radius-s);
+  --button-border-width: var(--border-width-m);
+  --button-font: var(--font-body);
+  --button-font-size: var(--fs-body-m);
+  --button-font-weight: var(--fw-medium);
+
+  --button-outlined-border: var(--color-white);
+  --button-outlined-text: var(--text-primary);
+  --button-outlined-hover-bg: var(--color-white-10);
+
+  --button-plain-bg: var(--color-white);
+  --button-plain-text: var(--text-on-accent);
+  --button-plain-hover-bg: var(--color-white-80);
+
+  /* ============================================================
+   * Project folder (desktop icon)
+   * ============================================================ */
+  --folder-padding: var(--space-s);
+  --folder-radius: var(--radius-s);
+  --folder-gap: var(--space-xs);
+  --folder-outline-width: var(--border-width-m);
+  --folder-outline-color: transparent;
+  --folder-active-bg: var(--bg-hover);
+  --folder-active-outline-color: var(--accent-primary);
+
+  --folder-icon-size: 64px;
+  --folder-name-color: var(--text-primary);
+  --folder-name-font: var(--font-body);
+  --folder-name-size: var(--fs-body-s);
+  --folder-name-padding-x: var(--space-xs);
+
+  /* ============================================================
+   * Scrollbar (custom)
+   * ============================================================ */
+  --scrollbar-width: 4px;
+  --scrollbar-thumb: var(--color-purple-500);
+  --scrollbar-thumb-hover: var(--color-purple-400);
+  --scrollbar-track: var(--border-default);
+  --scrollbar-radius: var(--radius-full);
+
+  /* ============================================================
+   * Terminal
+   * ============================================================ */
+  --terminal-bg: var(--bg-surface-alt);
+  --terminal-text: var(--text-primary);
+  --terminal-text-font: var(--font-mono);
+  --terminal-text-size: var(--fs-mono-m);
+  --terminal-prompt-color: var(--accent-brand);
+  --terminal-cursor-color: var(--accent-secondary);
+  --terminal-link-color: var(--accent-link);
+  --terminal-link-hover: var(--color-cyan-400);
+  --terminal-line-gap: var(--space-2xs);
+
+  /* ============================================================
+   * Tag (pilule)
+   * ============================================================ */
+  --tag-bg: var(--color-white-10);
+  --tag-border: var(--color-white-30);
+  --tag-text: var(--text-primary);
+  --tag-font: var(--font-tag);
+  --tag-size: var(--fs-tag);
+  --tag-padding-x: var(--space-s);
+  --tag-padding-y: var(--space-3xs);
+  --tag-radius: var(--radius-full);
+
+  /* ============================================================
+   * CV timeline
+   * ============================================================ */
+  --cv-line-color: var(--color-purple-500);
+  --cv-line-width: var(--border-width-m);
+  --cv-dot-size: 12px;
+  --cv-dot-color: var(--accent-muted);
+  --cv-item-gap: var(--space-l);
+  --cv-section-gap: var(--space-2xl);
+}

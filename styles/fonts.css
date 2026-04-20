@@ -1,0 +1,95 @@
+/**
+ * @font-face definitions — polices self-hosted.
+ * Les fichiers .woff2 doivent être placés dans /public/fonts/.
+ * Tant que Samuel n'a pas livré les fichiers, les fallbacks système définis
+ * dans primitives.css (--font-title, --font-body, etc.) prennent le relais.
+ *
+ * Pour activer une police : ajouter le .woff2 dans /public/fonts/, puis
+ * décommenter le bloc @font-face correspondant.
+ */
+
+/* -------------------------------------------------------------- *
+ * PP Valve — titres (font-title)
+ * -------------------------------------------------------------- */
+/*
+@font-face {
+  font-family: "PP Valve";
+  src: url("/fonts/PPValve-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Valve";
+  src: url("/fonts/PPValve-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* -------------------------------------------------------------- *
+ * SF Pro — corps de texte (font-body)
+ * Note : licence Apple — usage web autorisé uniquement sur sites Apple.
+ * En pratique, fallback sur -apple-system + BlinkMacSystemFont.
+ * -------------------------------------------------------------- */
+/*
+@font-face {
+  font-family: "SF Pro";
+  src: url("/fonts/SFPro-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("/fonts/SFPro-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("/fonts/SFPro-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* -------------------------------------------------------------- *
+ * Chivo Mono — terminal, OS bar, timestamps (font-mono)
+ * -------------------------------------------------------------- */
+/*
+@font-face {
+  font-family: "Chivo Mono";
+  src: url("/fonts/ChivoMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Chivo Mono";
+  src: url("/fonts/ChivoMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* -------------------------------------------------------------- *
+ * Infini — tags (font-tag)
+ * -------------------------------------------------------------- */
+/*
+@font-face {
+  font-family: "Infini";
+  src: url("/fonts/Infini-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/
