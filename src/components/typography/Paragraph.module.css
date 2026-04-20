@@ -1,0 +1,33 @@
+.paragraph {
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.l {
+  font-size: var(--fs-body-l);
+  line-height: var(--lh-body-l);
+}
+
+.m {
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+}
+
+.s {
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.decorative {
+  color: var(--text-decorative);
+}
