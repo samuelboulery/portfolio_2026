@@ -9,6 +9,13 @@ const withMDX = createMDX({
   },
 });
 
+export const lighthouseBudget = {
+  performance: 95,
+  accessibility: 95,
+  bestPractices: 95,
+  seo: 95,
+} as const;
+
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
   reactStrictMode: true,
