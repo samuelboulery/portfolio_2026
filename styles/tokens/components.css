@@ -13,11 +13,18 @@
    * Window
    * ============================================================ */
   --window-bg: var(--bg-surface);
+  --window-bg-gradient: linear-gradient(
+    to top,
+    var(--color-indigo-900) 0%,
+    var(--color-indigo-800) 27.4%
+  );
   --window-border: var(--border-default);
   --window-border-width: var(--border-width-s);
   --window-radius: var(--radius-s);
   --window-shadow: var(--shadow-l);
   --window-min-width: 320px;
+  --window-min-height: 200px;
+  --window-resize-zone: 6px;
 
   --window-bar-bg: var(--bg-elevated);
   --window-bar-padding-x: var(--space-m);
@@ -37,17 +44,27 @@
    * Dock
    * ============================================================ */
   --dock-bg: rgba(21, 12, 69, 0.6);
-  --dock-border: var(--border-subtle);
+  --dock-border: var(--color-indigo-700);
   --dock-radius: var(--radius-l);
-  --dock-padding-x: var(--space-s);
-  --dock-padding-y: var(--space-m);
+  --dock-padding-x: var(--space-m);
+  --dock-padding-y: var(--space-s);
   --dock-gap: var(--space-m);
-  --dock-blur: var(--blur-s);
-  --dock-shadow: var(--shadow-m);
+  --dock-blur: var(--blur-xs);
+  --dock-shadow:
+    16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
+    2px 2px 4px 0 var(--color-black-40);
 
   --dock-app-size: 40px;
   --dock-app-size-mobile: var(--touch-target-min);
   --dock-app-radius: var(--radius-s);
+  --dock-app-bg-1: var(--color-indigo-800);
+  --dock-app-bg-2: var(--color-indigo-900);
+  --dock-app-gradient-stop: 27.4%;
+  --dock-app-border: var(--color-indigo-700);
+  --dock-app-border-width: var(--border-width-s);
+  --dock-app-shadow:
+    16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
+    2px 2px 4px 0 var(--color-black-40);
   --dock-app-hover-bg: var(--bg-hover);
 
   --dock-active-indicator-size: 4px;
@@ -93,19 +110,42 @@
   /* ============================================================
    * Project folder (desktop icon)
    * ============================================================ */
-  --folder-padding: var(--space-s);
-  --folder-radius: var(--radius-s);
-  --folder-gap: var(--space-xs);
-  --folder-outline-width: var(--border-width-m);
-  --folder-outline-color: transparent;
-  --folder-active-bg: var(--bg-hover);
-  --folder-active-outline-color: var(--accent-primary);
+  --project-folder-width: 124px;
+  --project-folder-height: 72px;
+  --project-folder-gap: var(--space-xs);
 
-  --folder-icon-size: 64px;
-  --folder-name-color: var(--text-primary);
-  --folder-name-font: var(--font-body);
-  --folder-name-size: var(--fs-body-s);
-  --folder-name-padding-x: var(--space-xs);
+  --project-folder-bg-1: var(--color-indigo-800);
+  --project-folder-bg-2: var(--color-indigo-900);
+  --project-folder-gradient-stop: 27.4%;
+  --project-folder-border-color: var(--color-indigo-700);
+  --project-folder-border-width: var(--border-width-s);
+  --project-folder-radius: var(--radius-s);
+
+  --project-folder-shadow:
+    16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
+    2px 2px 4px 0 var(--color-black-40);
+
+  --project-folder-tab-width: 50px;
+  --project-folder-tab-height: 13px;
+  --project-folder-tab-offset-x: -1px;
+  --project-folder-tab-offset-y: -11px;
+
+  --project-folder-logo-width: 32px;
+  --project-folder-logo-height: 18px;
+  --project-folder-logo-color: var(--color-white);
+
+  --project-folder-name-color: var(--text-primary);
+  --project-folder-name-font: var(--font-body);
+  --project-folder-name-size: var(--fs-body-m);
+  --project-folder-name-padding-x: var(--space-xs);
+  --project-folder-name-active-bg: var(--color-indigo-600);
+  --project-folder-name-active-radius: var(--radius-xs);
+
+  --project-folder-outline-width: var(--border-width-m);
+  --project-folder-outline-color: var(--color-indigo-600);
+  --project-folder-outline-radius: 14px;
+  --project-folder-outline-inset-x: -6px;
+  --project-folder-outline-inset-y: -16px;
 
   /* ============================================================
    * Scrollbar (custom)
@@ -119,15 +159,28 @@
   /* ============================================================
    * Terminal
    * ============================================================ */
-  --terminal-bg: var(--bg-surface-alt);
+  --terminal-bg: transparent;
   --terminal-text: var(--text-primary);
   --terminal-text-font: var(--font-mono);
   --terminal-text-size: var(--fs-mono-m);
-  --terminal-prompt-color: var(--accent-brand);
+  --terminal-prompt-color: var(--accent-primary);
+  --terminal-path-color: var(--accent-link);
+  --terminal-command-color: var(--text-primary);
   --terminal-cursor-color: var(--accent-secondary);
+  --terminal-cursor-width: 10px;
+  --terminal-cursor-height: 20px;
+  --terminal-cursor-border-width: var(--border-width-s);
   --terminal-link-color: var(--accent-link);
   --terminal-link-hover: var(--color-cyan-400);
+  --terminal-link-weight: var(--fw-semibold);
+  --terminal-doc-color: var(--text-primary);
+  --terminal-doc-weight: var(--fw-regular);
   --terminal-line-gap: var(--space-2xs);
+  --terminal-col-gap: var(--space-l);
+  --terminal-width: 540px;
+  --terminal-height: 320px;
+  --terminal-width-mobile: 100%;
+  --terminal-height-mobile: 360px;
 
   /* ============================================================
    * Tag (pilule)

@@ -8,11 +8,17 @@ export interface WindowPosition {
   y: number;
 }
 
+export interface WindowSize {
+  width: number;
+  height: number;
+}
+
 export interface WindowConfig {
   id: string;
   type: WindowType;
   title?: string;
   initialPosition?: WindowPosition;
+  initialSize?: WindowSize;
   meta?: Readonly<Record<string, unknown>>;
 }
 
@@ -21,6 +27,7 @@ export interface WindowState {
   type: WindowType;
   title?: string;
   position: WindowPosition;
+  size?: WindowSize;
   isOpen: boolean;
   isMinimized: boolean;
   meta?: Readonly<Record<string, unknown>>;
@@ -38,6 +45,7 @@ interface WindowStoreActions {
   restoreWindow: (id: string) => void;
   focusWindow: (id: string) => void;
   updatePosition: (id: string, position: WindowPosition) => void;
+  updateSize: (id: string, size: WindowSize) => void;
 }
 
 export type WindowStore = WindowStoreState & WindowStoreActions;
@@ -57,6 +65,7 @@ export const useWindowStore = create<WindowStore>()(
         set((state) => {
           const existing = state.windows[config.id];
           const position = existing?.position ?? config.initialPosition ?? DEFAULT_POSITION;
+          const size = existing?.size ?? config.initialSize;
           const next: WindowState = existing
             ? { ...existing, isOpen: true, isMinimized: false }
             : {
@@ -64,6 +73,7 @@ export const useWindowStore = create<WindowStore>()(
                 type: config.type,
                 title: config.title,
                 position,
+                size,
                 isOpen: true,
                 isMinimized: false,
                 meta: config.meta,
@@ -123,6 +133,17 @@ export const useWindowStore = create<WindowStore>()(
             windows: {
               ...state.windows,
               [id]: { ...existing, position },
+            },
+          };
+        }),
+      updateSize: (id, size) =>
+        set((state) => {
+          const existing = state.windows[id];
+          if (!existing) return state;
+          return {
+            windows: {
+              ...state.windows,
+              [id]: { ...existing, size },
             },
           };
         }),

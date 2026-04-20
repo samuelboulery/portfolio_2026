@@ -7,7 +7,7 @@
   min-width: var(--window-min-width);
   max-width: min(calc(100vw - var(--space-xl)), 960px);
   max-height: min(calc(100vh - var(--space-2xl)), 720px);
-  background: var(--window-bg);
+  background: var(--window-bg-gradient, var(--window-bg));
   border: var(--window-border-width) solid var(--window-border);
   border-radius: var(--window-radius);
   box-shadow: var(--window-shadow);
