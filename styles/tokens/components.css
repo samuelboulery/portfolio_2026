@@ -144,4 +144,18 @@
   --cv-dot-color: var(--accent-muted);
   --cv-item-gap: var(--space-l);
   --cv-section-gap: var(--space-2xl);
+
+  /* ============================================================
+   * Project window (MDX case study)
+   * ============================================================ */
+  --project-gap: var(--space-l);
+  --project-cover-gap: var(--space-m);
+  --project-cover-radius: var(--radius-s);
+  --project-cover-bg: var(--bg-surface-alt);
+  --project-cover-border: var(--border-subtle);
+  --project-cover-aspect: 4 / 3;
+  --project-tags-gap: var(--space-xs);
+  --project-prose-gap: var(--space-m);
+  --project-link-color: var(--accent-link);
+  --project-link-hover: var(--color-cyan-400);
 }

@@ -6,8 +6,10 @@ import { Desktop } from "@/components/os/Desktop";
 import { CVWindow } from "@/components/windows/CVWindow";
 import { ImageWindow } from "@/components/windows/ImageWindow";
 import { MainWindow } from "@/components/windows/MainWindow";
+import { ProjectWindow } from "@/components/windows/ProjectWindow";
 import { SubtitleWindow } from "@/components/windows/SubtitleWindow";
 import { TerminalWindow } from "@/components/windows/TerminalWindow";
+import { PROJECTS } from "@/content/projects.config";
 import { useWindowStore } from "@/stores/windowStore";
 import styles from "./Scene.module.css";
 
@@ -60,6 +62,9 @@ export function Scene() {
       <ImageWindow />
       <TerminalWindow />
       <CVWindow />
+      {PROJECTS.map((project) => (
+        <ProjectWindow key={project.slug} slug={project.slug} />
+      ))}
     </Desktop>
   );
 }
