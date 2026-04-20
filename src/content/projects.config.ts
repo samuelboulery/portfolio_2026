@@ -12,7 +12,7 @@ export const PROJECTS: readonly ProjectMeta[] = [
     slug: "edf",
     name: "EDF",
     subtitle: "Design System",
-    terminalLine: "edf.md",
+    terminalLine: "Design System EDF",
     folderLabel: "EDF",
     order: 1,
   },
@@ -20,7 +20,7 @@ export const PROJECTS: readonly ProjectMeta[] = [
     slug: "mazars",
     name: "Mazars",
     subtitle: "Brand refresh",
-    terminalLine: "mazars.md",
+    terminalLine: "Sprint Mazars",
     folderLabel: "Mazars",
     order: 2,
   },
@@ -28,7 +28,7 @@ export const PROJECTS: readonly ProjectMeta[] = [
     slug: "bonum",
     name: "Bonum",
     subtitle: "Product design",
-    terminalLine: "bonum.md",
+    terminalLine: "Sprint Bonum",
     folderLabel: "Bonum",
     order: 3,
   },
@@ -36,22 +36,16 @@ export const PROJECTS: readonly ProjectMeta[] = [
     slug: "greenweez",
     name: "Greenweez",
     subtitle: "E-commerce redesign",
-    terminalLine: "greenweez.md",
+    terminalLine: "Design System Greenweez",
     folderLabel: "Greenweez",
     order: 4,
-  },
-  {
-    slug: "portfolio",
-    name: "Portfolio",
-    subtitle: "This site",
-    terminalLine: "portfolio.md",
-    folderLabel: "Portfolio",
-    order: 5,
   },
 ];
 
 export const EXTERNAL_LINKS = {
   linkedin: "https://www.linkedin.com/in/samuel-boulery/",
+  designSociety: "https://thedesignsociety.fr/",
+  friendOfFigmaLyon: "https://friends.figma.com/lyon/",
 } as const;
 
 export const CONTACT_EMAIL = "samboulery@gmail.com";

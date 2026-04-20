@@ -39,14 +39,19 @@
   height: var(--dock-app-size);
   border-radius: var(--dock-app-radius);
   color: var(--text-primary);
-  background: transparent;
+  background: linear-gradient(
+    180deg,
+    var(--dock-app-bg-1) var(--dock-app-gradient-stop),
+    var(--dock-app-bg-2) 100%
+  );
+  border: var(--dock-app-border-width) solid var(--dock-app-border);
+  box-shadow: var(--dock-app-shadow);
   transition:
-    background var(--dur-fast) var(--ease-out),
-    transform var(--dur-med) var(--ease-out);
+    transform var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .appButton:hover {
-  background: var(--dock-app-hover-bg);
   transform: translateY(-2px);
 }
 

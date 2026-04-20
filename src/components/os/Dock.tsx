@@ -1,9 +1,13 @@
 "use client";
 
-import { FileText, Folder, Home, Image as ImageIcon, Terminal } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import styles from "./Dock.module.css";
+import { CvIcon } from "./icons/CvIcon";
+import { FolderIcon } from "./icons/FolderIcon";
+import { HomeIcon } from "./icons/HomeIcon";
+import { ImageIcon } from "./icons/ImageIcon";
 import { LinkedinIcon } from "./icons/LinkedinIcon";
+import { TerminalIcon } from "./icons/TerminalIcon";
 
 type DockAppId = "home" | "cv" | "image" | "folder" | "terminal" | "linkedin";
 
@@ -15,11 +19,11 @@ interface DockApp {
 }
 
 const APPS: readonly DockApp[] = [
-  { id: "home", label: "Bureau", Icon: Home },
-  { id: "cv", label: "Curriculum vitae", Icon: FileText },
+  { id: "home", label: "Bureau", Icon: HomeIcon },
+  { id: "cv", label: "Curriculum vitae", Icon: CvIcon },
   { id: "image", label: "ASCII art", Icon: ImageIcon },
-  { id: "folder", label: "Projets", Icon: Folder },
-  { id: "terminal", label: "Terminal", Icon: Terminal },
+  { id: "folder", label: "Projets", Icon: FolderIcon },
+  { id: "terminal", label: "Terminal", Icon: TerminalIcon },
   { id: "linkedin", label: "LinkedIn", Icon: LinkedinIcon },
 ];
 
