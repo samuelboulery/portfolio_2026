@@ -1,0 +1,108 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cv-section-gap);
+  max-width: 560px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.sectionTitle {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-s);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--space-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cv-item-gap);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: var(--space-2xs);
+  bottom: var(--space-2xs);
+  left: var(--space-3xs);
+  width: var(--cv-line-width);
+  background: var(--cv-line-color);
+  border-radius: var(--radius-full);
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  top: var(--space-2xs);
+  left: calc(-1 * var(--space-l) + var(--space-3xs) + var(--cv-line-width) / 2);
+  transform: translateX(-50%);
+  width: var(--cv-dot-size);
+  height: var(--cv-dot-size);
+  border-radius: 50%;
+  background: var(--cv-dot-color);
+  box-shadow: 0 0 0 var(--border-width-m) var(--bg-surface);
+}
+
+.period {
+  color: var(--text-decorative);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-s);
+  margin: 0;
+}
+
+.itemTitle {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-m);
+  font-weight: var(--fw-medium);
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-s);
+  margin: 0;
+}
+
+.link {
+  color: var(--accent-link);
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus-visible {
+  text-decoration: underline;
+}

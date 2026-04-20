@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { FoldersGrid } from "@/components/folder/FoldersGrid";
 import { Desktop } from "@/components/os/Desktop";
+import { CVWindow } from "@/components/windows/CVWindow";
 import { ImageWindow } from "@/components/windows/ImageWindow";
 import { MainWindow } from "@/components/windows/MainWindow";
 import { SubtitleWindow } from "@/components/windows/SubtitleWindow";
@@ -58,6 +59,7 @@ export function Scene() {
       <SubtitleWindow />
       <ImageWindow />
       <TerminalWindow />
+      <CVWindow />
     </Desktop>
   );
 }
