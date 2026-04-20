@@ -1,0 +1,34 @@
+.window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: var(--window-min-width);
+  max-width: min(calc(100vw - var(--space-xl)), 960px);
+  max-height: min(calc(100vh - var(--space-2xl)), 720px);
+  background: var(--window-bg);
+  border: var(--window-border-width) solid var(--window-border);
+  border-radius: var(--window-radius);
+  box-shadow: var(--window-shadow);
+  overflow: hidden;
+  transition: box-shadow var(--dur-med) var(--ease-out);
+}
+
+.window[data-focused="false"] {
+  box-shadow: var(--shadow-m);
+}
+
+.window[data-variant="mobile"] {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  max-height: none;
+  width: 100%;
+}
+
+.rawContent {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
