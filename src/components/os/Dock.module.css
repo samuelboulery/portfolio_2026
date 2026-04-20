@@ -67,3 +67,19 @@
 .indicatorActive {
   opacity: 1;
 }
+
+@media (max-width: 639px) {
+  .dockWrapper {
+    bottom: var(--space-s);
+  }
+
+  .dock {
+    gap: var(--space-s);
+    padding: var(--space-s) var(--space-xs);
+  }
+
+  .appButton {
+    width: var(--dock-app-size-mobile);
+    height: var(--dock-app-size-mobile);
+  }
+}

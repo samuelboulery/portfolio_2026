@@ -2,6 +2,7 @@
 
 import { motion, type PanInfo, useDragControls } from "framer-motion";
 import type { ReactNode } from "react";
+import { useIsTabletOrBelow } from "@/hooks/useMediaQuery";
 import { selectIsFocused, selectWindow, selectZIndex, useWindowStore } from "@/stores/windowStore";
 import styles from "./Window.module.css";
 import { WindowBar, type WindowBarVariant } from "./WindowBar";
@@ -34,11 +35,13 @@ export function Window({
   const focusWindow = useWindowStore((state) => state.focusWindow);
   const updatePosition = useWindowStore((state) => state.updatePosition);
   const dragControls = useDragControls();
+  const isTabletOrBelow = useIsTabletOrBelow();
 
   if (!windowState?.isOpen || windowState.isMinimized) return null;
 
   const { position } = windowState;
-  const isDraggable = variant === "desktop";
+  const effectiveVariant: WindowBarVariant = isTabletOrBelow ? "mobile" : variant;
+  const isDraggable = effectiveVariant === "desktop";
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     updatePosition(id, {
@@ -48,19 +51,20 @@ export function Window({
   };
 
   const classes = [styles.window, className].filter(Boolean).join(" ");
+  const motionPosition = isDraggable ? { x: position.x, y: position.y } : { x: 0, y: 0 };
 
   return (
     <motion.div
       className={classes}
       data-focused={isFocused}
-      data-variant={variant}
+      data-variant={effectiveVariant}
       drag={isDraggable}
       dragListener={false}
       dragControls={dragControls}
       dragMomentum={false}
       onDragEnd={handleDragEnd}
-      initial={{ x: position.x, y: position.y }}
-      animate={{ x: position.x, y: position.y }}
+      initial={motionPosition}
+      animate={motionPosition}
       transition={{ duration: 0 }}
       style={{ zIndex }}
       onMouseDown={() => focusWindow(id)}
@@ -68,7 +72,7 @@ export function Window({
     >
       <WindowBar
         title={title ?? windowState.title}
-        variant={variant}
+        variant={effectiveVariant}
         dragControls={dragControls}
         onClose={() => closeWindow(id)}
         onMinimize={() => minimizeWindow(id)}

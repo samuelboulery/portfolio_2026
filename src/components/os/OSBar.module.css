@@ -47,3 +47,13 @@
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
 }
+
+@media (max-width: 639px) {
+  .bar {
+    padding-inline: var(--space-m);
+  }
+
+  .time {
+    display: none;
+  }
+}

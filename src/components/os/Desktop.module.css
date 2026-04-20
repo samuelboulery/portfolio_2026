@@ -24,3 +24,28 @@
   width: 100%;
   height: 100%;
 }
+
+@media (max-width: 1023px) {
+  .scene {
+    padding-inline: var(--space-m);
+  }
+
+  .windowsLayer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    height: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .scene {
+    padding-inline: var(--space-s);
+    padding-top: calc(var(--osbar-padding-y) * 2 + var(--osbar-icon-size) + var(--space-s));
+    padding-bottom: calc(var(--dock-app-size) + var(--dock-padding-y) * 2 + var(--space-l));
+  }
+
+  .windowsLayer {
+    gap: var(--space-s);
+  }
+}

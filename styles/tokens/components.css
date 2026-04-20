@@ -5,6 +5,11 @@
 
 :root {
   /* ============================================================
+   * Accessibility
+   * ============================================================ */
+  --touch-target-min: 44px;
+
+  /* ============================================================
    * Window
    * ============================================================ */
   --window-bg: var(--bg-surface);
@@ -41,6 +46,7 @@
   --dock-shadow: var(--shadow-m);
 
   --dock-app-size: 40px;
+  --dock-app-size-mobile: var(--touch-target-min);
   --dock-app-radius: var(--radius-s);
   --dock-app-hover-bg: var(--bg-hover);
 

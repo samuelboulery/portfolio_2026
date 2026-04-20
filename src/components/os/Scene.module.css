@@ -5,3 +5,13 @@
   width: 240px;
   padding: var(--space-s);
 }
+
+@media (max-width: 1023px) {
+  .foldersPanel {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    padding: 0 0 var(--space-l);
+  }
+}
