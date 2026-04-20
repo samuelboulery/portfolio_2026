@@ -1,0 +1,49 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-osbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--osbar-gap);
+  padding: var(--osbar-padding-y) var(--osbar-padding-x);
+  background: var(--osbar-bg);
+  border-bottom: var(--border-width-s) solid var(--osbar-border);
+  color: var(--osbar-text-color);
+  font-family: var(--osbar-text-font);
+  font-size: var(--osbar-text-size);
+  line-height: 1;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--osbar-gap);
+}
+
+.label {
+  color: var(--osbar-text-color);
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--osbar-icon-color);
+  width: var(--osbar-icon-size);
+  height: var(--osbar-icon-size);
+  border-radius: var(--radius-xs);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.iconButton:hover {
+  color: var(--text-primary);
+}
+
+.time {
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}

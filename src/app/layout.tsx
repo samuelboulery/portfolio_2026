@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Dock } from "@/components/os/Dock";
+import { OSBar } from "@/components/os/OSBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +16,11 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        <OSBar />
+        {children}
+        <Dock />
+      </body>
     </html>
   );
 }

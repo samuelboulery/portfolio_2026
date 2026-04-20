@@ -1,0 +1,69 @@
+.dockWrapper {
+  position: fixed;
+  bottom: var(--space-m);
+  left: 0;
+  right: 0;
+  z-index: var(--z-dock);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dock {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dock-gap);
+  padding: var(--dock-padding-y) var(--dock-padding-x);
+  background: var(--dock-bg);
+  border: var(--border-width-s) solid var(--dock-border);
+  border-radius: var(--dock-radius);
+  backdrop-filter: blur(var(--dock-blur));
+  -webkit-backdrop-filter: blur(var(--dock-blur));
+  box-shadow: var(--dock-shadow);
+  pointer-events: auto;
+}
+
+.appSlot {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dock-active-indicator-offset);
+}
+
+.appButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dock-app-size);
+  height: var(--dock-app-size);
+  border-radius: var(--dock-app-radius);
+  color: var(--text-primary);
+  background: transparent;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-med) var(--ease-out);
+}
+
+.appButton:hover {
+  background: var(--dock-app-hover-bg);
+  transform: translateY(-2px);
+}
+
+.appButton:focus-visible {
+  outline: var(--border-width-s) solid var(--accent-link);
+  outline-offset: 2px;
+}
+
+.indicator {
+  width: var(--dock-active-indicator-size);
+  height: var(--dock-active-indicator-size);
+  border-radius: var(--radius-full);
+  background: var(--dock-active-indicator-color);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.indicatorActive {
+  opacity: 1;
+}
