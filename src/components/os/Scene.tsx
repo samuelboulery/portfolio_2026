@@ -13,30 +13,31 @@ import { PROJECTS } from "@/content/projects.config";
 import { useWindowStore } from "@/stores/windowStore";
 import styles from "./Scene.module.css";
 
+// Opened in order: back → front (last entry = highest z-index)
 const BASE_WINDOWS = [
   {
-    id: "main",
-    type: "main" as const,
-    title: "System Designer",
-    initialPosition: { x: 310, y: 24 },
+    id: "image",
+    type: "image" as const,
+    title: "image.ascii",
+    initialPosition: { x: 315, y: 73 },
   },
   {
     id: "subtitle",
     type: "subtitle" as const,
     title: "UX-UI",
-    initialPosition: { x: 350, y: 288 },
+    initialPosition: { x: 522, y: 265 },
   },
   {
-    id: "image",
-    type: "image" as const,
-    title: "image.ascii",
-    initialPosition: { x: 310, y: 420 },
+    id: "main",
+    type: "main" as const,
+    title: "System Designer",
+    initialPosition: { x: 83, y: 320 },
   },
   {
     id: "terminal",
     type: "terminal" as const,
     title: "terminal",
-    initialPosition: { x: 820, y: 80 },
+    initialPosition: { x: 930, y: 458 },
   },
 ];
 
@@ -45,13 +46,14 @@ function resolveInitialPositions() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   if (vw < 1920) return BASE_WINDOWS;
-  const col1x = Math.round(vw * 0.21);
-  const col2x = Math.round(vw * 0.56);
+  // Proportional layout for very large screens (≥1920px)
+  const col1x = Math.round(vw * 0.22);
+  const col2x = Math.round(vw * 0.64);
   return [
-    { ...BASE_WINDOWS[0], initialPosition: { x: col1x, y: 24 } },
-    { ...BASE_WINDOWS[1], initialPosition: { x: col1x + 40, y: Math.round(vh * 0.44) } },
-    { ...BASE_WINDOWS[2], initialPosition: { x: col1x, y: Math.round(vh * 0.62) } },
-    { ...BASE_WINDOWS[3], initialPosition: { x: col2x, y: 80 } },
+    { ...BASE_WINDOWS[0], initialPosition: { x: col1x, y: 73 } },
+    { ...BASE_WINDOWS[1], initialPosition: { x: col1x + 200, y: Math.round(vh * 0.33) } },
+    { ...BASE_WINDOWS[2], initialPosition: { x: Math.round(vw * 0.06), y: Math.round(vh * 0.4) } },
+    { ...BASE_WINDOWS[3], initialPosition: { x: col2x, y: Math.round(vh * 0.56) } },
   ];
 }
 
