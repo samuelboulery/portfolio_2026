@@ -5,6 +5,8 @@
   gap: var(--window-bar-gap);
   padding: var(--window-bar-padding-y) var(--window-bar-padding-x);
   background: var(--window-bar-bg);
+  backdrop-filter: blur(var(--window-bar-blur));
+  -webkit-backdrop-filter: blur(var(--window-bar-blur));
   border-bottom: var(--window-border-width) solid var(--window-border);
   border-top-left-radius: var(--window-radius);
   border-top-right-radius: var(--window-radius);
