@@ -170,7 +170,7 @@
    * ============================================================ */
   --terminal-bg: transparent;
   --terminal-text: var(--text-primary);
-  --terminal-text-font: var(--font-mono);
+  --terminal-text-font: ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
   --terminal-text-size: var(--fs-mono-m);
   --terminal-prompt-color: var(--accent-primary);
   --terminal-path-color: var(--accent-link);
@@ -186,7 +186,7 @@
   --terminal-doc-weight: var(--fw-regular);
   --terminal-line-gap: var(--space-2xs);
   --terminal-col-gap: var(--space-l);
-  --terminal-width: 540px;
+  --terminal-width: 460px;
   --terminal-height: 320px;
   --terminal-width-mobile: 100%;
   --terminal-height-mobile: 360px;
