@@ -52,24 +52,22 @@
    * Dock
    * ============================================================ */
   --dock-display: flex;
-  --dock-bg: rgba(21, 12, 69, 0.6);
-  --dock-border: var(--color-indigo-700);
+  --dock-bg: rgba(10, 15, 40, 0.55);
+  --dock-border: rgba(60, 80, 160, 0.45);
   --dock-radius: 0;
   --dock-padding-x: var(--space-m);
   --dock-padding-y: var(--space-s);
   --dock-gap: var(--space-m);
-  --dock-blur: var(--blur-xs);
-  --dock-shadow:
-    16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
-    2px 2px 4px 0 var(--color-black-40);
+  --dock-blur: 12px;
+  --dock-shadow: 0 0 0 1px rgba(40, 60, 140, 0.18), 0 8px 32px rgba(0, 0, 0, 0.6);
 
   --dock-app-size: 40px;
   --dock-app-size-mobile: var(--touch-target-min);
   --dock-app-radius: 0;
-  --dock-app-bg-1: var(--color-indigo-800);
-  --dock-app-bg-2: var(--color-indigo-900);
+  --dock-app-bg-1: rgba(15, 20, 55, 0.9);
+  --dock-app-bg-2: rgba(8, 12, 40, 0.95);
   --dock-app-gradient-stop: 27.4%;
-  --dock-app-border: var(--color-indigo-700);
+  --dock-app-border: rgba(60, 80, 160, 0.35);
   --dock-app-border-width: var(--border-width-s);
   --dock-app-shadow:
     16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
