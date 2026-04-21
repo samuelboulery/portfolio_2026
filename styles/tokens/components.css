@@ -81,8 +81,9 @@
   /* ============================================================
    * OS Bar
    * ============================================================ */
-  --osbar-bg: var(--bg-elevated);
-  --osbar-border: var(--border-subtle);
+  --osbar-bg: rgba(10, 15, 40, 0.55);
+  --osbar-border: rgba(60, 80, 160, 0.35);
+  --osbar-blur: 12px;
   --osbar-padding-x: var(--space-l);
   --osbar-padding-y: var(--space-s);
   --osbar-gap: var(--space-m);
