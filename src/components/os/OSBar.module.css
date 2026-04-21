@@ -10,6 +10,8 @@
   gap: var(--osbar-gap);
   padding: var(--osbar-padding-y) var(--osbar-padding-x);
   background: var(--osbar-bg);
+  backdrop-filter: blur(var(--osbar-blur));
+  -webkit-backdrop-filter: blur(var(--osbar-blur));
   border-bottom: var(--border-width-s) solid var(--osbar-border);
   color: var(--osbar-text-color);
   font-family: var(--osbar-text-font);
