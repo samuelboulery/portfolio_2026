@@ -56,6 +56,23 @@
   --window-bar-bg: rgba(240, 240, 248, 0.72);
   --window-border: rgba(0, 0, 0, 0.14);
   --window-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* Dock — fond blanc translucide */
+  --dock-bg: rgba(255, 255, 255, 0.72);
+  --dock-border: rgba(0, 0, 0, 0.12);
+  --dock-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.12);
+  --dock-app-bg-1: rgba(245, 245, 250, 0.9);
+  --dock-app-bg-2: rgba(235, 235, 245, 0.95);
+  --dock-app-border: rgba(0, 0, 0, 0.1);
+
+  /* OSBar — fond blanc translucide */
+  --osbar-bg: rgba(255, 255, 255, 0.72);
+  --osbar-border: rgba(0, 0, 0, 0.1);
+
+  /* Folders — fond clair neutre */
+  --project-folder-bg-1: rgba(240, 240, 248, 0.95);
+  --project-folder-bg-2: rgba(230, 230, 242, 0.98);
+  --project-folder-border-color: rgba(0, 0, 0, 0.12);
 }
 
 [data-theme="retro"] {
@@ -111,6 +128,10 @@
 
   /* Dock caché */
   --dock-display: none;
+
+  /* OSBar — fond crème Mac Lisa, bordure noire */
+  --osbar-bg: #f0ebe0;
+  --osbar-border: #1a1a1a;
 
   /* Boutons — bordure noire, remplissage crème/noir */
   --button-outlined-border: #1a1a1a;
