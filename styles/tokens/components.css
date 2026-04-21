@@ -241,6 +241,8 @@
   --boot-text-cursor: #ffff33;
   --boot-duration-line: 400ms;
   --boot-duration-exit: 300ms;
+  --boot-font-size: 13px;
+  --boot-terminal-min-width: 420px;
 }
 
 @keyframes riftShift {

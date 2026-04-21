@@ -1,0 +1,59 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background: var(--boot-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.terminal {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--boot-font-size);
+  line-height: 2;
+  color: var(--boot-text);
+  min-width: var(--boot-terminal-min-width);
+}
+
+.line {
+  opacity: 0;
+  animation: bootLine var(--boot-duration-line) ease forwards;
+}
+
+.header {
+  color: var(--boot-text);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.row {
+  display: flex;
+  gap: 0;
+  white-space: pre;
+}
+
+.label {
+  color: var(--boot-text);
+}
+
+.ok {
+  color: var(--boot-text-ok);
+}
+
+.cursor {
+  color: var(--boot-text-cursor);
+  animation: bootCursor 800ms step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    animation: none;
+    opacity: 1;
+  }
+  .cursor {
+    animation: none;
+  }
+}
