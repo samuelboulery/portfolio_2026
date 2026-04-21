@@ -231,6 +231,16 @@
   --project-prose-gap: var(--space-m);
   --project-link-color: var(--accent-link);
   --project-link-hover: var(--color-cyan-400);
+
+  /* ============================================================
+   * BootScreen
+   * ============================================================ */
+  --boot-bg: #0a0a0a;
+  --boot-text: #33ff33;
+  --boot-text-ok: #33ff33;
+  --boot-text-cursor: #ffff33;
+  --boot-duration-line: 400ms;
+  --boot-duration-exit: 300ms;
 }
 
 @keyframes riftShift {
@@ -259,5 +269,39 @@
       opacity: 1;
       transform: none;
     }
+  }
+}
+
+@keyframes bootLine {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bootCursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes crtOff {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  60% {
+    transform: scaleY(0.008);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
   }
 }
