@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useCallback, useEffect, useRef } from "react";
 import styles from "./ShutdownScreen.module.css";
 
 interface ShutdownScreenProps {
@@ -9,19 +9,33 @@ interface ShutdownScreenProps {
 }
 
 export function ShutdownScreen({ onRestart }: ShutdownScreenProps) {
-  useEffect(() => {
-    document.addEventListener("keydown", onRestart);
-    return () => document.removeEventListener("keydown", onRestart);
+  const prefersReducedMotion = useReducedMotion();
+  const calledRef = useRef(false);
+
+  const handleRestart = useCallback(() => {
+    if (calledRef.current) return;
+    calledRef.current = true;
+    onRestart();
   }, [onRestart]);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent): void {
+      if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
+        handleRestart();
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleRestart]);
 
   return (
     <motion.div
       className={styles.root}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 0.4 } }}
-      exit={{ opacity: 0, transition: { duration: 0.3 } }}
+      animate={{ opacity: 1, transition: { duration: prefersReducedMotion ? 0 : 0.4 } }}
+      exit={{ opacity: 0, transition: { duration: prefersReducedMotion ? 0 : 0.3 } }}
       data-testid="shutdown-screen"
-      onClick={onRestart}
+      onClick={handleRestart}
     >
       <div className={styles.terminal}>
         <p className={styles.line}>[ shutting down... ]</p>

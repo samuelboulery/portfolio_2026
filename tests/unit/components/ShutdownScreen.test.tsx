@@ -30,11 +30,11 @@ describe("ShutdownScreen", () => {
     expect(onRestart).toHaveBeenCalledTimes(1);
   });
 
-  it("n'appelle pas onRestart deux fois si clic puis keydown", () => {
+  it("n'appelle onRestart qu'une seule fois si clic puis keydown", () => {
     const onRestart = vi.fn();
     const { getByTestId } = render(<ShutdownScreen onRestart={onRestart} />);
     fireEvent.click(getByTestId("shutdown-screen"));
     fireEvent.keyDown(document, { key: "Escape" });
-    expect(onRestart).toHaveBeenCalledTimes(2);
+    expect(onRestart).toHaveBeenCalledTimes(1);
   });
 });
