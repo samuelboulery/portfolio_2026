@@ -2,28 +2,30 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-type Theme = "dark" | "retro";
+export type Theme = "dark" | "light" | "retro";
 
 const STORAGE_KEY = "theme";
+const VALID_THEMES: readonly Theme[] = ["dark", "light", "retro"];
+
+function isValidTheme(value: string | null): value is Theme {
+  return VALID_THEMES.includes(value as Theme);
+}
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setThemeState] = useState<Theme>("dark");
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const initial = stored === "retro" ? "retro" : "dark";
-    setTheme(initial);
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const initial: Theme = isValidTheme(stored) ? stored : "dark";
+    setThemeState(initial);
     document.documentElement.dataset.theme = initial;
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next: Theme = prev === "dark" ? "retro" : "dark";
-      localStorage.setItem(STORAGE_KEY, next);
-      document.documentElement.dataset.theme = next;
-      return next;
-    });
+  const setTheme = useCallback((next: Theme) => {
+    setThemeState(next);
+    localStorage.setItem(STORAGE_KEY, next);
+    document.documentElement.dataset.theme = next;
   }, []);
 
-  return { theme, toggleTheme };
+  return { theme, setTheme };
 }
