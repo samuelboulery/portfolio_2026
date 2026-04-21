@@ -33,7 +33,7 @@
   z-index: var(--z-overlay);
   min-width: var(--dropdown-min-width);
   background: var(--dropdown-bg);
-  border: 1px solid var(--dropdown-border);
+  border: var(--border-width-s) solid var(--dropdown-border);
   border-radius: var(--dropdown-radius);
   box-shadow: var(--dropdown-shadow);
   padding: var(--space-3xs);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import type { Theme } from "@/hooks/useTheme";
 import { useWindowStore } from "@/stores/windowStore";
@@ -48,7 +48,8 @@ export function TopMenuBar({ setTheme, currentTheme }: TopMenuBarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const openWindow = useWindowStore((state) => state.openWindow);
 
-  useClickOutside(ref, () => setActiveMenu(null));
+  const handleClickOutside = useCallback(() => setActiveMenu(null), []);
+  useClickOutside(ref, handleClickOutside);
 
   function toggleMenu(id: MenuId) {
     setActiveMenu((prev) => (prev === id ? null : id));

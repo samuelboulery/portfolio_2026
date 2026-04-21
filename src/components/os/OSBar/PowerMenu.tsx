@@ -1,7 +1,7 @@
 "use client";
 
 import { Power } from "lucide-react";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import styles from "./PowerMenu.module.css";
 
@@ -14,7 +14,8 @@ export function PowerMenu({ onShutdown, onRestart }: PowerMenuProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useClickOutside(ref, () => setOpen(false));
+  const handleClickOutside = useCallback(() => setOpen(false), []);
+  useClickOutside(ref, handleClickOutside);
 
   return (
     <div className={styles.root} ref={ref}>
