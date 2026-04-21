@@ -93,6 +93,7 @@
   --osbar-icon-color: var(--text-muted);
   --osbar-icon-size: var(--size-m);
   --osbar-icon-radius: 0;
+  --osbar-separator-height: 14px;
 
   /* ============================================================
    * Dropdown menu (PowerMenu + TopMenuBar)

@@ -26,8 +26,8 @@
 
 .separator {
   display: inline-block;
-  width: 1px;
-  height: 14px;
+  width: var(--border-width-s);
+  height: var(--osbar-separator-height);
   background: var(--dropdown-separator-color);
   margin: 0 var(--space-xs);
   opacity: 0.5;
