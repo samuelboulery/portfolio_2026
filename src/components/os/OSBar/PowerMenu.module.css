@@ -56,5 +56,6 @@
 .separator {
   height: var(--border-width-s);
   background: var(--dropdown-separator-color);
+  border: none;
   margin: var(--space-3xs) 0;
 }
