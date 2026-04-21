@@ -129,16 +129,6 @@
   color: var(--accent-primary);
 }
 
-@keyframes cursorBlink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
 .cursor {
   display: inline-block;
   width: var(--terminal-cursor-width);
@@ -153,13 +143,11 @@
 .prompt[data-focused="true"] .cursor {
   background: var(--terminal-cursor-color);
   border: none;
-  animation: cursorBlink 1s step-start infinite;
 }
 
 .prompt[data-focused="false"] .cursor {
   background: transparent;
   border: var(--terminal-cursor-border-width) solid var(--terminal-cursor-color);
-  animation: none;
 }
 
 @media (max-width: 639px) {
