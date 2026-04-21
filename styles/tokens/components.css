@@ -28,7 +28,7 @@
   );
   --window-border: var(--border-default);
   --window-border-width: var(--border-width-s);
-  --window-radius: var(--radius-s);
+  --window-radius: 0;
   --window-shadow: var(--shadow-l);
   --window-min-width: 320px;
   --window-min-height: 200px;
@@ -39,7 +39,7 @@
   --window-bar-padding-y: var(--space-s);
   --window-bar-gap: var(--space-xs);
   --window-bar-dot-size: 12px;
-  --window-bar-dot-radius: 50%;
+  --window-bar-dot-radius: 0;
   --window-bar-close: var(--accent-primary);
   --window-bar-reduce: var(--accent-secondary);
   --window-bar-expand: var(--accent-success);
@@ -55,7 +55,7 @@
   --dock-display: flex;
   --dock-bg: rgba(21, 12, 69, 0.6);
   --dock-border: var(--color-indigo-700);
-  --dock-radius: var(--radius-l);
+  --dock-radius: 0;
   --dock-padding-x: var(--space-m);
   --dock-padding-y: var(--space-s);
   --dock-gap: var(--space-m);
@@ -66,7 +66,7 @@
 
   --dock-app-size: 40px;
   --dock-app-size-mobile: var(--touch-target-min);
-  --dock-app-radius: var(--radius-s);
+  --dock-app-radius: 0;
   --dock-app-bg-1: var(--color-indigo-800);
   --dock-app-bg-2: var(--color-indigo-900);
   --dock-app-gradient-stop: 27.4%;
@@ -94,6 +94,7 @@
   --osbar-text-size: var(--fs-mono-s);
   --osbar-icon-color: var(--text-muted);
   --osbar-icon-size: var(--size-m);
+  --osbar-icon-radius: 0;
 
   /* ============================================================
    * Button
@@ -103,7 +104,7 @@
   --button-padding-x: var(--space-m);
   --button-padding-x-icon: var(--space-s);
   --button-gap: var(--space-xs);
-  --button-radius: var(--radius-s);
+  --button-radius: 0;
   --button-border-width: var(--border-width-m);
   --button-font: var(--font-body);
   --button-font-size: var(--fs-body-m);
@@ -129,7 +130,7 @@
   --project-folder-gradient-stop: 27.4%;
   --project-folder-border-color: var(--color-indigo-700);
   --project-folder-border-width: var(--border-width-s);
-  --project-folder-radius: var(--radius-s);
+  --project-folder-radius: 0;
 
   --project-folder-shadow:
     16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
@@ -149,11 +150,11 @@
   --project-folder-name-size: var(--fs-body-m);
   --project-folder-name-padding-x: var(--space-xs);
   --project-folder-name-active-bg: var(--color-indigo-600);
-  --project-folder-name-active-radius: var(--radius-xs);
+  --project-folder-name-active-radius: 0;
 
   --project-folder-outline-width: var(--border-width-m);
   --project-folder-outline-color: var(--color-indigo-600);
-  --project-folder-outline-radius: 14px;
+  --project-folder-outline-radius: 0;
   --project-folder-outline-inset-x: -6px;
   --project-folder-outline-inset-y: -16px;
 
@@ -164,7 +165,7 @@
   --scrollbar-thumb: var(--color-purple-500);
   --scrollbar-thumb-hover: var(--color-purple-400);
   --scrollbar-track: var(--border-default);
-  --scrollbar-radius: var(--radius-full);
+  --scrollbar-radius: 0;
 
   /* ============================================================
    * Terminal
@@ -202,7 +203,7 @@
   --tag-size: var(--fs-tag);
   --tag-padding-x: var(--space-s);
   --tag-padding-y: var(--space-3xs);
-  --tag-radius: var(--radius-full);
+  --tag-radius: 0;
 
   /* ============================================================
    * CV timeline
@@ -224,7 +225,7 @@
    * ============================================================ */
   --project-gap: var(--space-l);
   --project-cover-gap: var(--space-m);
-  --project-cover-radius: var(--radius-s);
+  --project-cover-radius: 0;
   --project-cover-bg: var(--bg-surface-alt);
   --project-cover-border: var(--border-subtle);
   --project-cover-aspect: 4 / 3;
