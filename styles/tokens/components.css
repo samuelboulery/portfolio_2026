@@ -20,21 +20,20 @@
   /* ============================================================
    * Window
    * ============================================================ */
-  --window-bg: var(--bg-surface);
-  --window-bg-gradient: linear-gradient(
-    to top,
-    var(--color-indigo-900) 0%,
-    var(--color-indigo-800) 27.4%
-  );
-  --window-border: var(--border-default);
+  --window-bg: rgba(4, 6, 18, 0.96);
+  --window-bg-gradient: rgba(4, 6, 18, 0.96);
+  --window-border: rgba(60, 80, 160, 0.45);
   --window-border-width: var(--border-width-s);
   --window-radius: 0;
-  --window-shadow: var(--shadow-l);
+  --window-shadow: 0 0 0 1px rgba(40, 60, 140, 0.18), 0 8px 32px rgba(0, 0, 0, 0.6);
   --window-min-width: 320px;
   --window-min-height: 200px;
   --window-resize-zone: 6px;
 
-  --window-bar-bg: var(--bg-elevated);
+  --window-shadow-unfocused: 0 0 0 1px rgba(40, 60, 140, 0.08), 0 4px 16px rgba(0, 0, 0, 0.5);
+
+  --window-bar-bg: rgba(10, 15, 40, 0.55);
+  --window-bar-blur: 12px;
   --window-bar-padding-x: var(--space-m);
   --window-bar-padding-y: var(--space-s);
   --window-bar-gap: var(--space-xs);
