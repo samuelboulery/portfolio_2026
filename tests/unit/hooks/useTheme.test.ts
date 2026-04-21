@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { type Theme, useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 describe("useTheme", () => {
   beforeEach(() => {
