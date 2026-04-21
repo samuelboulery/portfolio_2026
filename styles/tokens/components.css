@@ -95,6 +95,28 @@
   --osbar-icon-radius: 0;
 
   /* ============================================================
+   * Dropdown menu (PowerMenu + TopMenuBar)
+   * ============================================================ */
+  --dropdown-bg: var(--bg-elevated);
+  --dropdown-border: var(--border-subtle);
+  --dropdown-radius: 0;
+  --dropdown-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-subtle);
+  --dropdown-item-padding-x: var(--space-m);
+  --dropdown-item-padding-y: var(--space-2xs);
+  --dropdown-item-hover-bg: var(--bg-hover);
+  --dropdown-item-active-bg: var(--bg-active);
+  --dropdown-separator-color: var(--border-subtle);
+  --dropdown-disabled-opacity: 0.35;
+  --dropdown-min-width: 180px;
+
+  /* ============================================================
+   * ShutdownScreen
+   * ============================================================ */
+  --shutdown-bg: var(--boot-bg);
+  --shutdown-text: var(--boot-text);
+  --shutdown-font-size: var(--boot-font-size);
+
+  /* ============================================================
    * Button
    * ============================================================ */
   --button-height: 40px;
