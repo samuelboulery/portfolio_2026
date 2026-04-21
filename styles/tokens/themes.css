@@ -49,6 +49,13 @@
 
   /* Desktop — fond clair plat, pas de gradient sombre Rift */
   --desktop-bg: var(--bg-base);
+
+  /* Window — fond blanc, entête claire, bordure neutre */
+  --window-bg: rgba(255, 255, 255, 0.96);
+  --window-bg-gradient: rgba(255, 255, 255, 0.96);
+  --window-bar-bg: rgba(240, 240, 248, 0.72);
+  --window-border: rgba(0, 0, 0, 0.14);
+  --window-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
 [data-theme="retro"] {
