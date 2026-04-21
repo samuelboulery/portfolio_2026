@@ -1,14 +1,26 @@
 "use client";
 
-import { Power } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/hooks/useTheme";
 import { formatOsBarDate } from "@/lib/formatDate";
+import { PowerMenu } from "./PowerMenu";
+import { TopMenuBar } from "./TopMenuBar";
 import styles from "./OSBar.module.css";
 
-export function OSBar() {
+const THEME_LABELS = {
+  dark: "Sombre",
+  light: "Clair",
+  retro: "Rétro",
+} as const;
+
+interface OSBarProps {
+  onShutdown: () => void;
+  onRestart: () => void;
+}
+
+export function OSBar({ onShutdown, onRestart }: OSBarProps) {
   const [now, setNow] = useState<Date | null>(null);
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setNow(new Date());
@@ -19,17 +31,12 @@ export function OSBar() {
   return (
     <header className={styles.bar}>
       <div className={styles.left}>
-        <button
-          type="button"
-          className={styles.iconButton}
-          aria-label={theme === "retro" ? "Retour au thème sombre" : "Activer le thème rétro"}
-          onClick={toggleTheme}
-        >
-          <Power size={14} />
-        </button>
-        <span className={styles.label}>Samuel Boulery</span>
+        <PowerMenu onShutdown={onShutdown} onRestart={onRestart} />
+        <span className={styles.separator} aria-hidden="true" />
+        <TopMenuBar setTheme={setTheme} currentTheme={theme} />
       </div>
       <div className={styles.right}>
+        <span className={styles.themeLabel}>{THEME_LABELS[theme]}</span>
         <span className={styles.time} suppressHydrationWarning>
           {now ? formatOsBarDate(now) : ""}
         </span>

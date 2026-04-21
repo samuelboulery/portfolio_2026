@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--osbar-gap);
   padding: var(--osbar-padding-y) var(--osbar-padding-x);
   background: var(--osbar-bg);
   backdrop-filter: blur(var(--osbar-blur));
@@ -23,26 +22,21 @@
 .right {
   display: flex;
   align-items: center;
-  gap: var(--osbar-gap);
 }
 
-.label {
-  color: var(--osbar-text-color);
+.separator {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: var(--dropdown-separator-color);
+  margin: 0 var(--space-xs);
+  opacity: 0.5;
 }
 
-.iconButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--osbar-icon-color);
-  width: var(--osbar-icon-size);
-  height: var(--osbar-icon-size);
-  border-radius: var(--osbar-icon-radius);
-  transition: color var(--dur-fast) var(--ease-out);
-}
-
-.iconButton:hover {
-  color: var(--text-primary);
+.themeLabel {
+  color: var(--text-muted);
+  font-size: var(--osbar-text-size);
+  margin-right: var(--osbar-gap);
 }
 
 .time {
@@ -54,8 +48,10 @@
   .bar {
     padding-inline: var(--space-m);
   }
-
   .time {
+    display: none;
+  }
+  .themeLabel {
     display: none;
   }
 }
