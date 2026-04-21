@@ -35,7 +35,7 @@
   color: var(--osbar-icon-color);
   width: var(--osbar-icon-size);
   height: var(--osbar-icon-size);
-  border-radius: var(--radius-xs);
+  border-radius: var(--osbar-icon-radius);
   transition: color var(--dur-fast) var(--ease-out);
 }
 
