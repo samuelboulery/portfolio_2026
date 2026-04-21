@@ -16,7 +16,7 @@
 }
 
 .window[data-focused="false"] {
-  box-shadow: var(--shadow-m);
+  box-shadow: var(--window-shadow-unfocused);
 }
 
 .window[data-variant="mobile"] {
