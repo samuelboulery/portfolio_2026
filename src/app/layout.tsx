@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { DockBridge } from "@/components/os/DockBridge";
-import { OSBar } from "@/components/os/OSBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,12 +21,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: script anti-FOUC statique, contenu non dynamique
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='retro')document.documentElement.dataset.theme='retro';}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='retro'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}})()`,
           }}
         />
       </head>
       <body>
-        <OSBar />
         {children}
         <DockBridge />
       </body>
