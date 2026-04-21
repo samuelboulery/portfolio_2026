@@ -1,6 +1,6 @@
 "use client";
 
-import { Power } from "lucide-react";
+import { Power, RotateCcw } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import styles from "./PowerMenu.module.css";
@@ -40,6 +40,7 @@ export function PowerMenu({ onShutdown, onRestart }: PowerMenuProps) {
               onRestart();
             }}
           >
+            <RotateCcw size={12} aria-hidden="true" />
             Redémarrer
           </button>
           <hr className={styles.separator} />
@@ -52,6 +53,7 @@ export function PowerMenu({ onShutdown, onRestart }: PowerMenuProps) {
               onShutdown();
             }}
           >
+            <Power size={12} aria-hidden="true" />
             Éteindre
           </button>
         </div>

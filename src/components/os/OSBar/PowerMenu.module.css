@@ -32,7 +32,9 @@
 }
 
 .item {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
   width: 100%;
   padding: var(--dropdown-item-padding-y) var(--dropdown-item-padding-x);
   text-align: left;

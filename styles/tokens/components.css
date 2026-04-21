@@ -85,7 +85,7 @@
   --osbar-border: rgba(60, 80, 160, 0.35);
   --osbar-blur: 12px;
   --osbar-padding-x: var(--space-l);
-  --osbar-padding-y: var(--space-s);
+  --osbar-padding-y: var(--space-xs);
   --osbar-gap: var(--space-m);
   --osbar-text-color: var(--text-primary);
   --osbar-text-font: var(--font-ui);
@@ -98,15 +98,15 @@
   /* ============================================================
    * Dropdown menu (PowerMenu + TopMenuBar)
    * ============================================================ */
-  --dropdown-bg: var(--bg-elevated);
-  --dropdown-border: var(--border-subtle);
+  --dropdown-bg: var(--window-bg);
+  --dropdown-border: var(--window-border);
   --dropdown-radius: 0;
-  --dropdown-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-subtle);
+  --dropdown-shadow: var(--window-shadow);
   --dropdown-item-padding-x: var(--space-m);
   --dropdown-item-padding-y: var(--space-2xs);
   --dropdown-item-hover-bg: var(--bg-hover);
   --dropdown-item-active-bg: var(--bg-active);
-  --dropdown-separator-color: var(--border-subtle);
+  --dropdown-separator-color: var(--dropdown-border);
   --dropdown-disabled-opacity: 0.35;
   --dropdown-min-width: 180px;
   --dropdown-check-font-size: 10px;

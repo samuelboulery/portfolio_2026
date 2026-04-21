@@ -55,15 +55,11 @@ describe("TopMenuBar", () => {
     expect(mockOpenWindow).toHaveBeenCalledWith(expect.objectContaining({ id: "cv" }));
   });
 
-  it("'Édition' est aria-disabled", () => {
-    const { getByText } = render(<TopMenuBar {...defaultProps} />);
-    expect(getByText("Édition").closest("button")).toHaveAttribute("aria-disabled", "true");
-  });
-
-  it("clique sur 'Édition' n'ouvre pas de menu", () => {
-    const { getByText, queryByRole } = render(<TopMenuBar {...defaultProps} />);
+  it("clique sur 'Édition' ouvre le dropdown 'Bientôt disponible'", () => {
+    const { getByText, getByRole } = render(<TopMenuBar {...defaultProps} />);
     fireEvent.click(getByText("Édition"));
-    expect(queryByRole("menu")).not.toBeInTheDocument();
+    expect(getByRole("menu")).toBeInTheDocument();
+    expect(getByText("Bientôt disponible")).toBeInTheDocument();
   });
 
   it("ouvre le sous-menu Vue et clique Thème Clair appelle setTheme('light')", () => {

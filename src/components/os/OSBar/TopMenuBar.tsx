@@ -11,7 +11,7 @@ interface TopMenuBarProps {
   currentTheme: Theme;
 }
 
-type MenuId = "fichier" | "vue" | "aide";
+type MenuId = "fichier" | "edition" | "vue" | "aide";
 
 const FICHIER_ITEMS = [
   {
@@ -88,17 +88,22 @@ export function TopMenuBar({ setTheme, currentTheme }: TopMenuBarProps) {
         )}
       </div>
 
-      {/* Édition — désactivé */}
+      {/* Édition */}
       <div className={styles.menuItem}>
         <button
           type="button"
-          className={`${styles.trigger} ${styles.triggerDisabled}`}
-          aria-disabled="true"
-          tabIndex={-1}
-          onClick={(e) => e.preventDefault()}
+          className={styles.trigger}
+          aria-expanded={activeMenu === "edition"}
+          aria-haspopup="menu"
+          onClick={() => toggleMenu("edition")}
         >
           Édition
         </button>
+        {activeMenu === "edition" && (
+          <div className={styles.dropdown} role="menu">
+            <p className={styles.emptyHint}>Bientôt disponible</p>
+          </div>
+        )}
       </div>
 
       {/* Vue */}
