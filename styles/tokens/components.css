@@ -123,10 +123,10 @@
   --project-folder-height: 72px;
   --project-folder-gap: var(--space-xs);
 
-  --project-folder-bg-1: var(--color-indigo-800);
-  --project-folder-bg-2: var(--color-indigo-900);
+  --project-folder-bg-1: rgba(15, 18, 50, 0.95);
+  --project-folder-bg-2: rgba(8, 10, 35, 0.98);
   --project-folder-gradient-stop: 27.4%;
-  --project-folder-border-color: var(--color-indigo-700);
+  --project-folder-border-color: rgba(80, 100, 180, 0.35);
   --project-folder-border-width: var(--border-width-s);
   --project-folder-radius: 0;
 
