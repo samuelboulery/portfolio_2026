@@ -136,8 +136,8 @@
 
   --project-folder-tab-width: 50px;
   --project-folder-tab-height: 13px;
-  --project-folder-tab-offset-x: -1px;
-  --project-folder-tab-offset-y: -11px;
+  --project-folder-tab-offset-x: 0;
+  --project-folder-tab-offset-y: -12px;
 
   --project-folder-logo-width: 32px;
   --project-folder-logo-height: 18px;
