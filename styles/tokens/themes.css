@@ -46,6 +46,9 @@
   --text-decorative: rgba(17, 17, 20, 0.48);
   --text-disabled: rgba(17, 17, 20, 0.28);
   --text-on-accent: #ffffff;
+
+  /* Desktop — fond clair plat, pas de gradient sombre Rift */
+  --desktop-bg: var(--bg-base);
 }
 
 [data-theme="retro"] {
