@@ -33,7 +33,7 @@
 .dot {
   width: var(--window-bar-dot-size);
   height: var(--window-bar-dot-size);
-  border-radius: 50%;
+  border-radius: var(--window-bar-dot-radius);
   border: none;
   padding: 0;
   cursor: pointer;

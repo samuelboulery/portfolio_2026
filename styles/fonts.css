@@ -85,3 +85,23 @@
   font-display: swap;
 }
 */
+
+/* -------------------------------------------------------------- *
+ * Silkscreen — thème rétro Mac Lisa (font-ui / font-display override)
+ * Jason Kottke — licence OFL
+ * -------------------------------------------------------------- */
+@font-face {
+  font-family: "Silkscreen";
+  src: url("/fonts/silkscreen/Silkscreen-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url("/fonts/silkscreen/Silkscreen-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

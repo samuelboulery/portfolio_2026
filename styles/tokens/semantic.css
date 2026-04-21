@@ -50,4 +50,10 @@
   --focus-ring-color: var(--color-cyan-500);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
+
+  /* ============================================================
+   * Typography — rôles sémantiques overridables par les thèmes
+   * ============================================================ */
+  --font-display: var(--font-title);
+  --font-ui: var(--font-mono);
 }

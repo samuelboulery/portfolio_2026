@@ -2,11 +2,13 @@
 
 import { Power } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "@/hooks/useTheme";
 import { formatOsBarDate } from "@/lib/formatDate";
 import styles from "./OSBar.module.css";
 
 export function OSBar() {
   const [now, setNow] = useState<Date | null>(null);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     setNow(new Date());
@@ -17,7 +19,12 @@ export function OSBar() {
   return (
     <header className={styles.bar}>
       <div className={styles.left}>
-        <button type="button" className={styles.iconButton} aria-label="Menu système">
+        <button
+          type="button"
+          className={styles.iconButton}
+          aria-label={theme === "retro" ? "Retour au thème sombre" : "Activer le thème rétro"}
+          onClick={toggleTheme}
+        >
           <Power size={14} />
         </button>
         <span className={styles.label}>Samuel Boulery</span>

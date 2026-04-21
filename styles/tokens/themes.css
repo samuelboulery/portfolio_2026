@@ -47,3 +47,59 @@
   --text-disabled: rgba(17, 17, 20, 0.28);
   --text-on-accent: #ffffff;
 }
+
+[data-theme="retro"] {
+  /* Palette crème / noir — Mac Lisa 1983 */
+  --bg-base: #e8e2d6;
+  --bg-elevated: #f0ebe0;
+  --bg-surface: #f5f0e8;
+  --bg-surface-alt: #d0c8b8;
+  --bg-hover: #c8c0b0;
+  --bg-active: #b8b0a0;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+
+  --border-default: #1a1a1a;
+  --border-subtle: rgba(26, 26, 26, 0.3);
+  --border-strong: #1a1a1a;
+  --border-accent: #1a1a1a;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #3a2e24;
+  --text-muted: #6b5a4e;
+  --text-decorative: #8b7a6e;
+  --text-disabled: rgba(26, 26, 26, 0.3);
+  --text-on-accent: #f0ebe0;
+
+  --accent-primary: #8b3a2a;
+  --accent-secondary: #7a6020;
+  --accent-success: #2a5c2a;
+  --accent-link: #1a3a6b;
+  --accent-muted: #5a4a3a;
+
+  --focus-ring-color: #1a3a6b;
+
+  /* Fonts → Silkscreen pour tout le chrome OS */
+  --font-display: "Silkscreen", "Courier New", monospace;
+  --font-ui: "Silkscreen", "Courier New", monospace;
+
+  /* Window — carré, barre noire, boutons crème */
+  --window-radius: 0px;
+  --window-border: #1a1a1a;
+  --window-border-width: 2px;
+  --window-bar-bg: #1a1a1a;
+  --window-bar-title-color: #f0ebe0;
+  --window-bar-close: #f0ebe0;
+  --window-bar-reduce: #c8c0b0;
+  --window-bar-expand: #c8c0b0;
+  --window-bar-dot-radius: 0px;
+
+  /* Dock caché */
+  --dock-display: none;
+
+  /* Scrollbar chunky Mac Lisa */
+  --scrollbar-width: 12px;
+  --scrollbar-thumb: #1a1a1a;
+  --scrollbar-thumb-hover: #3a2e24;
+  --scrollbar-track: #d0c8b8;
+  --scrollbar-radius: 0px;
+}

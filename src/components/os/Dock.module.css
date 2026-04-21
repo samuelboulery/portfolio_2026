@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: var(--z-dock);
-  display: flex;
+  display: var(--dock-display);
   justify-content: center;
   pointer-events: none;
 }

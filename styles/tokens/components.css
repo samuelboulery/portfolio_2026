@@ -31,11 +31,12 @@
   --window-bar-padding-y: var(--space-s);
   --window-bar-gap: var(--space-xs);
   --window-bar-dot-size: 12px;
+  --window-bar-dot-radius: 50%;
   --window-bar-close: var(--accent-primary);
   --window-bar-reduce: var(--accent-secondary);
   --window-bar-expand: var(--accent-success);
   --window-bar-title-color: var(--text-muted);
-  --window-bar-title-font: var(--font-mono);
+  --window-bar-title-font: var(--font-ui);
   --window-bar-title-size: var(--fs-mono-s);
 
   --window-content-padding: var(--space-l);
@@ -43,6 +44,7 @@
   /* ============================================================
    * Dock
    * ============================================================ */
+  --dock-display: flex;
   --dock-bg: rgba(21, 12, 69, 0.6);
   --dock-border: var(--color-indigo-700);
   --dock-radius: var(--radius-l);
@@ -80,7 +82,7 @@
   --osbar-padding-y: var(--space-s);
   --osbar-gap: var(--space-m);
   --osbar-text-color: var(--text-primary);
-  --osbar-text-font: var(--font-mono);
+  --osbar-text-font: var(--font-ui);
   --osbar-text-size: var(--fs-mono-s);
   --osbar-icon-color: var(--text-muted);
   --osbar-icon-size: var(--size-m);
