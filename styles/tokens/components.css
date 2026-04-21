@@ -198,11 +198,16 @@
    * CV timeline
    * ============================================================ */
   --cv-line-color: var(--color-purple-500);
-  --cv-line-width: var(--border-width-m);
-  --cv-dot-size: 12px;
-  --cv-dot-color: var(--accent-muted);
-  --cv-item-gap: var(--space-l);
-  --cv-section-gap: var(--space-2xl);
+  --cv-line-width: var(--border-width-s);
+  --cv-line-offset: 16px;
+  --cv-timeline-indent: var(--space-2xl);
+  --cv-period-width: 110px;
+  --cv-row-gap: var(--space-l);
+  --cv-item-gap: var(--space-xs);
+  --cv-header-gap: var(--space-s);
+  --cv-section-gap: var(--space-l);
+  --cv-link-color: var(--accent-link);
+  --cv-link-hover: var(--color-cyan-400);
 
   /* ============================================================
    * Project window (MDX case study)

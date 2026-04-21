@@ -1,6 +1,6 @@
 .title {
   font-family: var(--font-title);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   color: var(--text-primary);
   letter-spacing: var(--tracking-tight);
   margin: 0;

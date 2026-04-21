@@ -14,11 +14,11 @@ describe("CVWindow", () => {
     window.sessionStorage.clear();
   });
 
-  it("rend le titre et le sous-titre quand la fenêtre est ouverte", () => {
+  it("rend le titre et le bouton de téléchargement quand la fenêtre est ouverte", () => {
     useWindowStore.getState().openWindow({ id: "cv", type: "cv" });
     render(<CVWindow />);
     expect(screen.getByRole("heading", { name: "Curriculum vitae" })).toBeInTheDocument();
-    expect(screen.getByText(/Samuel Boulery/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Télécharger le CV en PDF" })).toBeInTheDocument();
   });
 
   it("rend les sections et les entrées du CV", () => {

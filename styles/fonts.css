@@ -9,25 +9,17 @@
  */
 
 /* -------------------------------------------------------------- *
- * PP Valve — titres (font-title)
+ * DxRestcal — titres (font-title)
+ * Dirtyline Studio — licence gratuite (EULA dans le zip d'origine).
+ * Un seul poids livré : Medium (500).
  * -------------------------------------------------------------- */
-/*
 @font-face {
-  font-family: "PP Valve";
-  src: url("/fonts/PPValve-Regular.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "DxRestcal";
+  src: url("/fonts/DxRestcal-Medium.otf") format("opentype");
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: "PP Valve";
-  src: url("/fonts/PPValve-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-*/
 
 /* -------------------------------------------------------------- *
  * SF Pro — corps de texte (font-body)
