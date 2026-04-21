@@ -10,6 +10,14 @@
   --touch-target-min: 44px;
 
   /* ============================================================
+   * Desktop — fond de scène
+   * ============================================================ */
+  --desktop-bg:
+    radial-gradient(ellipse at top left, var(--color-indigo-700) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom right, var(--color-indigo-600) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-base) 0%, var(--color-indigo-900) 100%);
+
+  /* ============================================================
    * Window
    * ============================================================ */
   --window-bg: var(--bg-surface);

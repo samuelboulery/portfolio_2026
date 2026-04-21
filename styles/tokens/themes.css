@@ -82,10 +82,16 @@
   --font-display: "Silkscreen", "Courier New", monospace;
   --font-ui: "Silkscreen", "Courier New", monospace;
 
-  /* Window — carré, barre noire, boutons crème */
+  /* Desktop — fond crème plat, pas de radial glow */
+  --desktop-bg: var(--bg-base);
+
+  /* Window — carré, barre noire, boutons crème, fond crème plat */
   --window-radius: 0px;
   --window-border: #1a1a1a;
   --window-border-width: 2px;
+  --window-shadow: 4px 4px 0 0 #1a1a1a;
+  --window-bg: #f5f0e8;
+  --window-bg-gradient: #f5f0e8;
   --window-bar-bg: #1a1a1a;
   --window-bar-title-color: #f0ebe0;
   --window-bar-close: #f0ebe0;
@@ -95,6 +101,38 @@
 
   /* Dock caché */
   --dock-display: none;
+
+  /* Boutons — bordure noire, remplissage crème/noir */
+  --button-outlined-border: #1a1a1a;
+  --button-outlined-text: #1a1a1a;
+  --button-outlined-hover-bg: rgba(26, 26, 26, 0.1);
+  --button-plain-bg: #1a1a1a;
+  --button-plain-text: #f0ebe0;
+  --button-plain-hover-bg: #3a2e24;
+
+  /* Project folder (icônes desktop) — crème, bordure noire, pas d'ombre lourde */
+  --project-folder-bg-1: #f5f0e8;
+  --project-folder-bg-2: #e8e2d6;
+  --project-folder-border-color: #1a1a1a;
+  --project-folder-radius: 0px;
+  --project-folder-shadow: 2px 2px 0 0 #1a1a1a;
+  --project-folder-logo-color: #1a1a1a;
+  --project-folder-name-color: #1a1a1a;
+  --project-folder-name-active-bg: #1a1a1a;
+  --project-folder-outline-color: #1a1a1a;
+  --project-folder-outline-radius: 0px;
+
+  /* Tag — remplissage crème clair, bordure noire */
+  --tag-bg: #f0ebe0;
+  --tag-border: #1a1a1a;
+
+  /* CV timeline — ligne noire */
+  --cv-line-color: #1a1a1a;
+
+  /* Hovers de liens : variante foncée du bleu rétro */
+  --terminal-link-hover: #0f2247;
+  --cv-link-hover: #0f2247;
+  --project-link-hover: #0f2247;
 
   /* Scrollbar chunky Mac Lisa */
   --scrollbar-width: 12px;
