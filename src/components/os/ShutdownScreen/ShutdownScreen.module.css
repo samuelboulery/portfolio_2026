@@ -1,0 +1,28 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background: var(--shutdown-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.terminal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-family: var(--terminal-text-font);
+  font-size: var(--shutdown-font-size);
+  color: var(--shutdown-text);
+}
+
+.line {
+  opacity: 0.9;
+}
+
+.hint {
+  opacity: 0.45;
+  margin-top: var(--space-xs);
+}
