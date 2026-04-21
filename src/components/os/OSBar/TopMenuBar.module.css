@@ -62,8 +62,8 @@
 }
 
 .check {
-  font-size: 10px;
-  width: 12px;
+  font-size: var(--dropdown-check-font-size);
+  width: var(--dropdown-check-width);
   flex-shrink: 0;
 }
 

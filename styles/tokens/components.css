@@ -108,6 +108,8 @@
   --dropdown-separator-color: var(--border-subtle);
   --dropdown-disabled-opacity: 0.35;
   --dropdown-min-width: 180px;
+  --dropdown-check-font-size: 10px;
+  --dropdown-check-width: 12px;
 
   /* ============================================================
    * ShutdownScreen
