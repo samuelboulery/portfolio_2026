@@ -1,10 +1,12 @@
 "use client";
 
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FoldersGrid } from "@/components/folder/FoldersGrid";
 import { BootScreen } from "@/components/os/BootScreen/BootScreen";
 import { Desktop } from "@/components/os/Desktop";
+import { OSBar } from "@/components/os/OSBar/OSBar";
+import { ShutdownScreen } from "@/components/os/ShutdownScreen/ShutdownScreen";
 import { CVWindow } from "@/components/windows/CVWindow";
 import { ImageWindow } from "@/components/windows/ImageWindow";
 import { MainWindow } from "@/components/windows/MainWindow";
@@ -48,7 +50,6 @@ function resolveInitialPositions() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   if (vw < 1920) return BASE_WINDOWS;
-  // Proportional layout for very large screens (≥1920px)
   const col1x = Math.round(vw * 0.22);
   const col2x = Math.round(vw * 0.64);
   return [
@@ -62,6 +63,14 @@ function resolveInitialPositions() {
 export function Scene() {
   const openWindow = useWindowStore((state) => state.openWindow);
   const [bootDone, setBootDone] = useState(false);
+  const [isShutdown, setIsShutdown] = useState(false);
+
+  const handleShutdown = useCallback(() => setIsShutdown(true), []);
+  const handleRestart = useCallback(() => {
+    sessionStorage.removeItem("boot-done");
+    setIsShutdown(false);
+    setBootDone(false);
+  }, []);
 
   useEffect(() => {
     const { windows } = useWindowStore.getState();
@@ -75,22 +84,26 @@ export function Scene() {
 
   return (
     <>
+      <OSBar onShutdown={handleShutdown} onRestart={handleRestart} />
       <AnimatePresence>
-        {!bootDone && <BootScreen key="boot" onDone={() => setBootDone(true)} />}
+        {!bootDone && !isShutdown && <BootScreen key="boot" onDone={() => setBootDone(true)} />}
+        {isShutdown && <ShutdownScreen key="shutdown" onRestart={handleRestart} />}
       </AnimatePresence>
-      <Desktop>
-        <aside className={styles.foldersPanel} aria-label="Projets disponibles">
-          <FoldersGrid />
-        </aside>
-        <MainWindow />
-        <SubtitleWindow />
-        <ImageWindow />
-        <TerminalWindow />
-        <CVWindow />
-        {PROJECTS.map((project) => (
-          <ProjectWindow key={project.slug} slug={project.slug} />
-        ))}
-      </Desktop>
+      {!isShutdown && (
+        <Desktop>
+          <aside className={styles.foldersPanel} aria-label="Projets disponibles">
+            <FoldersGrid />
+          </aside>
+          <MainWindow />
+          <SubtitleWindow />
+          <ImageWindow />
+          <TerminalWindow />
+          <CVWindow />
+          {PROJECTS.map((project) => (
+            <ProjectWindow key={project.slug} slug={project.slug} />
+          ))}
+        </Desktop>
+      )}
     </>
   );
 }
