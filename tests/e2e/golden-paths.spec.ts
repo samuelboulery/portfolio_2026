@@ -2,15 +2,25 @@ import { expect, test } from "@playwright/test";
 
 const STORAGE_KEY = "portfolio_2026:windows";
 
+async function skipBootScreen(page: import("@playwright/test").Page) {
+  await page.addInitScript(() => {
+    sessionStorage.setItem("boot-done", "1");
+  });
+}
+
 test.describe("Parcours golden", () => {
   test("le terminal ouvre le CV via curriculum_vitae.html", async ({ page }) => {
+    await skipBootScreen(page);
     await page.goto("/");
+    await expect(page.getByTestId("boot-screen")).not.toBeVisible();
     await page.getByRole("button", { name: "Ouvrir curriculum_vitae.html" }).click();
     await expect(page.getByRole("heading", { name: "Curriculum vitae", level: 1 })).toBeVisible();
   });
 
   test("le dossier EDF ouvre la fenêtre projet avec ses tags", async ({ page }) => {
+    await skipBootScreen(page);
     await page.goto("/");
+    await expect(page.getByTestId("boot-screen")).not.toBeVisible();
     await page.getByRole("button", { name: "Ouvrir le projet EDF" }).click();
     const projectHeader = page.locator("header").filter({ hasText: "Design System EDF" });
     await expect(projectHeader.getByRole("heading", { level: 1 })).toBeVisible();
@@ -32,7 +42,9 @@ test.describe("Parcours golden", () => {
     );
     test.skip(browserName !== "chromium", "Drag e2e limité à chromium.");
 
+    await skipBootScreen(page);
     await page.goto("/");
+    await expect(page.getByTestId("boot-screen")).not.toBeVisible();
 
     const mainBar = page.locator('[data-draggable="true"]').filter({ hasText: "System Designer" });
     await expect(mainBar).toBeVisible();
@@ -93,5 +105,22 @@ test.describe("Parcours golden", () => {
         return pos.x === afterDrag.x && pos.y === afterDrag.y;
       })
       .toBe(true);
+  });
+
+  test("le boot screen s'affiche à la première visite", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByTestId("boot-screen")).toBeVisible();
+  });
+
+  test("le boot screen disparaît au clic et révèle le desktop", async ({ page }) => {
+    await page.goto("/");
+    await page.getByTestId("boot-screen").click();
+    await expect(page.getByTestId("boot-screen")).not.toBeVisible();
+  });
+
+  test("le boot screen ne réapparaît pas après skip (sessionStorage)", async ({ page }) => {
+    await skipBootScreen(page);
+    await page.goto("/");
+    await expect(page.getByTestId("boot-screen")).not.toBeVisible();
   });
 });
