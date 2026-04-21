@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { FoldersGrid } from "@/components/folder/FoldersGrid";
+import { BootScreen } from "@/components/os/BootScreen/BootScreen";
 import { Desktop } from "@/components/os/Desktop";
 import { CVWindow } from "@/components/windows/CVWindow";
 import { ImageWindow } from "@/components/windows/ImageWindow";
@@ -59,6 +61,7 @@ function resolveInitialPositions() {
 
 export function Scene() {
   const openWindow = useWindowStore((state) => state.openWindow);
+  const [bootDone, setBootDone] = useState(false);
 
   useEffect(() => {
     const { windows } = useWindowStore.getState();
@@ -71,18 +74,23 @@ export function Scene() {
   }, [openWindow]);
 
   return (
-    <Desktop>
-      <aside className={styles.foldersPanel} aria-label="Projets disponibles">
-        <FoldersGrid />
-      </aside>
-      <MainWindow />
-      <SubtitleWindow />
-      <ImageWindow />
-      <TerminalWindow />
-      <CVWindow />
-      {PROJECTS.map((project) => (
-        <ProjectWindow key={project.slug} slug={project.slug} />
-      ))}
-    </Desktop>
+    <>
+      <AnimatePresence>
+        {!bootDone && <BootScreen key="boot" onDone={() => setBootDone(true)} />}
+      </AnimatePresence>
+      <Desktop>
+        <aside className={styles.foldersPanel} aria-label="Projets disponibles">
+          <FoldersGrid />
+        </aside>
+        <MainWindow />
+        <SubtitleWindow />
+        <ImageWindow />
+        <TerminalWindow />
+        <CVWindow />
+        {PROJECTS.map((project) => (
+          <ProjectWindow key={project.slug} slug={project.slug} />
+        ))}
+      </Desktop>
+    </>
   );
 }
