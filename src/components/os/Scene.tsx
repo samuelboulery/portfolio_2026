@@ -22,12 +22,6 @@ const BASE_WINDOWS = [
     initialPosition: { x: 315, y: 73 },
   },
   {
-    id: "subtitle",
-    type: "subtitle" as const,
-    title: "UX-UI",
-    initialPosition: { x: 522, y: 265 },
-  },
-  {
     id: "main",
     type: "main" as const,
     title: "System Designer",
@@ -38,6 +32,12 @@ const BASE_WINDOWS = [
     type: "terminal" as const,
     title: "terminal",
     initialPosition: { x: 930, y: 458 },
+  },
+  {
+    id: "subtitle",
+    type: "subtitle" as const,
+    title: "UX-UI",
+    initialPosition: { x: 522, y: 265 },
   },
 ];
 
@@ -51,9 +51,9 @@ function resolveInitialPositions() {
   const col2x = Math.round(vw * 0.64);
   return [
     { ...BASE_WINDOWS[0], initialPosition: { x: col1x, y: 73 } },
-    { ...BASE_WINDOWS[1], initialPosition: { x: col1x + 200, y: Math.round(vh * 0.33) } },
-    { ...BASE_WINDOWS[2], initialPosition: { x: Math.round(vw * 0.06), y: Math.round(vh * 0.4) } },
-    { ...BASE_WINDOWS[3], initialPosition: { x: col2x, y: Math.round(vh * 0.56) } },
+    { ...BASE_WINDOWS[1], initialPosition: { x: Math.round(vw * 0.06), y: Math.round(vh * 0.4) } },
+    { ...BASE_WINDOWS[2], initialPosition: { x: col2x, y: Math.round(vh * 0.56) } },
+    { ...BASE_WINDOWS[3], initialPosition: { x: col1x + 200, y: Math.round(vh * 0.33) } },
   ];
 }
 
