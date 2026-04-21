@@ -1,8 +1,8 @@
 .foldersPanel {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 240px;
+  top: calc(var(--osbar-padding-y) * 2 + var(--osbar-icon-size) + var(--space-m));
+  left: 0;
+  width: 280px;
   padding: var(--space-s);
 }
 
@@ -10,7 +10,7 @@
   .foldersPanel {
     position: relative;
     top: auto;
-    right: auto;
+    left: auto;
     width: 100%;
     padding: 0 0 var(--space-l);
   }
