@@ -9,20 +9,29 @@
   cursor: pointer;
 }
 
-.terminal {
+.frame {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-  font-family: var(--terminal-text-font);
-  font-size: var(--shutdown-font-size);
-  color: var(--shutdown-text);
+  align-items: center;
+  gap: var(--space-l);
+  border: var(--border-width-lisa) solid var(--color-lisa-black);
+  background: var(--color-lisa-white);
+  padding: var(--space-2xl) var(--space-3xl);
+  box-shadow: var(--shadow-lisa);
 }
 
-.line {
-  opacity: 0.9;
+.headline {
+  font-family: var(--font-chicago);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--shutdown-text);
+  margin: 0;
 }
 
 .hint {
-  opacity: 0.45;
-  margin-top: var(--space-xs);
+  font-family: var(--font-chicago);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--shutdown-text);
+  margin: 0;
 }

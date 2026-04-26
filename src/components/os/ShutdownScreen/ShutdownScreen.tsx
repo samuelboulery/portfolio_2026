@@ -37,10 +37,9 @@ export function ShutdownScreen({ onRestart }: ShutdownScreenProps) {
       data-testid="shutdown-screen"
       onClick={handleRestart}
     >
-      <div className={styles.terminal}>
-        <p className={styles.line}>[ shutting down... ]</p>
-        <p className={styles.line}>Système arrêté.</p>
-        <p className={styles.hint}>Pour relancer : cliquez n'importe où.</p>
+      <div className={styles.frame}>
+        <p className={styles.headline}>Système arrêté.</p>
+        <p className={styles.hint}>Cliquez n'importe où pour redémarrer.</p>
       </div>
     </motion.div>
   );

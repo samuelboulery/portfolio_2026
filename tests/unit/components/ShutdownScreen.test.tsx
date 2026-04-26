@@ -8,10 +8,10 @@ describe("ShutdownScreen", () => {
     expect(getByTestId("shutdown-screen")).toBeInTheDocument();
   });
 
-  it("affiche les lignes CRT", () => {
+  it("affiche le message d'arrêt et l'invitation à redémarrer", () => {
     const { getByText } = render(<ShutdownScreen onRestart={vi.fn()} />);
     expect(getByText(/Système arrêté/)).toBeInTheDocument();
-    expect(getByText(/cliquez n'importe où/)).toBeInTheDocument();
+    expect(getByText(/redémarrer/i)).toBeInTheDocument();
   });
 
   it("appelle onRestart sur clic", () => {
