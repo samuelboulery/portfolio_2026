@@ -43,15 +43,20 @@
 
   /* ============================================================
    * Typography — font families
+   *
+   * En thème Mac Lisa, tous les rôles pointent vers Chicago. Un futur thème
+   * peut surcharger ces primitives via [data-theme="..."] dans themes.css
+   * pour récupérer DxRestcal / SF Pro / Chivo Mono / Infini.
    * ============================================================ */
-  --font-title: "DxRestcal", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-body: "SF Pro", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "Chivo Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --font-tag: "Infini", var(--font-body);
-
   /* Chicago — police identité Mac Lisa.
-     Cascade : Chicago authentique (si livrée) → ChiKareGo2 → Silkscreen → mono système. */
+     Cascade : Chicago authentique → ChiKareGo2 → Silkscreen → mono système. */
   --font-chicago: "ChicagoFLF", "ChiKareGo2", "Silkscreen", ui-monospace, "Courier New", monospace;
+
+  --font-title: var(--font-chicago);
+  --font-body: var(--font-chicago);
+  --font-tag: var(--font-chicago);
+  /* Mono pixel pour l'ASCII art (Silkscreen est sur grille fixe). */
+  --font-mono: "Silkscreen", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* ============================================================
    * Couleurs Mac Lisa — 1-bit pur

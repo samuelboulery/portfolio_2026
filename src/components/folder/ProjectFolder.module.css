@@ -64,18 +64,6 @@
   pointer-events: none;
 }
 
-.logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: var(--project-folder-logo-width);
-  height: var(--project-folder-logo-height);
-  transform: translate(-50%, -50%);
-  color: var(--project-folder-logo-color);
-  display: grid;
-  place-items: center;
-}
-
 .name {
   font-family: var(--project-folder-name-font);
   font-size: var(--project-folder-name-size);

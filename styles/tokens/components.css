@@ -65,9 +65,10 @@
   --window-content-padding: var(--space-l);
 
   /* ============================================================
-   * Dock
+   * Dock — masqué en thème Lisa (le Lisa Office System n'a pas de dock).
+   * Pour le réafficher dans un futur thème, surcharger --dock-display.
    * ============================================================ */
-  --dock-display: flex;
+  --dock-display: none;
   --dock-bg: var(--color-lisa-white);
   --dock-border: var(--color-lisa-black);
   --dock-radius: 0;
@@ -177,10 +178,6 @@
   --project-folder-tab-height: 13px;
   --project-folder-tab-offset-x: 0;
   --project-folder-tab-offset-y: -12px;
-
-  --project-folder-logo-width: 32px;
-  --project-folder-logo-height: 18px;
-  --project-folder-logo-color: var(--color-lisa-black);
 
   --project-folder-name-color: var(--color-lisa-black);
   --project-folder-name-font: var(--font-chicago);

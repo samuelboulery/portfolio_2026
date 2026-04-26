@@ -3,7 +3,6 @@
 import type { ProjectMeta } from "@/content/projects.config";
 import { projectWindowId } from "@/content/projects.config";
 import { selectWindow, useWindowStore } from "@/stores/windowStore";
-import { ClientLogo } from "./ClientLogo";
 import { FolderTab } from "./FolderTab";
 import styles from "./ProjectFolder.module.css";
 
@@ -37,9 +36,6 @@ export function ProjectFolder({ project }: ProjectFolderProps) {
       <span className={styles.shape} aria-hidden="true">
         <span className={styles.body} />
         <FolderTab className={styles.tab} />
-        <span className={styles.logo}>
-          <ClientLogo slug={project.slug} />
-        </span>
       </span>
       <span className={styles.name}>{project.folderLabel}</span>
     </button>
