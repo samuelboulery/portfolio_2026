@@ -1,0 +1,101 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dialog-backdrop-bg);
+  padding: var(--space-l);
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-gap);
+  min-width: var(--dialog-min-width);
+  max-width: var(--dialog-max-width);
+  background: var(--dialog-bg);
+  border: var(--dialog-border-width) solid var(--dialog-border);
+  border-radius: var(--border-radius-lisa);
+  box-shadow: var(--dialog-shadow);
+  padding: var(--dialog-padding);
+  font-family: var(--font-chicago);
+  font-size: var(--osbar-text-size);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-l);
+  align-items: start;
+}
+
+.iconColumn {
+  width: var(--dialog-icon-size);
+  height: var(--dialog-icon-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-lisa-black);
+}
+
+.messageColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.title {
+  font-weight: var(--fw-bold);
+  margin: 0;
+}
+
+.message {
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--dialog-button-gap);
+}
+
+.button {
+  font-family: var(--button-font);
+  font-size: var(--button-font-size);
+  background: var(--color-lisa-white);
+  color: var(--color-lisa-black);
+  border: var(--button-border-width) solid var(--color-lisa-black);
+  border-radius: var(--border-radius-lisa);
+  padding: var(--space-2xs) var(--button-padding-x);
+  min-width: 96px;
+  cursor: pointer;
+  position: relative;
+}
+
+.button:hover,
+.button:focus-visible {
+  outline: none;
+}
+
+.button:active {
+  background: var(--color-lisa-black);
+  color: var(--color-lisa-white);
+}
+
+/* Bouton par défaut : double bordure (anneau noir extérieur). */
+.button[data-default="true"] {
+  box-shadow:
+    0 0 0 var(--dialog-button-default-ring-offset) var(--color-lisa-white),
+    0 0 0 calc(var(--dialog-button-default-ring-offset) + var(--dialog-button-default-ring-width))
+    var(--color-lisa-black);
+}
+
+.button[data-variant="destructive"]:active {
+  background: var(--color-lisa-black);
+  color: var(--color-lisa-white);
+}

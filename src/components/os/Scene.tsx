@@ -7,6 +7,8 @@ import { BootScreen } from "@/components/os/BootScreen/BootScreen";
 import { Desktop } from "@/components/os/Desktop";
 import { OSBar } from "@/components/os/OSBar/OSBar";
 import { ShutdownScreen } from "@/components/os/ShutdownScreen/ShutdownScreen";
+import { AboutDialog } from "@/components/ui/Dialog/AboutDialog";
+import { ConfirmDialog } from "@/components/ui/Dialog/ConfirmDialog";
 import { CVWindow } from "@/components/windows/CVWindow";
 import { ImageWindow } from "@/components/windows/ImageWindow";
 import { MainWindow } from "@/components/windows/MainWindow";
@@ -64,16 +66,24 @@ export function Scene() {
   const openWindow = useWindowStore((state) => state.openWindow);
   const [bootDone, setBootDone] = useState(false);
   const [isShutdown, setIsShutdown] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [confirmShutdown, setConfirmShutdown] = useState(false);
+  const [confirmRestart, setConfirmRestart] = useState(false);
 
-  const handleShutdown = useCallback(() => setIsShutdown(true), []);
-  const handleRestart = useCallback(() => {
+  const triggerShutdown = useCallback(() => {
+    setConfirmShutdown(false);
+    setIsShutdown(true);
+  }, []);
+  const triggerRestart = useCallback(() => {
+    setConfirmRestart(false);
     sessionStorage.removeItem("boot-done");
     setIsShutdown(false);
     setBootDone(false);
   }, []);
-  const handleAbout = useCallback(() => {
-    // Phase 4 wires this to AboutDialog. Stub no-op for Phase 3 to keep typecheck happy.
-  }, []);
+
+  const handleShutdownRequest = useCallback(() => setConfirmShutdown(true), []);
+  const handleRestartRequest = useCallback(() => setConfirmRestart(true), []);
+  const handleAbout = useCallback(() => setAboutOpen(true), []);
 
   useEffect(() => {
     const { windows } = useWindowStore.getState();
@@ -87,10 +97,14 @@ export function Scene() {
 
   return (
     <>
-      <OSBar onShutdown={handleShutdown} onRestart={handleRestart} onAbout={handleAbout} />
+      <OSBar
+        onShutdown={handleShutdownRequest}
+        onRestart={handleRestartRequest}
+        onAbout={handleAbout}
+      />
       <AnimatePresence>
         {!bootDone && !isShutdown && <BootScreen key="boot" onDone={() => setBootDone(true)} />}
-        {isShutdown && <ShutdownScreen key="shutdown" onRestart={handleRestart} />}
+        {isShutdown && <ShutdownScreen key="shutdown" onRestart={triggerRestart} />}
       </AnimatePresence>
       {!isShutdown && (
         <Desktop>
@@ -107,6 +121,23 @@ export function Scene() {
           ))}
         </Desktop>
       )}
+      <AboutDialog open={aboutOpen} onClose={() => setAboutOpen(false)} />
+      <ConfirmDialog
+        open={confirmShutdown}
+        title="Shut Down"
+        message="Vous voulez vraiment éteindre le portfolio ?"
+        confirmLabel="Shut Down"
+        onConfirm={triggerShutdown}
+        onCancel={() => setConfirmShutdown(false)}
+      />
+      <ConfirmDialog
+        open={confirmRestart}
+        title="Restart"
+        message="Redémarrer le portfolio ? Les fenêtres seront réinitialisées."
+        confirmLabel="Restart"
+        onConfirm={triggerRestart}
+        onCancel={() => setConfirmRestart(false)}
+      />
     </>
   );
 }
