@@ -4,7 +4,14 @@ import type { CSSProperties, ReactNode } from "react";
 import { FinderIcon, type FinderIconKind } from "@/components/ui/icons/FinderIcon";
 import styles from "./FileIcon.module.css";
 
-export type FileIconKind = "folder" | "document" | "executable" | "application" | "hd" | "trash";
+export type FileIconKind =
+  | "folder"
+  | "document"
+  | "executable"
+  | "application"
+  | "hd"
+  | "trash"
+  | "clipboard";
 
 interface FileIconProps {
   kind: FileIconKind;
@@ -24,6 +31,7 @@ const KIND_TO_GLYPH: Record<FileIconKind, FinderIconKind> = {
   application: "application",
   hd: "hd",
   trash: "trash",
+  clipboard: "clipboard",
 };
 
 export function FileIcon({

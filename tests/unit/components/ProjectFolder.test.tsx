@@ -56,13 +56,13 @@ describe("ProjectFolder", () => {
       meta: { slug: edf.slug },
     });
     render(<ProjectFolder project={edf} />);
-    const svg = screen.getByRole("button").querySelector("svg");
-    expect(svg?.getAttribute("data-icon-kind")).toBe("folder-selected");
+    const glyph = screen.getByRole("button").querySelector("img");
+    expect(glyph?.getAttribute("data-icon-kind")).toBe("folder-selected");
   });
 
   it("rend l'icône folder simple quand inactif", () => {
     render(<ProjectFolder project={edf} />);
-    const svg = screen.getByRole("button").querySelector("svg");
-    expect(svg?.getAttribute("data-icon-kind")).toBe("folder");
+    const glyph = screen.getByRole("button").querySelector("img");
+    expect(glyph?.getAttribute("data-icon-kind")).toBe("folder");
   });
 });

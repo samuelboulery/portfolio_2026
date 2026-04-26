@@ -32,14 +32,14 @@ describe("FileIcon", () => {
 
   it("kind=folder + selected=true bascule sur le glyphe folder-selected", () => {
     render(<FileIcon kind="folder" label="EDF" selected />);
-    const svg = screen.getByRole("button", { name: "EDF" }).querySelector("svg");
-    expect(svg?.getAttribute("data-icon-kind")).toBe("folder-selected");
+    const glyph = screen.getByRole("button", { name: "EDF" }).querySelector("img");
+    expect(glyph?.getAttribute("data-icon-kind")).toBe("folder-selected");
   });
 
   it("kind=document + selected=true reste sur le glyphe document (pas d'inversion folder)", () => {
     render(<FileIcon kind="document" label="cv.html" selected />);
-    const svg = screen.getByRole("button", { name: "cv.html" }).querySelector("svg");
-    expect(svg?.getAttribute("data-icon-kind")).toBe("document");
+    const glyph = screen.getByRole("button", { name: "cv.html" }).querySelector("img");
+    expect(glyph?.getAttribute("data-icon-kind")).toBe("document");
   });
 
   it("ariaLabel surcharge l'aria-label par défaut", () => {
