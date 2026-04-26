@@ -58,9 +58,10 @@
    * ============================================================ */
   --color-lisa-black: #000000;
   --color-lisa-white: #ffffff;
-  /* Pattern dithered 50% — alternance pixel noir/blanc en damier 2×2.
-     Utilisé comme fond bureau et tracks scrollbar. */
-  --color-lisa-grey-50: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2'><rect width='1' height='1' fill='%23000000'/><rect x='1' y='1' width='1' height='1' fill='%23000000'/></svg>");
+  /* Pattern dithered 50% — damier 2×2 noir/blanc (4 pixels explicites pour
+     ne dépendre d'aucun fond derrière). Utilisé pour fond bureau,
+     scrollbar tracks, et tout fond gris du thème. */
+  --color-lisa-grey-50: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2' shape-rendering='crispEdges'><rect width='1' height='1' fill='%23000000'/><rect x='1' width='1' height='1' fill='%23ffffff'/><rect y='1' width='1' height='1' fill='%23ffffff'/><rect x='1' y='1' width='1' height='1' fill='%23000000'/></svg>");
 
   /* ============================================================
    * Border + shadow Mac Lisa

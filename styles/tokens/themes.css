@@ -1,174 +1,22 @@
 /**
- * Themes — réassignent primitives → sémantiques via un wrapper sur <html>.
- * Pour activer : <html data-theme="light">.
+ * Themes — wrappers `[data-theme="..."]` sur <html> qui réassignent
+ * la couche sémantique (et certaines vars composant) sans toucher
+ * aux composants TSX/CSS Modules.
  *
- * Le thème par défaut (dark) est défini dans semantic.css sans wrapper.
- * Les variantes ne redéfinissent QUE la couche sémantique — les composants
- * ne bougent pas d'une ligne.
+ * Pour l'instant le portfolio expose un seul thème : Mac Lisa, défini
+ * directement dans :root via semantic.css + components.css.
+ *
+ * Le sélecteur [data-theme="lisa"] ci-dessous est un no-op de cohérence :
+ * il sert à ce que `document.documentElement.dataset.theme = "lisa"` reste
+ * un état valide (utile pour `useTheme` et l'inspection devtools).
+ *
+ * Pour ajouter un futur thème (ex. "phosphor" — CRT vert), créer un nouveau
+ * bloc [data-theme="phosphor"] qui réassigne primitives → sémantiques.
+ *
+ * Test de validité du design system : ajouter un wrapper avec overrides doit
+ * flipper toute l'UI sans toucher un seul composant.
  */
 
-[data-theme="dark"] {
-  /* Alias explicite du défaut — utile si un ancêtre a forcé "light" et
-     qu'on veut remettre dark sur une sous-arborescence. */
-  --bg-base: var(--color-indigo-950);
-  --bg-elevated: var(--color-indigo-900);
-  --bg-surface: var(--color-indigo-800);
-  --bg-surface-alt: var(--color-indigo-700);
-  --bg-hover: var(--color-indigo-600);
-  --bg-active: var(--color-indigo-500);
-
-  --text-primary: var(--color-white);
-  --text-secondary: var(--color-white-80);
-  --text-muted: var(--color-white-70);
-  --text-decorative: var(--color-white-50);
-  --text-disabled: var(--color-white-30);
-  --text-on-accent: var(--color-indigo-950);
-}
-
-/* Test de validité du design system : doit flipper toute l'UI sans toucher un
-   seul composant ni module CSS. */
-[data-theme="light"] {
-  --bg-base: #f5f5f7;
-  --bg-elevated: #ffffff;
-  --bg-surface: #ffffff;
-  --bg-surface-alt: #efeff4;
-  --bg-hover: #e4e4ea;
-  --bg-active: #d8d8df;
-  --bg-overlay: rgba(0, 0, 0, 0.4);
-
-  --border-default: #d8d8df;
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-strong: rgba(0, 0, 0, 0.24);
-
-  --text-primary: #111114;
-  --text-secondary: rgba(17, 17, 20, 0.8);
-  --text-muted: rgba(17, 17, 20, 0.64);
-  --text-decorative: rgba(17, 17, 20, 0.48);
-  --text-disabled: rgba(17, 17, 20, 0.28);
-  --text-on-accent: #ffffff;
-
-  /* Desktop — fond clair plat, pas de gradient sombre Rift */
-  --desktop-bg: var(--bg-base);
-
-  /* Window — fond blanc, entête claire, bordure neutre */
-  --window-bg: rgba(255, 255, 255, 0.96);
-  --window-bg-gradient: rgba(255, 255, 255, 0.96);
-  --window-bar-bg: rgba(240, 240, 248, 0.72);
-  --window-border: rgba(0, 0, 0, 0.14);
-  --window-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.12);
-
-  /* Dock — fond blanc translucide */
-  --dock-bg: rgba(255, 255, 255, 0.72);
-  --dock-border: rgba(0, 0, 0, 0.12);
-  --dock-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.12);
-  --dock-app-bg-1: rgba(245, 245, 250, 0.9);
-  --dock-app-bg-2: rgba(235, 235, 245, 0.95);
-  --dock-app-border: rgba(0, 0, 0, 0.1);
-
-  /* OSBar — fond blanc translucide */
-  --osbar-bg: rgba(255, 255, 255, 0.72);
-  --osbar-border: rgba(0, 0, 0, 0.1);
-
-  /* Folders — fond clair neutre */
-  --project-folder-bg-1: rgba(240, 240, 248, 0.95);
-  --project-folder-bg-2: rgba(230, 230, 242, 0.98);
-  --project-folder-border-color: rgba(0, 0, 0, 0.12);
-}
-
-[data-theme="retro"] {
-  /* Palette crème / noir — Mac Lisa 1983 */
-  --bg-base: #e8e2d6;
-  --bg-elevated: #f0ebe0;
-  --bg-surface: #f5f0e8;
-  --bg-surface-alt: #d0c8b8;
-  --bg-hover: #c8c0b0;
-  --bg-active: #b8b0a0;
-  --bg-overlay: rgba(0, 0, 0, 0.5);
-
-  --border-default: #1a1a1a;
-  --border-subtle: rgba(26, 26, 26, 0.3);
-  --border-strong: #1a1a1a;
-  --border-accent: #1a1a1a;
-
-  --text-primary: #1a1a1a;
-  --text-secondary: #3a2e24;
-  --text-muted: #6b5a4e;
-  --text-decorative: #8b7a6e;
-  --text-disabled: rgba(26, 26, 26, 0.3);
-  --text-on-accent: #f0ebe0;
-
-  --accent-primary: #8b3a2a;
-  --accent-secondary: #7a6020;
-  --accent-success: #2a5c2a;
-  --accent-link: #1a3a6b;
-  --accent-muted: #5a4a3a;
-
-  --focus-ring-color: #1a3a6b;
-
-  /* Fonts → Silkscreen pour tout le chrome OS */
-  --font-display: "Silkscreen", "Courier New", monospace;
-  --font-ui: "Silkscreen", "Courier New", monospace;
-
-  /* Desktop — fond crème plat, pas de radial glow */
-  --desktop-bg: var(--bg-base);
-
-  /* Window — carré, barre noire, boutons crème, fond crème plat */
-  --window-radius: 0px;
-  --window-border: #1a1a1a;
-  --window-border-width: 2px;
-  --window-shadow: 4px 4px 0 0 #1a1a1a;
-  --window-bg: #f5f0e8;
-  --window-bg-gradient: #f5f0e8;
-  --window-bar-bg: #1a1a1a;
-  --window-bar-title-color: #f0ebe0;
-  --window-bar-close: #f0ebe0;
-  --window-bar-reduce: #c8c0b0;
-  --window-bar-expand: #c8c0b0;
-  --window-bar-dot-radius: 0px;
-
-  /* Dock caché */
-  --dock-display: none;
-
-  /* OSBar — fond crème Mac Lisa, bordure noire */
-  --osbar-bg: #f0ebe0;
-  --osbar-border: #1a1a1a;
-
-  /* Boutons — bordure noire, remplissage crème/noir */
-  --button-outlined-border: #1a1a1a;
-  --button-outlined-text: #1a1a1a;
-  --button-outlined-hover-bg: rgba(26, 26, 26, 0.1);
-  --button-plain-bg: #1a1a1a;
-  --button-plain-text: #f0ebe0;
-  --button-plain-hover-bg: #3a2e24;
-
-  /* Project folder (icônes desktop) — crème, bordure noire, pas d'ombre lourde */
-  --project-folder-bg-1: #f5f0e8;
-  --project-folder-bg-2: #e8e2d6;
-  --project-folder-border-color: #1a1a1a;
-  --project-folder-radius: 0px;
-  --project-folder-shadow: 2px 2px 0 0 #1a1a1a;
-  --project-folder-logo-color: #1a1a1a;
-  --project-folder-name-color: #1a1a1a;
-  --project-folder-name-active-bg: #1a1a1a;
-  --project-folder-outline-color: #1a1a1a;
-  --project-folder-outline-radius: 0px;
-
-  /* Tag — remplissage crème clair, bordure noire */
-  --tag-bg: #f0ebe0;
-  --tag-border: #1a1a1a;
-
-  /* CV timeline — ligne noire */
-  --cv-line-color: #1a1a1a;
-
-  /* Hovers de liens : variante foncée du bleu rétro */
-  --terminal-link-hover: #0f2247;
-  --cv-link-hover: #0f2247;
-  --project-link-hover: #0f2247;
-
-  /* Scrollbar chunky Mac Lisa */
-  --scrollbar-width: 12px;
-  --scrollbar-thumb: #1a1a1a;
-  --scrollbar-thumb-hover: #3a2e24;
-  --scrollbar-track: #d0c8b8;
-  --scrollbar-radius: 0px;
+[data-theme="lisa"] {
+  /* No-op : Lisa est déjà appliqué via :root. */
 }

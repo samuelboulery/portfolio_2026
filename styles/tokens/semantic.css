@@ -1,59 +1,64 @@
 /**
  * Semantic tokens — intent-based aliases over primitives.
  * Components consume these, not raw primitives.
- * Switching themes replaces this layer's values.
+ *
+ * Le portfolio expose actuellement un seul thème : Mac Lisa (1-bit pur).
+ * Tous les aliases pointent vers les primitives `--color-lisa-*`.
+ * L'infrastructure `[data-theme="..."]` reste en place dans themes.css
+ * pour ajouter d'autres thèmes plus tard sans toucher aux composants.
  */
 
 :root {
   /* ============================================================
-   * Background
+   * Background — tout en blanc. Le bureau gère son propre dither
+   * via --desktop-bg dans components.css.
    * ============================================================ */
-  --bg-base: var(--color-indigo-950);
-  --bg-elevated: var(--color-indigo-900);
-  --bg-surface: var(--color-indigo-800);
-  --bg-surface-alt: var(--color-indigo-700);
-  --bg-hover: var(--color-indigo-600);
-  --bg-active: var(--color-indigo-500);
-  --bg-overlay: var(--color-black-40);
+  --bg-base: var(--color-lisa-white);
+  --bg-elevated: var(--color-lisa-white);
+  --bg-surface: var(--color-lisa-white);
+  --bg-surface-alt: var(--color-lisa-white);
+  --bg-hover: var(--color-lisa-black);
+  --bg-active: var(--color-lisa-black);
+  --bg-overlay: rgba(0, 0, 0, 0.5);
 
   /* ============================================================
-   * Border
+   * Border — toujours noir 1px en Lisa
    * ============================================================ */
-  --border-default: var(--color-indigo-700);
-  --border-subtle: var(--color-white-10);
-  --border-strong: var(--color-white-30);
-  --border-accent: var(--color-purple-500);
+  --border-default: var(--color-lisa-black);
+  --border-subtle: var(--color-lisa-black);
+  --border-strong: var(--color-lisa-black);
+  --border-accent: var(--color-lisa-black);
 
   /* ============================================================
-   * Text
+   * Text — pas de hiérarchie de gris en 1-bit pur
    * ============================================================ */
-  --text-primary: var(--color-white);
-  --text-secondary: var(--color-white-80);
-  --text-muted: var(--color-white-70);
-  --text-decorative: var(--color-white-50);
-  --text-disabled: var(--color-white-30);
-  --text-on-accent: var(--color-indigo-950);
+  --text-primary: var(--color-lisa-black);
+  --text-secondary: var(--color-lisa-black);
+  --text-muted: var(--color-lisa-black);
+  --text-decorative: var(--color-lisa-black);
+  --text-disabled: rgba(0, 0, 0, 0.35);
+  --text-on-accent: var(--color-lisa-white);
 
   /* ============================================================
-   * Accent — brand colors by intent
+   * Accent — pas de couleur, c'est du noir + soulignement
    * ============================================================ */
-  --accent-primary: var(--color-pink-500);
-  --accent-secondary: var(--color-orange-500);
-  --accent-success: var(--color-green-500);
-  --accent-link: var(--color-cyan-500);
-  --accent-brand: var(--color-green-500);
-  --accent-muted: var(--color-purple-500);
+  --accent-primary: var(--color-lisa-black);
+  --accent-secondary: var(--color-lisa-black);
+  --accent-success: var(--color-lisa-black);
+  --accent-link: var(--color-lisa-black);
+  --accent-brand: var(--color-lisa-black);
+  --accent-muted: var(--color-lisa-black);
 
   /* ============================================================
    * Focus ring
    * ============================================================ */
-  --focus-ring-color: var(--color-cyan-500);
+  --focus-ring-color: var(--color-lisa-black);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
 
   /* ============================================================
-   * Typography — rôles sémantiques overridables par les thèmes
+   * Typography — rôles sémantiques (overridables par d'autres thèmes)
    * ============================================================ */
-  --font-display: var(--font-title);
-  --font-ui: var(--font-mono);
+  --font-display: var(--font-chicago);
+  --font-ui: var(--font-chicago);
 }

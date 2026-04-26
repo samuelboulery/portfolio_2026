@@ -1,6 +1,9 @@
 /**
  * Component tokens — scoped vars par composant, miroir des variables Figma.
  * Chaque composant consomme UNIQUEMENT ces vars (ou semantic), jamais les primitives.
+ *
+ * Valeurs courantes : thème Mac Lisa (1-bit pur, B&W).
+ * Pour basculer sur un futur thème, surcharger ces vars depuis themes.css.
  */
 
 :root {
@@ -10,41 +13,49 @@
   --touch-target-min: 44px;
 
   /* ============================================================
-   * Desktop — fond de scène
+   * Desktop — fond dithered 50% (damier 1px noir/blanc)
    * ============================================================ */
-  --desktop-bg:
-    radial-gradient(ellipse 70% 55% at 80% 20%, rgba(0, 25, 70, 0.75) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 10% 80%, rgba(70, 5, 20, 0.55) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 60% 90%, rgba(50, 35, 0, 0.4) 0%, transparent 50%);
+  --desktop-bg: var(--color-lisa-grey-50);
+  --desktop-bg-size: 2px 2px;
 
   /* ============================================================
    * Window
    * ============================================================ */
-  --window-bg: rgba(4, 6, 18, 0.96);
-  --window-bg-gradient: rgba(4, 6, 18, 0.96);
-  --window-border: rgba(60, 80, 160, 0.45);
-  --window-border-width: var(--border-width-s);
-  --window-radius: 0;
-  --window-shadow: 0 0 0 1px rgba(40, 60, 140, 0.18), 0 8px 32px rgba(0, 0, 0, 0.6);
+  --window-bg: var(--color-lisa-white);
+  --window-bg-gradient: var(--color-lisa-white);
+  --window-border: var(--color-lisa-black);
+  --window-border-width: var(--border-width-lisa);
+  --window-radius: var(--border-radius-lisa);
+  --window-shadow: var(--shadow-lisa);
   --window-min-width: 320px;
   --window-min-height: 200px;
   --window-resize-zone: 6px;
 
-  --window-shadow-unfocused: 0 0 0 1px rgba(40, 60, 140, 0.08), 0 4px 16px rgba(0, 0, 0, 0.5);
+  --window-shadow-unfocused: 1px 1px 0 var(--color-lisa-black);
 
-  --window-bar-bg: rgba(10, 15, 40, 0.55);
-  --window-bar-blur: 12px;
-  --window-bar-padding-x: var(--space-m);
-  --window-bar-padding-y: var(--space-s);
-  --window-bar-gap: var(--space-xs);
-  --window-bar-dot-size: 12px;
+  --window-bar-bg: var(--color-lisa-white);
+  --window-bar-blur: 0;
+  --window-bar-padding-x: var(--space-xs);
+  --window-bar-padding-y: var(--space-3xs);
+  --window-bar-gap: var(--space-3xs);
+  --window-bar-dot-size: 11px;
   --window-bar-dot-radius: 0;
-  --window-bar-close: var(--accent-primary);
-  --window-bar-reduce: var(--accent-secondary);
-  --window-bar-expand: var(--accent-success);
-  --window-bar-title-color: var(--text-muted);
-  --window-bar-title-font: var(--font-ui);
-  --window-bar-title-size: var(--fs-mono-s);
+  --window-bar-close: var(--color-lisa-black);
+  --window-bar-reduce: var(--color-lisa-black);
+  --window-bar-expand: var(--color-lisa-black);
+  --window-bar-title-color: var(--color-lisa-black);
+  --window-bar-title-font: var(--font-chicago);
+  --window-bar-title-size: 13px;
+
+  /* Stripe pattern Mac Lisa : 6 lignes horizontales 1px (consommé en Phase 5
+     par WindowBar — voir le module pour l'usage). */
+  --window-bar-stripes: repeating-linear-gradient(
+    to bottom,
+    var(--color-lisa-black) 0 1px,
+    var(--color-lisa-white) 1px 3px
+  );
+  --window-bar-title-bg: var(--color-lisa-white);
+  --window-bar-title-padding-x: var(--space-s);
 
   --window-content-padding: var(--space-l);
 
@@ -52,45 +63,43 @@
    * Dock
    * ============================================================ */
   --dock-display: flex;
-  --dock-bg: rgba(10, 15, 40, 0.55);
-  --dock-border: rgba(60, 80, 160, 0.45);
+  --dock-bg: var(--color-lisa-white);
+  --dock-border: var(--color-lisa-black);
   --dock-radius: 0;
   --dock-padding-x: var(--space-m);
   --dock-padding-y: var(--space-s);
   --dock-gap: var(--space-m);
-  --dock-blur: 12px;
-  --dock-shadow: 0 0 0 1px rgba(40, 60, 140, 0.18), 0 8px 32px rgba(0, 0, 0, 0.6);
+  --dock-blur: 0;
+  --dock-shadow: var(--shadow-lisa);
 
   --dock-app-size: 40px;
   --dock-app-size-mobile: var(--touch-target-min);
   --dock-app-radius: 0;
-  --dock-app-bg-1: rgba(15, 20, 55, 0.9);
-  --dock-app-bg-2: rgba(8, 12, 40, 0.95);
-  --dock-app-gradient-stop: 27.4%;
-  --dock-app-border: rgba(60, 80, 160, 0.35);
-  --dock-app-border-width: var(--border-width-s);
-  --dock-app-shadow:
-    16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
-    2px 2px 4px 0 var(--color-black-40);
-  --dock-app-hover-bg: var(--bg-hover);
+  --dock-app-bg-1: var(--color-lisa-white);
+  --dock-app-bg-2: var(--color-lisa-white);
+  --dock-app-gradient-stop: 0%;
+  --dock-app-border: var(--color-lisa-black);
+  --dock-app-border-width: var(--border-width-lisa);
+  --dock-app-shadow: none;
+  --dock-app-hover-bg: var(--color-lisa-black);
 
   --dock-active-indicator-size: 4px;
   --dock-active-indicator-offset: var(--space-3xs);
-  --dock-active-indicator-color: var(--accent-primary);
+  --dock-active-indicator-color: var(--color-lisa-black);
 
   /* ============================================================
    * OS Bar
    * ============================================================ */
-  --osbar-bg: rgba(10, 15, 40, 0.55);
-  --osbar-border: rgba(60, 80, 160, 0.35);
-  --osbar-blur: 12px;
-  --osbar-padding-x: var(--space-l);
-  --osbar-padding-y: var(--space-xs);
-  --osbar-gap: var(--space-m);
-  --osbar-text-color: var(--text-primary);
-  --osbar-text-font: var(--font-ui);
-  --osbar-text-size: var(--fs-mono-s);
-  --osbar-icon-color: var(--text-muted);
+  --osbar-bg: var(--color-lisa-white);
+  --osbar-border: var(--color-lisa-black);
+  --osbar-blur: 0;
+  --osbar-padding-x: var(--space-s);
+  --osbar-padding-y: var(--space-3xs);
+  --osbar-gap: var(--space-s);
+  --osbar-text-color: var(--color-lisa-black);
+  --osbar-text-font: var(--font-chicago);
+  --osbar-text-size: 13px;
+  --osbar-icon-color: var(--color-lisa-black);
   --osbar-icon-size: var(--size-m);
   --osbar-icon-radius: 0;
   --osbar-separator-height: 14px;
@@ -98,15 +107,16 @@
   /* ============================================================
    * Dropdown menu (PowerMenu + TopMenuBar)
    * ============================================================ */
-  --dropdown-bg: var(--window-bg);
-  --dropdown-border: var(--window-border);
+  --dropdown-bg: var(--color-lisa-white);
+  --dropdown-border: var(--color-lisa-black);
   --dropdown-radius: 0;
-  --dropdown-shadow: var(--window-shadow);
+  --dropdown-shadow: var(--shadow-lisa);
   --dropdown-item-padding-x: var(--space-m);
   --dropdown-item-padding-y: var(--space-2xs);
-  --dropdown-item-hover-bg: var(--bg-hover);
-  --dropdown-item-active-bg: var(--bg-active);
-  --dropdown-separator-color: var(--dropdown-border);
+  --dropdown-item-hover-bg: var(--color-lisa-black);
+  --dropdown-item-hover-color: var(--color-lisa-white);
+  --dropdown-item-active-bg: var(--color-lisa-black);
+  --dropdown-separator-color: var(--color-lisa-black);
   --dropdown-disabled-opacity: 0.35;
   --dropdown-min-width: 180px;
   --dropdown-check-font-size: 10px;
@@ -115,31 +125,31 @@
   /* ============================================================
    * ShutdownScreen
    * ============================================================ */
-  --shutdown-bg: var(--boot-bg);
-  --shutdown-text: var(--boot-text);
-  --shutdown-font-size: var(--boot-font-size);
+  --shutdown-bg: var(--color-lisa-white);
+  --shutdown-text: var(--color-lisa-black);
+  --shutdown-font-size: 16px;
 
   /* ============================================================
    * Button
    * ============================================================ */
-  --button-height: 40px;
-  --button-height-s: 32px;
+  --button-height: 32px;
+  --button-height-s: 26px;
   --button-padding-x: var(--space-m);
   --button-padding-x-icon: var(--space-s);
   --button-gap: var(--space-xs);
   --button-radius: 0;
-  --button-border-width: var(--border-width-m);
-  --button-font: var(--font-body);
-  --button-font-size: var(--fs-body-m);
-  --button-font-weight: var(--fw-medium);
+  --button-border-width: var(--border-width-lisa);
+  --button-font: var(--font-chicago);
+  --button-font-size: 14px;
+  --button-font-weight: var(--fw-regular);
 
-  --button-outlined-border: var(--color-white);
-  --button-outlined-text: var(--text-primary);
-  --button-outlined-hover-bg: var(--color-white-10);
+  --button-outlined-border: var(--color-lisa-black);
+  --button-outlined-text: var(--color-lisa-black);
+  --button-outlined-hover-bg: var(--color-lisa-black);
 
-  --button-plain-bg: var(--color-white);
-  --button-plain-text: var(--text-on-accent);
-  --button-plain-hover-bg: var(--color-white-80);
+  --button-plain-bg: var(--color-lisa-black);
+  --button-plain-text: var(--color-lisa-white);
+  --button-plain-hover-bg: var(--color-lisa-white);
 
   /* ============================================================
    * Project folder (desktop icon)
@@ -148,16 +158,14 @@
   --project-folder-height: 72px;
   --project-folder-gap: var(--space-xs);
 
-  --project-folder-bg-1: rgba(15, 18, 50, 0.95);
-  --project-folder-bg-2: rgba(8, 10, 35, 0.98);
-  --project-folder-gradient-stop: 27.4%;
-  --project-folder-border-color: rgba(80, 100, 180, 0.35);
-  --project-folder-border-width: var(--border-width-s);
+  --project-folder-bg-1: var(--color-lisa-white);
+  --project-folder-bg-2: var(--color-lisa-white);
+  --project-folder-gradient-stop: 0%;
+  --project-folder-border-color: var(--color-lisa-black);
+  --project-folder-border-width: var(--border-width-lisa);
   --project-folder-radius: 0;
 
-  --project-folder-shadow:
-    16px 16px 24px 0 var(--color-black-20), 8px 8px 16px 0 var(--color-black-20),
-    2px 2px 4px 0 var(--color-black-40);
+  --project-folder-shadow: var(--shadow-lisa);
 
   --project-folder-tab-width: 50px;
   --project-folder-tab-height: 13px;
@@ -166,48 +174,48 @@
 
   --project-folder-logo-width: 32px;
   --project-folder-logo-height: 18px;
-  --project-folder-logo-color: var(--color-white);
+  --project-folder-logo-color: var(--color-lisa-black);
 
-  --project-folder-name-color: var(--text-primary);
-  --project-folder-name-font: var(--font-body);
-  --project-folder-name-size: var(--fs-body-m);
+  --project-folder-name-color: var(--color-lisa-black);
+  --project-folder-name-font: var(--font-chicago);
+  --project-folder-name-size: 14px;
   --project-folder-name-padding-x: var(--space-xs);
-  --project-folder-name-active-bg: var(--color-indigo-600);
+  --project-folder-name-active-bg: var(--color-lisa-black);
   --project-folder-name-active-radius: 0;
 
-  --project-folder-outline-width: var(--border-width-m);
-  --project-folder-outline-color: var(--color-indigo-600);
+  --project-folder-outline-width: var(--border-width-lisa);
+  --project-folder-outline-color: var(--color-lisa-black);
   --project-folder-outline-radius: 0;
   --project-folder-outline-inset-x: -6px;
   --project-folder-outline-inset-y: -16px;
 
   /* ============================================================
-   * Scrollbar (custom)
+   * Scrollbar (custom) — Mac Lisa : track dithered, thumb blanc bordé noir
    * ============================================================ */
-  --scrollbar-width: 4px;
-  --scrollbar-thumb: var(--color-purple-500);
-  --scrollbar-thumb-hover: var(--color-purple-400);
-  --scrollbar-track: var(--border-default);
+  --scrollbar-width: 16px;
+  --scrollbar-thumb: var(--color-lisa-white);
+  --scrollbar-thumb-hover: var(--color-lisa-white);
+  --scrollbar-track: var(--color-lisa-grey-50);
   --scrollbar-radius: 0;
 
   /* ============================================================
-   * Terminal
+   * Terminal — fond blanc, texte noir Chicago
    * ============================================================ */
-  --terminal-bg: transparent;
-  --terminal-text: var(--text-primary);
-  --terminal-text-font: ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
+  --terminal-bg: var(--color-lisa-white);
+  --terminal-text: var(--color-lisa-black);
+  --terminal-text-font: var(--font-chicago);
   --terminal-text-size: var(--fs-mono-m);
-  --terminal-prompt-color: var(--accent-primary);
-  --terminal-path-color: var(--accent-link);
-  --terminal-command-color: var(--text-primary);
-  --terminal-cursor-color: var(--accent-secondary);
-  --terminal-cursor-width: 10px;
-  --terminal-cursor-height: 20px;
-  --terminal-cursor-border-width: var(--border-width-s);
-  --terminal-link-color: var(--accent-link);
-  --terminal-link-hover: var(--color-cyan-400);
-  --terminal-link-weight: var(--fw-semibold);
-  --terminal-doc-color: var(--text-primary);
+  --terminal-prompt-color: var(--color-lisa-black);
+  --terminal-path-color: var(--color-lisa-black);
+  --terminal-command-color: var(--color-lisa-black);
+  --terminal-cursor-color: var(--color-lisa-black);
+  --terminal-cursor-width: 8px;
+  --terminal-cursor-height: 16px;
+  --terminal-cursor-border-width: var(--border-width-lisa);
+  --terminal-link-color: var(--color-lisa-black);
+  --terminal-link-hover: var(--color-lisa-black);
+  --terminal-link-weight: var(--fw-bold);
+  --terminal-doc-color: var(--color-lisa-black);
   --terminal-doc-weight: var(--fw-regular);
   --terminal-line-gap: var(--space-2xs);
   --terminal-col-gap: var(--space-l);
@@ -219,11 +227,11 @@
   /* ============================================================
    * Tag (pilule)
    * ============================================================ */
-  --tag-bg: var(--color-white-10);
-  --tag-border: var(--color-white-30);
-  --tag-text: var(--text-primary);
-  --tag-font: var(--font-tag);
-  --tag-size: var(--fs-tag);
+  --tag-bg: var(--color-lisa-white);
+  --tag-border: var(--color-lisa-black);
+  --tag-text: var(--color-lisa-black);
+  --tag-font: var(--font-chicago);
+  --tag-size: 12px;
   --tag-padding-x: var(--space-s);
   --tag-padding-y: var(--space-3xs);
   --tag-radius: 0;
@@ -231,8 +239,8 @@
   /* ============================================================
    * CV timeline
    * ============================================================ */
-  --cv-line-color: var(--color-purple-500);
-  --cv-line-width: var(--border-width-s);
+  --cv-line-color: var(--color-lisa-black);
+  --cv-line-width: var(--border-width-lisa);
   --cv-line-offset: 16px;
   --cv-timeline-indent: var(--space-2xl);
   --cv-period-width: 110px;
@@ -240,8 +248,8 @@
   --cv-item-gap: var(--space-xs);
   --cv-header-gap: var(--space-s);
   --cv-section-gap: var(--space-l);
-  --cv-link-color: var(--accent-link);
-  --cv-link-hover: var(--color-cyan-400);
+  --cv-link-color: var(--color-lisa-black);
+  --cv-link-hover: var(--color-lisa-black);
 
   /* ============================================================
    * Project window (MDX case study)
@@ -249,27 +257,30 @@
   --project-gap: var(--space-l);
   --project-cover-gap: var(--space-m);
   --project-cover-radius: 0;
-  --project-cover-bg: var(--bg-surface-alt);
-  --project-cover-border: var(--border-subtle);
+  --project-cover-bg: var(--color-lisa-white);
+  --project-cover-border: var(--color-lisa-black);
   --project-cover-aspect: 4 / 3;
   --project-tags-gap: var(--space-xs);
   --project-prose-gap: var(--space-m);
-  --project-link-color: var(--accent-link);
-  --project-link-hover: var(--color-cyan-400);
+  --project-link-color: var(--color-lisa-black);
+  --project-link-hover: var(--color-lisa-black);
+  /* Filtre image grayscale + boost contraste pour rentrer dans la palette 1-bit */
+  --project-cover-filter: grayscale(100%) contrast(1.15);
 
   /* ============================================================
-   * BootScreen
+   * BootScreen — Welcome to Macintosh (B&W, voir Phase 7)
    * ============================================================ */
-  --boot-bg: #0a0a0a;
-  --boot-text: #33ff33;
-  --boot-text-ok: #33ff33;
-  --boot-text-cursor: #ffff33;
+  --boot-bg: var(--color-lisa-white);
+  --boot-text: var(--color-lisa-black);
+  --boot-text-ok: var(--color-lisa-black);
+  --boot-text-cursor: var(--color-lisa-black);
   --boot-duration-line: 400ms;
   --boot-duration-exit: 300ms;
-  --boot-font-size: 13px;
+  --boot-font-size: 16px;
   --boot-terminal-min-width: 420px;
 }
 
+/* L'animation @keyframes riftShift est conservée jusqu'au cleanup Phase 12 */
 @keyframes riftShift {
   0% {
     opacity: 0.8;
