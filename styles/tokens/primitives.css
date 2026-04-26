@@ -49,6 +49,27 @@
   --font-mono: "Chivo Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-tag: "Infini", var(--font-body);
 
+  /* Chicago — police identité Mac Lisa.
+     Cascade : Chicago authentique (si livrée) → ChiKareGo2 → Silkscreen → mono système. */
+  --font-chicago: "ChicagoFLF", "ChiKareGo2", "Silkscreen", ui-monospace, "Courier New", monospace;
+
+  /* ============================================================
+   * Couleurs Mac Lisa — 1-bit pur
+   * ============================================================ */
+  --color-lisa-black: #000000;
+  --color-lisa-white: #ffffff;
+  /* Pattern dithered 50% — alternance pixel noir/blanc en damier 2×2.
+     Utilisé comme fond bureau et tracks scrollbar. */
+  --color-lisa-grey-50: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2'><rect width='1' height='1' fill='%23000000'/><rect x='1' y='1' width='1' height='1' fill='%23000000'/></svg>");
+
+  /* ============================================================
+   * Border + shadow Mac Lisa
+   * ============================================================ */
+  --border-width-lisa: 1px;
+  --border-radius-lisa: 0;
+  /* Ombre Lisa : offset noir net, zéro blur, zéro radius. */
+  --shadow-lisa: 2px 2px 0 var(--color-lisa-black);
+
   /* ============================================================
    * Typography — scale (font-size + line-height pairs)
    * ============================================================ */

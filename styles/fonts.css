@@ -87,7 +87,7 @@
 */
 
 /* -------------------------------------------------------------- *
- * Silkscreen — thème rétro Mac Lisa (font-ui / font-display override)
+ * Silkscreen — fallback pixel pour le thème Mac Lisa
  * Jason Kottke — licence OFL
  * -------------------------------------------------------------- */
 @font-face {
@@ -102,6 +102,30 @@
   font-family: "Silkscreen";
   src: url("/fonts/silkscreen/Silkscreen-Bold.ttf") format("truetype");
   font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------------------------------------------------------- *
+ * Chicago — police authentique Mac Lisa / System 6 (Susan Kare, 1984)
+ * Voir public/fonts/chicago/README.md pour récupérer un fichier libre.
+ * Tant qu'aucun fichier n'est déposé, le fallback Silkscreen ci-dessus
+ * prend le relais via la chaîne définie dans --font-chicago.
+ * -------------------------------------------------------------- */
+@font-face {
+  font-family: "ChicagoFLF";
+  src:
+    url("/fonts/chicago/ChicagoFLF.woff2") format("woff2"),
+    url("/fonts/chicago/ChicagoFLF.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ChiKareGo2";
+  src: url("/fonts/chicago/ChiKareGo2.ttf") format("truetype");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
