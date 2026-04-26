@@ -45,8 +45,10 @@
   color: var(--button-outlined-text);
 }
 
-.outlined:not(:disabled):hover {
+.outlined:not(:disabled):hover,
+.outlined:not(:disabled):active {
   background: var(--button-outlined-hover-bg);
+  color: var(--color-lisa-white);
 }
 
 .plain {
@@ -55,9 +57,11 @@
   border-color: var(--button-plain-bg);
 }
 
-.plain:not(:disabled):hover {
+.plain:not(:disabled):hover,
+.plain:not(:disabled):active {
   background: var(--button-plain-hover-bg);
   border-color: var(--button-plain-hover-bg);
+  color: var(--button-plain-bg);
 }
 
 .icon {
