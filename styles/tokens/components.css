@@ -34,35 +34,100 @@
   --window-shadow-unfocused: 1px 1px 0 var(--color-lisa-black);
 
   --window-bar-bg: var(--color-lisa-white);
+  --window-bar-bg-inactive: var(--color-lisa-white);
   --window-bar-blur: 0;
   --window-bar-padding-x: var(--space-xs);
   --window-bar-padding-y: var(--space-3xs);
   --window-bar-gap: var(--space-3xs);
   --window-bar-dot-size: 11px;
   --window-bar-dot-radius: 0;
-  /* Boutons titre Lisa : carrés outlined, intérieur blanc, bordure noire 1px,
-     hover = inversion (rempli noir). */
+  /* Widgets System 6 : carrés outlined, intérieur blanc, bordure noire 1px,
+     pressed = inversion (rempli noir). */
   --window-bar-dot-border-width: var(--border-width-lisa);
   --window-bar-dot-border-color: var(--color-lisa-black);
   --window-bar-close: var(--color-lisa-white);
-  --window-bar-reduce: var(--color-lisa-white);
-  --window-bar-expand: var(--color-lisa-white);
+  --window-bar-zoom: var(--color-lisa-white);
+  --window-bar-close-pressed-bg: var(--color-lisa-black);
+  --window-bar-close-pressed-fg: var(--color-lisa-white);
+  --window-bar-zoom-pressed-bg: var(--color-lisa-black);
+  --window-bar-zoom-pressed-fg: var(--color-lisa-white);
+  --window-bar-zoom-inset: 3px;
   --window-bar-dot-hover-bg: var(--color-lisa-black);
   --window-bar-title-color: var(--color-lisa-black);
   --window-bar-title-font: var(--font-chicago);
   --window-bar-title-size: 13px;
 
-  /* Stripe pattern Mac Lisa : 6 lignes horizontales 1px (consommé en Phase 5
-     par WindowBar — voir le module pour l'usage). */
+  /* Stripe pattern System 6 : 6 lignes horizontales 1px. Inactive : aucun
+     pattern (juste fond blanc). */
   --window-bar-stripes: repeating-linear-gradient(
     to bottom,
     var(--color-lisa-black) 0 1px,
     var(--color-lisa-white) 1px 3px
   );
+  --window-bar-stripes-inactive: none;
   --window-bar-title-bg: var(--color-lisa-white);
   --window-bar-title-padding-x: var(--space-s);
 
   --window-content-padding: var(--space-l);
+
+  /* ============================================================
+   * Window status bar (sous la title bar dans Finder & co.)
+   * ============================================================ */
+  --window-status-bar-bg: var(--color-lisa-white);
+  --window-status-bar-border: var(--color-lisa-black);
+  --window-status-bar-border-width: var(--border-width-lisa);
+  --window-status-bar-padding-x: var(--space-s);
+  --window-status-bar-padding-y: var(--space-3xs);
+  --window-status-bar-gap: var(--space-m);
+  --window-status-bar-font: var(--font-chicago);
+  --window-status-bar-color: var(--color-lisa-black);
+  --window-status-bar-size: 12px;
+  --window-status-bar-separator-color: var(--color-lisa-black);
+  --window-status-bar-separator-width: var(--border-width-lisa);
+
+  /* ============================================================
+   * Dialog (alert modal façon TeachText / Save changes)
+   * ============================================================ */
+  --dialog-bg: var(--color-lisa-white);
+  --dialog-border: var(--color-lisa-black);
+  --dialog-border-width: var(--border-width-lisa);
+  --dialog-shadow: 2px 2px 0 var(--color-lisa-black);
+  --dialog-padding: var(--space-l);
+  --dialog-gap: var(--space-l);
+  --dialog-icon-size: 32px;
+  --dialog-min-width: 360px;
+  --dialog-max-width: 520px;
+  --dialog-button-gap: var(--space-s);
+  /* Bouton défaut : double bordure (anneau extérieur 2 px noir avec offset). */
+  --dialog-button-default-ring-width: 2px;
+  --dialog-button-default-ring-offset: 3px;
+  --dialog-backdrop-bg: rgba(0, 0, 0, 0.25);
+
+  /* ============================================================
+   * Finder window + FileIcon (grille de fichiers System 6)
+   * ============================================================ */
+  --finder-window-min-width: 480px;
+  --finder-window-min-height: 320px;
+  --finder-grid-padding: var(--space-l);
+  --finder-grid-gap-x: var(--space-l);
+  --finder-grid-gap-y: var(--space-m);
+
+  --file-icon-width: 80px;
+  --file-icon-glyph-size: 40px;
+  --file-icon-glyph-gap: var(--space-3xs);
+  --file-icon-label-font: var(--font-chicago);
+  --file-icon-label-size: 12px;
+  --file-icon-label-padding-x: var(--space-3xs);
+  --file-icon-label-bg: transparent;
+  --file-icon-label-fg: var(--color-lisa-black);
+  --file-icon-label-bg-selected: var(--color-lisa-black);
+  --file-icon-label-fg-selected: var(--color-lisa-white);
+
+  /* ============================================================
+   * Desktop decor (Macintosh HD + Trash)
+   * ============================================================ */
+  --desktop-icon-offset: var(--space-l);
+  --desktop-icon-glyph-size: 40px;
 
   /* ============================================================
    * Dock — masqué en thème Lisa (le Lisa Office System n'a pas de dock).
@@ -194,12 +259,38 @@
 
   /* ============================================================
    * Scrollbar (custom) — Mac Lisa : track dithered, thumb blanc bordé noir
+   * Tokens utilisés par le fallback CSS natif (globals.css). Le composant
+   * React <LisaScrollbar/> consomme la section --lisa-scrollbar-* ci-dessous.
    * ============================================================ */
   --scrollbar-width: 16px;
   --scrollbar-thumb: var(--color-lisa-white);
   --scrollbar-thumb-hover: var(--color-lisa-white);
   --scrollbar-track: var(--color-lisa-grey-50);
   --scrollbar-radius: 0;
+
+  /* ============================================================
+   * Lisa Scrollbar (composant React custom)
+   * Reproduit pixel-perfect les scrollbars Apple Lisa : flèches carrées
+   * noir-sur-blanc, track damier 50 %, thumb blanc bordé noir, coin
+   * de redim avec triangle décoratif.
+   * ============================================================ */
+  --lisa-scrollbar-size: 15px;
+  --lisa-scrollbar-bg: var(--color-lisa-white);
+  --lisa-scrollbar-border-color: var(--color-lisa-black);
+  --lisa-scrollbar-border-width: var(--border-width-lisa);
+
+  --lisa-scrollbar-track-bg: var(--color-lisa-grey-50);
+
+  --lisa-scrollbar-thumb-bg: var(--color-lisa-white);
+  --lisa-scrollbar-thumb-border: var(--border-width-lisa) solid var(--color-lisa-black);
+  --lisa-scrollbar-thumb-min: 16px;
+
+  --lisa-scrollbar-arrow-bg: var(--color-lisa-white);
+  --lisa-scrollbar-arrow-bg-pressed: var(--color-lisa-black);
+  --lisa-scrollbar-arrow-color: var(--color-lisa-black);
+  --lisa-scrollbar-arrow-color-pressed: var(--color-lisa-white);
+
+  --lisa-scrollbar-corner-bg: var(--color-lisa-white);
 
   /* ============================================================
    * Terminal — fond blanc, texte noir Chicago
