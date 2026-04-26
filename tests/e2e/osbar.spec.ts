@@ -7,14 +7,14 @@ async function skipBootScreen(page: import("@playwright/test").Page) {
 }
 
 test.describe("OSBar", () => {
-  test.describe("Power Menu", () => {
-    test("Éteindre affiche le ShutdownScreen", async ({ page }) => {
+  test.describe("Special menu", () => {
+    test("Shut Down affiche le ShutdownScreen", async ({ page }) => {
       await skipBootScreen(page);
       await page.goto("/");
       await expect(page.getByTestId("boot-screen")).not.toBeVisible();
 
-      await page.getByRole("button", { name: "Menu système" }).click();
-      await page.getByRole("menuitem", { name: "Éteindre" }).click();
+      await page.getByRole("button", { name: "Special" }).click();
+      await page.getByRole("menuitem", { name: "Shut Down" }).click();
 
       await expect(page.getByTestId("shutdown-screen")).toBeVisible();
     });
@@ -23,35 +23,36 @@ test.describe("OSBar", () => {
       await skipBootScreen(page);
       await page.goto("/");
 
-      await page.getByRole("button", { name: "Menu système" }).click();
-      await page.getByRole("menuitem", { name: "Éteindre" }).click();
+      await page.getByRole("button", { name: "Special" }).click();
+      await page.getByRole("menuitem", { name: "Shut Down" }).click();
       await expect(page.getByTestId("shutdown-screen")).toBeVisible();
 
       await page.getByTestId("shutdown-screen").click();
       await expect(page.getByTestId("boot-screen")).toBeVisible();
     });
 
-    test("Redémarrer relance le BootScreen", async ({ page }) => {
+    test("Restart relance le BootScreen", async ({ page }) => {
       await skipBootScreen(page);
       await page.goto("/");
 
-      await page.getByRole("button", { name: "Menu système" }).click();
-      await page.getByRole("menuitem", { name: "Redémarrer" }).click();
+      await page.getByRole("button", { name: "Special" }).click();
+      await page.getByRole("menuitem", { name: "Restart" }).click();
 
       await expect(page.getByTestId("boot-screen")).toBeVisible();
     });
   });
 
-  test.describe("Navigation Fichier", () => {
-    test("Fichier > CV ouvre la CVWindow", async ({ page }) => {
+  test.describe("Apple menu", () => {
+    test("CommandShell ouvre la fenêtre terminal", async ({ page }) => {
       await skipBootScreen(page);
       await page.goto("/");
       await expect(page.getByTestId("boot-screen")).not.toBeVisible();
 
-      await page.getByRole("button", { name: "Fichier" }).click();
-      await page.getByRole("menuitem", { name: "CV" }).click();
+      await page.getByRole("button", { name: "Menu Apple" }).click();
+      await page.getByRole("menuitem", { name: "CommandShell" }).click();
 
-      await expect(page.getByRole("heading", { name: "Curriculum vitae", level: 1 })).toBeVisible();
+      // La fenêtre terminal s'ouvre — vérifie via le titre dans la title bar
+      await expect(page.getByText("CommandShell 1", { exact: false }).first()).toBeVisible();
     });
   });
 
@@ -63,15 +64,6 @@ test.describe("OSBar", () => {
 
       const htmlElement = page.locator("html");
       await expect(htmlElement).toHaveAttribute("data-theme", "lisa");
-    });
-
-    test("Le sous-menu Vue n'expose plus de sélecteur de thème", async ({ page }) => {
-      await skipBootScreen(page);
-      await page.goto("/");
-      await expect(page.getByTestId("boot-screen")).not.toBeVisible();
-
-      await page.getByRole("button", { name: "Vue" }).click();
-      await expect(page.getByRole("menuitem", { name: /Thème/i })).toHaveCount(0);
     });
   });
 });

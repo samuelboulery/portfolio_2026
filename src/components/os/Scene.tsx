@@ -71,6 +71,9 @@ export function Scene() {
     setIsShutdown(false);
     setBootDone(false);
   }, []);
+  const handleAbout = useCallback(() => {
+    // Phase 4 wires this to AboutDialog. Stub no-op for Phase 3 to keep typecheck happy.
+  }, []);
 
   useEffect(() => {
     const { windows } = useWindowStore.getState();
@@ -84,7 +87,7 @@ export function Scene() {
 
   return (
     <>
-      <OSBar onShutdown={handleShutdown} onRestart={handleRestart} />
+      <OSBar onShutdown={handleShutdown} onRestart={handleRestart} onAbout={handleAbout} />
       <AnimatePresence>
         {!bootDone && !isShutdown && <BootScreen key="boot" onDone={() => setBootDone(true)} />}
         {isShutdown && <ShutdownScreen key="shutdown" onRestart={handleRestart} />}

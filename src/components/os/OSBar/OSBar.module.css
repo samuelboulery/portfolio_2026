@@ -22,20 +22,13 @@
 .right {
   display: flex;
   align-items: center;
-}
-
-.separator {
-  display: inline-block;
-  width: var(--border-width-s);
-  height: var(--osbar-separator-height);
-  background: var(--dropdown-separator-color);
-  margin: 0 var(--space-xs);
-  opacity: 0.5;
+  gap: var(--osbar-gap);
 }
 
 .time {
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
+  padding-left: var(--space-s);
 }
 
 @media (max-width: 639px) {

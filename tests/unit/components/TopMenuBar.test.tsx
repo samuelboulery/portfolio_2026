@@ -2,70 +2,82 @@ import { fireEvent, render } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { TopMenuBar } from "@/components/os/OSBar/TopMenuBar";
 
-const mockOpenWindow = vi.fn();
+const mockCloseWindow = vi.fn();
 vi.mock("@/stores/windowStore", () => ({
-  useWindowStore: (selector: (s: { openWindow: ReturnType<typeof vi.fn> }) => unknown) =>
-    selector({ openWindow: mockOpenWindow }),
+  selectFocusedId: (s: { focusedId: string | null }) => s.focusedId,
+  useWindowStore: (
+    selector: (s: { focusedId: string | null; closeWindow: ReturnType<typeof vi.fn> }) => unknown,
+  ) => selector({ focusedId: "main", closeWindow: mockCloseWindow }),
 }));
 
 describe("TopMenuBar", () => {
   afterEach(() => {
-    mockOpenWindow.mockClear();
+    mockCloseWindow.mockClear();
   });
 
-  it("affiche les items Fichier, Édition, Vue, Aide", () => {
-    const { getByText } = render(<TopMenuBar />);
-    expect(getByText("Fichier")).toBeInTheDocument();
-    expect(getByText("Édition")).toBeInTheDocument();
-    expect(getByText("Vue")).toBeInTheDocument();
-    expect(getByText("Aide")).toBeInTheDocument();
+  it("affiche les triggers File, Edit, View", () => {
+    const { getByText } = render(<TopMenuBar onQuit={vi.fn()} />);
+    expect(getByText("File")).toBeInTheDocument();
+    expect(getByText("Edit")).toBeInTheDocument();
+    expect(getByText("View")).toBeInTheDocument();
   });
 
-  it("ouvre le sous-menu Fichier au clic", () => {
-    const { getByText, queryByRole } = render(<TopMenuBar />);
+  it("ouvre le sous-menu File au clic", () => {
+    const { getByText, queryByRole } = render(<TopMenuBar onQuit={vi.fn()} />);
     expect(queryByRole("menu")).not.toBeInTheDocument();
-    fireEvent.click(getByText("Fichier"));
+    fireEvent.click(getByText("File"));
     expect(queryByRole("menu")).toBeInTheDocument();
   });
 
-  it("clique sur 'Accueil' dans Fichier appelle openWindow avec id 'main'", () => {
-    const { getByText } = render(<TopMenuBar />);
-    fireEvent.click(getByText("Fichier"));
-    fireEvent.click(getByText("Accueil"));
-    expect(mockOpenWindow).toHaveBeenCalledWith(expect.objectContaining({ id: "main" }));
+  it("File > Quit appelle onQuit", () => {
+    const onQuit = vi.fn();
+    const { getByText, getByRole } = render(<TopMenuBar onQuit={onQuit} />);
+    fireEvent.click(getByText("File"));
+    fireEvent.click(getByRole("menuitem", { name: /Quit/i }));
+    expect(onQuit).toHaveBeenCalledTimes(1);
   });
 
-  it("clique sur 'Terminal' dans Fichier appelle openWindow avec id 'terminal'", () => {
-    const { getByText } = render(<TopMenuBar />);
-    fireEvent.click(getByText("Fichier"));
-    fireEvent.click(getByText("Terminal"));
-    expect(mockOpenWindow).toHaveBeenCalledWith(expect.objectContaining({ id: "terminal" }));
+  it("File > Close appelle closeWindow sur la fenêtre focused", () => {
+    const { getByText, getByRole } = render(<TopMenuBar onQuit={vi.fn()} />);
+    fireEvent.click(getByText("File"));
+    fireEvent.click(getByRole("menuitem", { name: /Close/i }));
+    expect(mockCloseWindow).toHaveBeenCalledWith("main");
   });
 
-  it("clique sur 'CV' dans Fichier appelle openWindow avec id 'cv'", () => {
-    const { getByText } = render(<TopMenuBar />);
-    fireEvent.click(getByText("Fichier"));
-    fireEvent.click(getByText(/CV/i));
-    expect(mockOpenWindow).toHaveBeenCalledWith(expect.objectContaining({ id: "cv" }));
+  it("File > Open est désactivé si onOpenFinder n'est pas fourni", () => {
+    const { getByText, getByRole } = render(<TopMenuBar onQuit={vi.fn()} />);
+    fireEvent.click(getByText("File"));
+    expect(getByRole("menuitem", { name: /Open/i })).toBeDisabled();
   });
 
-  it("clique sur 'Édition' ouvre un dropdown 'Bientôt disponible'", () => {
-    const { getByText, getByRole } = render(<TopMenuBar />);
-    fireEvent.click(getByText("Édition"));
-    expect(getByRole("menu")).toBeInTheDocument();
-    expect(getByText("Bientôt disponible")).toBeInTheDocument();
+  it("File > Open appelle onOpenFinder quand fourni", () => {
+    const onOpenFinder = vi.fn();
+    const { getByText, getByRole } = render(
+      <TopMenuBar onQuit={vi.fn()} onOpenFinder={onOpenFinder} />,
+    );
+    fireEvent.click(getByText("File"));
+    fireEvent.click(getByRole("menuitem", { name: /Open/i }));
+    expect(onOpenFinder).toHaveBeenCalledTimes(1);
   });
 
-  it("clique sur 'Vue' ouvre un dropdown 'Bientôt disponible'", () => {
-    const { getByText, getByRole, getAllByText } = render(<TopMenuBar />);
-    fireEvent.click(getByText("Vue"));
-    expect(getByRole("menu")).toBeInTheDocument();
-    expect(getAllByText("Bientôt disponible").length).toBeGreaterThan(0);
+  it("Edit expose des items disabled (Undo/Cut/Copy/Paste)", () => {
+    const { getByText, getByRole } = render(<TopMenuBar onQuit={vi.fn()} />);
+    fireEvent.click(getByText("Edit"));
+    expect(getByRole("menuitem", { name: /Undo/i })).toBeDisabled();
+    expect(getByRole("menuitem", { name: /Cut/i })).toBeDisabled();
+    expect(getByRole("menuitem", { name: /Copy/i })).toBeDisabled();
+    expect(getByRole("menuitem", { name: /Paste/i })).toBeDisabled();
+  });
+
+  it("View expose des items disabled", () => {
+    const { getByText, getByRole } = render(<TopMenuBar onQuit={vi.fn()} />);
+    fireEvent.click(getByText("View"));
+    expect(getByRole("menuitem", { name: /By Icon/i })).toBeDisabled();
   });
 
   it("ferme le menu sur clic extérieur", () => {
-    const { getByText, queryByRole } = render(<TopMenuBar />);
-    fireEvent.click(getByText("Fichier"));
+    const { getByText, queryByRole } = render(<TopMenuBar onQuit={vi.fn()} />);
+    fireEvent.click(getByText("File"));
     expect(queryByRole("menu")).toBeInTheDocument();
     fireEvent.mouseDown(document.body);
     expect(queryByRole("menu")).not.toBeInTheDocument();

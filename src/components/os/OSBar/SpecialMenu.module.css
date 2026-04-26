@@ -4,53 +4,61 @@
 }
 
 .trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--osbar-icon-color);
-  width: var(--osbar-icon-size);
-  height: var(--osbar-icon-size);
-  border-radius: var(--osbar-icon-radius);
-  transition: color var(--dur-fast) var(--ease-out);
+  padding: var(--dropdown-item-padding-y) var(--dropdown-item-padding-x);
+  font-family: var(--osbar-text-font);
+  font-size: var(--osbar-text-size);
+  color: var(--osbar-text-color);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
 }
 
-.trigger:hover {
-  color: var(--text-primary);
+.trigger:hover,
+.trigger[data-active="true"] {
+  background: var(--color-lisa-black);
+  color: var(--color-lisa-white);
 }
 
 .dropdown {
   position: absolute;
-  top: calc(100% + var(--space-xs));
-  left: 0;
+  top: 100%;
+  right: 0;
   z-index: var(--z-overlay);
   min-width: var(--dropdown-min-width);
   background: var(--dropdown-bg);
   border: var(--border-width-s) solid var(--dropdown-border);
   border-radius: var(--dropdown-radius);
   box-shadow: var(--dropdown-shadow);
-  padding: var(--space-3xs);
+  padding: var(--space-3xs) 0;
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
   width: 100%;
   padding: var(--dropdown-item-padding-y) var(--dropdown-item-padding-x);
   text-align: left;
   font-family: var(--osbar-text-font);
   font-size: var(--osbar-text-size);
   color: var(--text-primary);
-  border-radius: var(--dropdown-radius);
-  transition: background var(--dur-fast) var(--ease-out);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.item:hover {
+.item:hover:not(:disabled) {
   background: var(--dropdown-item-hover-bg);
+  color: var(--dropdown-item-hover-color);
 }
 
-.itemDanger {
-  color: var(--accent-primary);
+.item:disabled {
+  opacity: var(--dropdown-disabled-opacity);
+  cursor: default;
 }
 
 .separator {

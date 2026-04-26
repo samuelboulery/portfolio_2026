@@ -1,22 +1,19 @@
 .root {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.menuItem {
   position: relative;
+  display: inline-flex;
 }
 
 .trigger {
-  padding: var(--dropdown-item-padding-y) var(--dropdown-item-padding-x);
-  font-family: var(--osbar-text-font);
-  font-size: var(--osbar-text-size);
-  color: var(--osbar-text-color);
-  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--osbar-icon-color);
+  width: var(--osbar-icon-size);
+  height: var(--osbar-icon-size);
+  padding: 0 var(--space-3xs);
   border: 0;
+  background: transparent;
   cursor: pointer;
-  white-space: nowrap;
   transition:
     background var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out);
@@ -44,8 +41,6 @@
 .item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-l);
   width: 100%;
   padding: var(--dropdown-item-padding-y) var(--dropdown-item-padding-x);
   text-align: left;
@@ -58,22 +53,8 @@
   white-space: nowrap;
 }
 
-.itemLabel {
-  flex: 1 1 auto;
-}
-
-.shortcut {
-  flex: 0 0 auto;
-  color: var(--text-primary);
-  letter-spacing: var(--tracking-wide);
-}
-
 .item:hover:not(:disabled) {
   background: var(--dropdown-item-hover-bg);
-  color: var(--dropdown-item-hover-color);
-}
-
-.item:hover:not(:disabled) .shortcut {
   color: var(--dropdown-item-hover-color);
 }
 
