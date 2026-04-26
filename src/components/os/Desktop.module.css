@@ -3,7 +3,7 @@
   min-height: 100dvh;
   width: 100%;
   overflow: hidden;
-  background: #010208;
+  background: var(--bg-base);
   color: var(--text-primary);
 }
 
@@ -11,8 +11,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--desktop-bg);
-  animation: riftShift 16s ease-in-out infinite alternate;
+  background-image: var(--desktop-bg);
+  background-size: var(--desktop-bg-size);
+  background-repeat: repeat;
+  /* Pixel art : pas d'anti-aliasing du pattern aux zooms != 100%. */
+  image-rendering: pixelated;
   z-index: 0;
   pointer-events: none;
 }
