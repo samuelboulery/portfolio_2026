@@ -13,6 +13,12 @@
   touch-action: none;
 }
 
+/* Inactive : pas de rayures, juste fond blanc — distingue la fenêtre non focus. */
+.bar[data-focused="false"] {
+  background-color: var(--window-bar-bg-inactive);
+  background-image: var(--window-bar-stripes-inactive);
+}
+
 .bar[data-draggable="true"] {
   cursor: grab;
 }
@@ -25,51 +31,43 @@
   cursor: default;
 }
 
-/* Encart blanc gauche qui « interrompt » les rayures pour héberger les dots. */
-.dots {
-  display: flex;
-  gap: var(--window-bar-gap);
+/* Encarts blancs qui « interrompent » les rayures pour héberger
+   le close box (gauche) et le zoom box (droite). */
+.closeSlot,
+.zoomSlot {
+  display: inline-flex;
   align-items: center;
   background: var(--window-bar-title-bg);
   padding: 0 var(--space-3xs);
 }
 
-.dot {
+.widget {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: var(--window-bar-dot-size);
   height: var(--window-bar-dot-size);
-  border-radius: var(--window-bar-dot-radius);
-  border: var(--window-bar-dot-border-width) solid var(--window-bar-dot-border-color);
   padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  transition:
-    background-color var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out);
+  color: var(--color-lisa-black);
 }
 
-.dot:hover:not(:disabled) {
-  background: var(--window-bar-dot-hover-bg);
-}
-
-.dot:focus-visible {
+.widget:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-.dot:disabled {
+.widget:disabled {
   cursor: default;
-  opacity: 0.5;
+  opacity: 0.35;
 }
 
-.close {
-  background: var(--window-bar-close);
-}
-
-.reduce {
-  background: var(--window-bar-reduce);
-}
-
-.expand {
-  background: var(--window-bar-expand);
+/* Bar inactive : les widgets sont masqués (System 6 cache close/zoom quand inactif). */
+.bar[data-focused="false"] .closeSlot,
+.bar[data-focused="false"] .zoomSlot {
+  visibility: hidden;
 }
 
 /* Encart blanc centré qui héberge le titre, par-dessus les rayures. */
@@ -85,17 +83,12 @@
   white-space: nowrap;
 }
 
-/* Largeur miroir du bloc dots pour conserver le titre centré géométriquement. */
-.spacer {
-  width: calc(var(--window-bar-dot-size) * 3 + var(--window-bar-gap) * 2 + var(--space-3xs) * 2);
-}
-
 @media (max-width: 639px) {
-  .dot {
+  .widget {
     position: relative;
   }
 
-  .dot::after {
+  .widget::after {
     content: "";
     position: absolute;
     inset: calc((var(--touch-target-min) - var(--window-bar-dot-size)) / -2);

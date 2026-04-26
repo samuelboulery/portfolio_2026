@@ -22,7 +22,7 @@ interface WindowProps {
   children: ReactNode;
   className?: string;
   showContentPadding?: boolean;
-  onExpand?: () => void;
+  onZoom?: () => void;
 }
 
 const RESIZE_MIN_WIDTH = 320;
@@ -45,13 +45,12 @@ function MountedWindow({
   children,
   className,
   showContentPadding = true,
-  onExpand,
+  onZoom,
   windowState,
 }: MountedWindowProps) {
   const zIndex = useWindowStore(selectZIndex(id));
   const isFocused = useWindowStore(selectIsFocused(id));
   const closeWindow = useWindowStore((state) => state.closeWindow);
-  const minimizeWindow = useWindowStore((state) => state.minimizeWindow);
   const focusWindow = useWindowStore((state) => state.focusWindow);
   const updatePosition = useWindowStore((state) => state.updatePosition);
   const dragControls = useDragControls();
@@ -107,10 +106,10 @@ function MountedWindow({
       <WindowBar
         title={title ?? windowState.title}
         variant={effectiveVariant}
+        isFocused={isFocused}
         dragControls={dragControls}
         onClose={() => closeWindow(id)}
-        onMinimize={() => minimizeWindow(id)}
-        onExpand={onExpand}
+        onZoom={onZoom}
       />
       {showContentPadding ? (
         <WindowContent>{children}</WindowContent>
