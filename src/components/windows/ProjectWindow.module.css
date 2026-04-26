@@ -31,6 +31,8 @@
   height: 100%;
   display: block;
   object-fit: cover;
+  /* Filtre Mac Lisa : grayscale + boost contraste pour rentrer dans la palette 1-bit. */
+  filter: var(--project-cover-filter);
 }
 
 .prose {
