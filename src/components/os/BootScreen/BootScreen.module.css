@@ -28,7 +28,7 @@
 
 .welcome {
   font-family: var(--font-chicago);
-  font-size: 20px;
+  font-size: var(--boot-welcome-size);
   line-height: 1;
   color: var(--boot-text);
   text-align: center;

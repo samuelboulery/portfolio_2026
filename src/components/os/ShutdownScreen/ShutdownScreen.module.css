@@ -22,7 +22,7 @@
 
 .headline {
   font-family: var(--font-chicago);
-  font-size: 18px;
+  font-size: var(--shutdown-headline-size);
   line-height: 1;
   color: var(--shutdown-text);
   margin: 0;
@@ -30,7 +30,7 @@
 
 .hint {
   font-family: var(--font-chicago);
-  font-size: 13px;
+  font-size: var(--shutdown-hint-size);
   line-height: 1;
   color: var(--shutdown-text);
   margin: 0;

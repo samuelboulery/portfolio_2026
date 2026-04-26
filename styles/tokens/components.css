@@ -132,7 +132,8 @@
    * ============================================================ */
   --shutdown-bg: var(--color-lisa-white);
   --shutdown-text: var(--color-lisa-black);
-  --shutdown-font-size: 16px;
+  --shutdown-headline-size: 18px;
+  --shutdown-hint-size: 13px;
 
   /* ============================================================
    * Button
@@ -273,44 +274,9 @@
   --project-cover-filter: grayscale(100%) contrast(1.15);
 
   /* ============================================================
-   * BootScreen — Welcome to Macintosh (B&W, voir Phase 7)
+   * BootScreen — Welcome to Macintosh
    * ============================================================ */
   --boot-bg: var(--color-lisa-white);
   --boot-text: var(--color-lisa-black);
-  --boot-text-ok: var(--color-lisa-black);
-  --boot-text-cursor: var(--color-lisa-black);
-  --boot-duration-line: 400ms;
-  --boot-duration-exit: 300ms;
-  --boot-font-size: 16px;
-  --boot-terminal-min-width: 420px;
-}
-
-/* L'animation @keyframes riftShift est conservée jusqu'au cleanup Phase 12 */
-@keyframes riftShift {
-  0% {
-    opacity: 0.8;
-    transform: scale(1) translate(0, 0);
-  }
-  40% {
-    opacity: 1;
-    transform: scale(1.04) translate(-1.5%, 0.5%);
-  }
-  80% {
-    opacity: 0.85;
-    transform: scale(0.97) translate(1%, -0.5%);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1.01) translate(-0.5%, 1%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  @keyframes riftShift {
-    0%,
-    100% {
-      opacity: 1;
-      transform: none;
-    }
-  }
+  --boot-welcome-size: 20px;
 }
