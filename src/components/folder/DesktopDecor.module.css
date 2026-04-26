@@ -1,0 +1,21 @@
+.hd,
+.trash {
+  position: absolute;
+  right: var(--desktop-icon-offset);
+  z-index: 1;
+}
+
+.hd {
+  top: calc(var(--osbar-padding-y) * 2 + var(--osbar-icon-size) + var(--space-l));
+}
+
+.trash {
+  bottom: var(--desktop-icon-offset);
+}
+
+@media (max-width: 1023px) {
+  .hd,
+  .trash {
+    display: none;
+  }
+}

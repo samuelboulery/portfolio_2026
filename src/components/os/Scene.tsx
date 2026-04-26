@@ -2,6 +2,7 @@
 
 import { AnimatePresence } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
+import { DesktopDecor } from "@/components/folder/DesktopDecor";
 import { FoldersGrid } from "@/components/folder/FoldersGrid";
 import { BootScreen } from "@/components/os/BootScreen/BootScreen";
 import { Desktop } from "@/components/os/Desktop";
@@ -10,6 +11,7 @@ import { ShutdownScreen } from "@/components/os/ShutdownScreen/ShutdownScreen";
 import { AboutDialog } from "@/components/ui/Dialog/AboutDialog";
 import { ConfirmDialog } from "@/components/ui/Dialog/ConfirmDialog";
 import { CVWindow } from "@/components/windows/CVWindow";
+import { FinderWindow } from "@/components/windows/FinderWindow";
 import { ImageWindow } from "@/components/windows/ImageWindow";
 import { MainWindow } from "@/components/windows/MainWindow";
 import { ProjectWindow } from "@/components/windows/ProjectWindow";
@@ -84,6 +86,17 @@ export function Scene() {
   const handleShutdownRequest = useCallback(() => setConfirmShutdown(true), []);
   const handleRestartRequest = useCallback(() => setConfirmRestart(true), []);
   const handleAbout = useCallback(() => setAboutOpen(true), []);
+  const handleOpenFinder = useCallback(
+    () =>
+      openWindow({
+        id: "finder",
+        type: "finder",
+        title: "Macintosh HD",
+        initialPosition: { x: 220, y: 90 },
+        initialSize: { width: 560, height: 400 },
+      }),
+    [openWindow],
+  );
 
   useEffect(() => {
     const { windows } = useWindowStore.getState();
@@ -101,6 +114,7 @@ export function Scene() {
         onShutdown={handleShutdownRequest}
         onRestart={handleRestartRequest}
         onAbout={handleAbout}
+        onOpenFinder={handleOpenFinder}
       />
       <AnimatePresence>
         {!bootDone && !isShutdown && <BootScreen key="boot" onDone={() => setBootDone(true)} />}
@@ -111,11 +125,13 @@ export function Scene() {
           <aside className={styles.foldersPanel} aria-label="Projets disponibles">
             <FoldersGrid />
           </aside>
+          <DesktopDecor />
           <MainWindow />
           <SubtitleWindow />
           <ImageWindow />
           <TerminalWindow />
           <CVWindow />
+          <FinderWindow />
           {PROJECTS.map((project) => (
             <ProjectWindow key={project.slug} slug={project.slug} />
           ))}

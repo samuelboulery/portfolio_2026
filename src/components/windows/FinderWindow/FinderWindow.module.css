@@ -1,0 +1,15 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--finder-grid-gap-y) var(--finder-grid-gap-x);
+  padding: var(--finder-grid-padding);
+  margin: 0;
+  list-style: none;
+  align-content: start;
+  justify-items: center;
+  min-height: 100%;
+}
+
+.cell {
+  list-style: none;
+}

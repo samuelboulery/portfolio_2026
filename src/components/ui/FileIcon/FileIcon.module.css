@@ -1,0 +1,43 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--file-icon-glyph-gap);
+  width: var(--file-icon-width);
+  padding: var(--space-2xs);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--file-icon-label-font);
+  font-size: var(--file-icon-label-size);
+  color: var(--file-icon-label-fg);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-lisa-black);
+  height: var(--file-icon-glyph-size);
+}
+
+.label {
+  display: inline-block;
+  padding: 0 var(--file-icon-label-padding-x);
+  background: var(--file-icon-label-bg);
+  color: var(--file-icon-label-fg);
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.root[data-selected="true"] .label {
+  background: var(--file-icon-label-bg-selected);
+  color: var(--file-icon-label-fg-selected);
+}
+
+.root:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}

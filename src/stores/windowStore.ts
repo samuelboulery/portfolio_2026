@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-export type WindowType = "main" | "subtitle" | "terminal" | "image" | "cv" | "project";
+export type WindowType = "main" | "subtitle" | "terminal" | "image" | "cv" | "project" | "finder";
 
 export interface WindowPosition {
   x: number;
