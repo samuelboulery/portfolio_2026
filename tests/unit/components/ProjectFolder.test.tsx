@@ -29,7 +29,7 @@ describe("ProjectFolder", () => {
     expect(opened?.meta).toEqual({ slug: edf.slug });
   });
 
-  it("marque le dossier actif quand la fenêtre est ouverte", () => {
+  it("marque le dossier sélectionné quand la fenêtre est ouverte", () => {
     useWindowStore.getState().openWindow({
       id: projectWindowId(edf.slug),
       type: "project",
@@ -37,15 +37,32 @@ describe("ProjectFolder", () => {
     });
     render(<ProjectFolder project={edf} />);
     const button = screen.getByRole("button", { name: `Ouvrir le projet ${edf.name}` });
-    expect(button).toHaveAttribute("data-active", "true");
+    expect(button.getAttribute("data-selected")).toBe("true");
   });
 
-  it("n'est pas actif quand la fenêtre est minimisée", () => {
+  it("n'est pas sélectionné quand la fenêtre est minimisée", () => {
     const id = projectWindowId(edf.slug);
     useWindowStore.getState().openWindow({ id, type: "project", meta: { slug: edf.slug } });
     useWindowStore.getState().minimizeWindow(id);
     render(<ProjectFolder project={edf} />);
     const button = screen.getByRole("button", { name: `Ouvrir le projet ${edf.name}` });
-    expect(button).toHaveAttribute("data-active", "false");
+    expect(button.hasAttribute("data-selected")).toBe(false);
+  });
+
+  it("rend l'icône folder-selected quand isActive", () => {
+    useWindowStore.getState().openWindow({
+      id: projectWindowId(edf.slug),
+      type: "project",
+      meta: { slug: edf.slug },
+    });
+    render(<ProjectFolder project={edf} />);
+    const svg = screen.getByRole("button").querySelector("svg");
+    expect(svg?.getAttribute("data-icon-kind")).toBe("folder-selected");
+  });
+
+  it("rend l'icône folder simple quand inactif", () => {
+    render(<ProjectFolder project={edf} />);
+    const svg = screen.getByRole("button").querySelector("svg");
+    expect(svg?.getAttribute("data-icon-kind")).toBe("folder");
   });
 });

@@ -1,10 +1,9 @@
 "use client";
 
+import { FileIcon } from "@/components/ui/FileIcon";
 import type { ProjectMeta } from "@/content/projects.config";
 import { projectWindowId } from "@/content/projects.config";
 import { selectWindow, useWindowStore } from "@/stores/windowStore";
-import { FolderTab } from "./FolderTab";
-import styles from "./ProjectFolder.module.css";
 
 interface ProjectFolderProps {
   project: ProjectMeta;
@@ -25,19 +24,13 @@ export function ProjectFolder({ project }: ProjectFolderProps) {
   };
 
   return (
-    <button
-      type="button"
-      className={styles.folder}
-      data-active={isActive}
-      onDoubleClick={handleOpen}
+    <FileIcon
+      kind="folder"
+      label={project.folderLabel}
+      selected={isActive}
+      ariaLabel={`Ouvrir le projet ${project.name}`}
       onClick={handleOpen}
-      aria-label={`Ouvrir le projet ${project.name}`}
-    >
-      <span className={styles.shape} aria-hidden="true">
-        <span className={styles.body} />
-        <FolderTab className={styles.tab} />
-      </span>
-      <span className={styles.name}>{project.folderLabel}</span>
-    </button>
+      onDoubleClick={handleOpen}
+    />
   );
 }
