@@ -22,6 +22,7 @@ interface WindowProps {
   children: ReactNode;
   className?: string;
   showContentPadding?: boolean;
+  statusBar?: ReactNode;
   onZoom?: () => void;
 }
 
@@ -45,6 +46,7 @@ function MountedWindow({
   children,
   className,
   showContentPadding = true,
+  statusBar,
   onZoom,
   windowState,
 }: MountedWindowProps) {
@@ -111,6 +113,7 @@ function MountedWindow({
         onClose={() => closeWindow(id)}
         onZoom={onZoom}
       />
+      {statusBar}
       {showContentPadding ? (
         <WindowContent>{children}</WindowContent>
       ) : (
