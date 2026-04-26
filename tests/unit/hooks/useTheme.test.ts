@@ -13,47 +13,41 @@ describe("useTheme", () => {
     delete document.documentElement.dataset.theme;
   });
 
-  it("retourne 'dark' par défaut", () => {
+  it("retourne 'lisa' par défaut", () => {
     const { result } = renderHook(() => useTheme());
-    expect(result.current.theme).toBe("dark");
+    expect(result.current.theme).toBe("lisa");
   });
 
-  it("lit 'retro' depuis localStorage au montage", async () => {
-    localStorage.setItem("theme", "retro");
+  it("applique data-theme='lisa' sur <html> au montage", async () => {
     const { result } = renderHook(() => useTheme());
     await act(async () => {});
-    expect(result.current.theme).toBe("retro");
+    expect(document.documentElement.dataset.theme).toBe("lisa");
+    expect(result.current.theme).toBe("lisa");
   });
 
-  it("lit 'light' depuis localStorage au montage", async () => {
-    localStorage.setItem("theme", "light");
+  it("setTheme('lisa') persiste en localStorage", () => {
     const { result } = renderHook(() => useTheme());
-    await act(async () => {});
-    expect(result.current.theme).toBe("light");
-  });
-
-  it("setTheme persiste en localStorage", () => {
-    const { result } = renderHook(() => useTheme());
-    act(() => result.current.setTheme("light"));
-    expect(localStorage.getItem("theme")).toBe("light");
+    act(() => result.current.setTheme("lisa"));
+    expect(localStorage.getItem("theme")).toBe("lisa");
   });
 
   it("setTheme applique data-theme sur <html>", () => {
     const { result } = renderHook(() => useTheme());
-    act(() => result.current.setTheme("retro"));
-    expect(document.documentElement.dataset.theme).toBe("retro");
+    act(() => result.current.setTheme("lisa"));
+    expect(document.documentElement.dataset.theme).toBe("lisa");
   });
 
-  it("setTheme met à jour le state React", () => {
-    const { result } = renderHook(() => useTheme());
-    act(() => result.current.setTheme("light"));
-    expect(result.current.theme).toBe("light");
-  });
-
-  it("ignore une valeur localStorage invalide et retombe sur 'dark'", async () => {
+  it("ignore une valeur localStorage invalide et retombe sur 'lisa'", async () => {
     localStorage.setItem("theme", "banana");
     const { result } = renderHook(() => useTheme());
     await act(async () => {});
-    expect(result.current.theme).toBe("dark");
+    expect(result.current.theme).toBe("lisa");
+  });
+
+  it("ignore les anciens thèmes (dark/light/retro) et retombe sur 'lisa'", async () => {
+    localStorage.setItem("theme", "retro");
+    const { result } = renderHook(() => useTheme());
+    await act(async () => {});
+    expect(result.current.theme).toBe("lisa");
   });
 });

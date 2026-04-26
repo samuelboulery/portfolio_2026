@@ -17,13 +17,13 @@
 @import "../../styles/tokens/themes.css";
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   background: var(--bg-base);
   color: var(--text-primary);
-  font-family: var(--font-body);
+  font-family: var(--font-chicago);
   font-size: var(--fs-body-m);
   line-height: var(--lh-body-m);
 }

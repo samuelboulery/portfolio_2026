@@ -2,14 +2,8 @@
 
 import { useCallback, useRef, useState } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import type { Theme } from "@/hooks/useTheme";
 import { useWindowStore } from "@/stores/windowStore";
 import styles from "./TopMenuBar.module.css";
-
-interface TopMenuBarProps {
-  setTheme: (t: Theme) => void;
-  currentTheme: Theme;
-}
 
 type MenuId = "fichier" | "edition" | "vue" | "aide";
 
@@ -37,13 +31,7 @@ const FICHIER_ITEMS = [
   },
 ] as const;
 
-const THEME_ITEMS: { label: string; value: Theme }[] = [
-  { label: "Thème Sombre", value: "dark" },
-  { label: "Thème Clair", value: "light" },
-  { label: "Thème Rétro", value: "retro" },
-];
-
-export function TopMenuBar({ setTheme, currentTheme }: TopMenuBarProps) {
+export function TopMenuBar() {
   const [activeMenu, setActiveMenu] = useState<MenuId | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const openWindow = useWindowStore((state) => state.openWindow);
@@ -119,25 +107,7 @@ export function TopMenuBar({ setTheme, currentTheme }: TopMenuBarProps) {
         </button>
         {activeMenu === "vue" && (
           <div className={styles.dropdown} role="menu">
-            {THEME_ITEMS.map(({ label, value }) => (
-              <button
-                key={value}
-                type="button"
-                role="menuitem"
-                className={`${styles.item} ${currentTheme === value ? styles.itemActive : ""}`}
-                onClick={() => {
-                  setActiveMenu(null);
-                  setTheme(value);
-                }}
-              >
-                {currentTheme === value && (
-                  <span className={styles.check} aria-hidden="true">
-                    ✓
-                  </span>
-                )}
-                {label}
-              </button>
-            ))}
+            <p className={styles.emptyHint}>Bientôt disponible</p>
           </div>
         )}
       </div>

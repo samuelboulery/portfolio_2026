@@ -33,12 +33,6 @@
   opacity: 0.5;
 }
 
-.themeLabel {
-  color: var(--text-muted);
-  font-size: var(--osbar-text-size);
-  margin-right: var(--osbar-gap);
-}
-
 .time {
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
@@ -49,9 +43,6 @@
     padding-inline: var(--space-m);
   }
   .time {
-    display: none;
-  }
-  .themeLabel {
     display: none;
   }
 }

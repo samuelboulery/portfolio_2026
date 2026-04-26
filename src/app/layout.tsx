@@ -14,17 +14,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="fr" suppressHydrationWarning>
-      <head>
-        {/* Script synchrone anti-FOUC : applique le thème stocké avant le premier paint.
-            Le contenu est du code statique — pas de risque XSS. */}
-        <script
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: script anti-FOUC statique, contenu non dynamique
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='retro'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}})()`,
-          }}
-        />
-      </head>
+    <html lang="fr" data-theme="lisa" suppressHydrationWarning>
       <body>
         {children}
         <DockBridge />

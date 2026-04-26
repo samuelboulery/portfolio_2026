@@ -1,17 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTheme } from "@/hooks/useTheme";
 import { formatOsBarDate } from "@/lib/formatDate";
+import styles from "./OSBar.module.css";
 import { PowerMenu } from "./PowerMenu";
 import { TopMenuBar } from "./TopMenuBar";
-import styles from "./OSBar.module.css";
-
-const THEME_LABELS = {
-  dark: "Sombre",
-  light: "Clair",
-  retro: "Rétro",
-} as const;
 
 interface OSBarProps {
   onShutdown: () => void;
@@ -20,7 +13,6 @@ interface OSBarProps {
 
 export function OSBar({ onShutdown, onRestart }: OSBarProps) {
   const [now, setNow] = useState<Date | null>(null);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setNow(new Date());
@@ -33,10 +25,9 @@ export function OSBar({ onShutdown, onRestart }: OSBarProps) {
       <div className={styles.left}>
         <PowerMenu onShutdown={onShutdown} onRestart={onRestart} />
         <span className={styles.separator} aria-hidden="true" />
-        <TopMenuBar setTheme={setTheme} currentTheme={theme} />
+        <TopMenuBar />
       </div>
       <div className={styles.right}>
-        <span className={styles.themeLabel}>{THEME_LABELS[theme]}</span>
         <span className={styles.time} suppressHydrationWarning>
           {now ? formatOsBarDate(now) : ""}
         </span>

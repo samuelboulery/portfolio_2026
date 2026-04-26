@@ -55,29 +55,23 @@ test.describe("OSBar", () => {
     });
   });
 
-  test.describe("Thèmes", () => {
-    test("Vue > Thème Clair applique data-theme='light'", async ({ page }) => {
+  test.describe("Thème Lisa", () => {
+    test("data-theme='lisa' est appliqué sur <html>", async ({ page }) => {
       await skipBootScreen(page);
       await page.goto("/");
       await expect(page.getByTestId("boot-screen")).not.toBeVisible();
 
-      await page.getByRole("button", { name: "Vue" }).click();
-      await page.getByRole("menuitem", { name: "Thème Clair" }).click();
-
       const htmlElement = page.locator("html");
-      await expect(htmlElement).toHaveAttribute("data-theme", "light");
+      await expect(htmlElement).toHaveAttribute("data-theme", "lisa");
     });
 
-    test("Vue > Thème Rétro applique data-theme='retro'", async ({ page }) => {
+    test("Le sous-menu Vue n'expose plus de sélecteur de thème", async ({ page }) => {
       await skipBootScreen(page);
       await page.goto("/");
       await expect(page.getByTestId("boot-screen")).not.toBeVisible();
 
       await page.getByRole("button", { name: "Vue" }).click();
-      await page.getByRole("menuitem", { name: "Thème Rétro" }).click();
-
-      const htmlElement = page.locator("html");
-      await expect(htmlElement).toHaveAttribute("data-theme", "retro");
+      await expect(page.getByRole("menuitem", { name: /Thème/i })).toHaveCount(0);
     });
   });
 });
