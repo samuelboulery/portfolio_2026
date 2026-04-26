@@ -2,13 +2,7 @@ import { act, fireEvent, render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { BootScreen } from "@/components/os/BootScreen/BootScreen";
 
-// framer-motion fonctionne en jsdom sans mock — motion.div rend normalement
-// mais les animations CSS ne jouent pas. On teste le comportement, pas l'animation.
-
-const LINE_COUNT = 7; // nombre de lignes dans BOOT_LINES
-const LINE_DELAY_MS = 400;
-const POST_DELAY_MS = 600;
-const TOTAL_MS = LINE_COUNT * LINE_DELAY_MS + POST_DELAY_MS;
+const BOOT_DURATION_MS = 1800;
 
 describe("BootScreen", () => {
   beforeEach(() => {
@@ -20,14 +14,26 @@ describe("BootScreen", () => {
     vi.useRealTimers();
   });
 
-  it("appelle onDone après la séquence complète", async () => {
+  it("affiche 'Welcome to Macintosh'", async () => {
+    const onDone = vi.fn();
+    const { getByText } = await act(async () => render(<BootScreen onDone={onDone} />));
+    expect(getByText("Welcome to Macintosh")).toBeInTheDocument();
+  });
+
+  it("affiche le Happy Mac", async () => {
+    const onDone = vi.fn();
+    const { getByTitle } = await act(async () => render(<BootScreen onDone={onDone} />));
+    expect(getByTitle("Macintosh")).toBeInTheDocument();
+  });
+
+  it("appelle onDone après la durée de boot", async () => {
     const onDone = vi.fn();
     await act(async () => {
       render(<BootScreen onDone={onDone} />);
     });
     expect(onDone).not.toHaveBeenCalled();
     await act(async () => {
-      vi.advanceTimersByTime(TOTAL_MS);
+      vi.advanceTimersByTime(BOOT_DURATION_MS);
     });
     expect(onDone).toHaveBeenCalledTimes(1);
   });
@@ -38,7 +44,7 @@ describe("BootScreen", () => {
       render(<BootScreen onDone={onDone} />);
     });
     await act(async () => {
-      vi.advanceTimersByTime(TOTAL_MS);
+      vi.advanceTimersByTime(BOOT_DURATION_MS);
     });
     expect(sessionStorage.getItem("boot-done")).toBe("1");
   });
@@ -59,7 +65,7 @@ describe("BootScreen", () => {
     expect(onDone).toHaveBeenCalledTimes(1);
   });
 
-  it("appelle onDone sur keydown (n'importe quelle touche)", async () => {
+  it("appelle onDone sur keydown", async () => {
     const onDone = vi.fn();
     await act(async () => {
       render(<BootScreen onDone={onDone} />);
@@ -74,17 +80,8 @@ describe("BootScreen", () => {
     fireEvent.click(container.firstChild as Element);
     expect(onDone).toHaveBeenCalledTimes(1);
     await act(async () => {
-      vi.advanceTimersByTime(TOTAL_MS);
+      vi.advanceTimersByTime(BOOT_DURATION_MS);
     });
     expect(onDone).toHaveBeenCalledTimes(1);
-  });
-
-  it("affiche toutes les lignes de boot", async () => {
-    const onDone = vi.fn();
-    const { getByText } = await act(async () => render(<BootScreen onDone={onDone} />));
-    expect(getByText(/Portfolio OS 2026/)).toBeInTheDocument();
-    expect(getByText(/Booting imagination/)).toBeInTheDocument();
-    expect(getByText(/Warming up coffee/)).toBeInTheDocument();
-    expect(getByText(/Ready/)).toBeInTheDocument();
   });
 });
