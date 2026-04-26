@@ -55,4 +55,22 @@ describe("TerminalWindow", () => {
     expect(openSpy).toHaveBeenCalledWith(EXTERNAL_LINKS.linkedin, "_blank", "noopener,noreferrer");
     openSpy.mockRestore();
   });
+
+  it("met à jour le titre window à 'CommandShell 1 — <cmd>' après une commande", () => {
+    useWindowStore.getState().openWindow({ id: "terminal", type: "terminal", title: "terminal" });
+    render(<TerminalWindow />);
+    const input = screen.getByLabelText("terminal command");
+    fireEvent.change(input, { target: { value: "ls" } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(useWindowStore.getState().windows.terminal.title).toBe("CommandShell 1 — ls");
+  });
+
+  it("ne met PAS à jour le titre quand la commande est vide", () => {
+    useWindowStore.getState().openWindow({ id: "terminal", type: "terminal", title: "initial" });
+    render(<TerminalWindow />);
+    const input = screen.getByLabelText("terminal command");
+    fireEvent.change(input, { target: { value: "   " } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(useWindowStore.getState().windows.terminal.title).toBe("initial");
+  });
 });

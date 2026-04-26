@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { LisaScrollbar } from "@/components/ui/LisaScrollbar";
 import { Window } from "@/components/window/Window";
 import { projectWindowId } from "@/content/projects.config";
 import {
@@ -37,6 +38,7 @@ function openExternal(url: string) {
 export function TerminalWindow({ id = "terminal" }: TerminalWindowProps) {
   const openWindow = useWindowStore((state) => state.openWindow);
   const closeWindow = useWindowStore((state) => state.closeWindow);
+  const setTitle = useWindowStore((state) => state.setTitle);
   const isFocused = useWindowStore(selectIsFocused(id));
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -117,6 +119,8 @@ export function TerminalWindow({ id = "terminal" }: TerminalWindowProps) {
         return;
       }
 
+      setTitle(id, `CommandShell 1 — ${trimmed}`);
+
       const parsed = parseCommand(trimmed);
       const result = runCommand(parsed, cwd, { mountedAt: mountedAtRef.current });
 
@@ -137,7 +141,7 @@ export function TerminalWindow({ id = "terminal" }: TerminalWindowProps) {
       setHistory((prev) => (prev[prev.length - 1] === trimmed ? prev : [...prev, trimmed]));
       setHistoryCursor(null);
     },
-    [appendLines, applyEffect, cwd, cwdLabel],
+    [appendLines, applyEffect, cwd, cwdLabel, id, setTitle],
   );
 
   const handleKeyDown = useCallback(
@@ -304,71 +308,73 @@ export function TerminalWindow({ id = "terminal" }: TerminalWindowProps) {
   const targets = useMemo(() => TERMINAL_TARGETS, []);
 
   return (
-    <Window id={id} title="terminal">
-      <div ref={containerRef} className={styles.terminal}>
-        <p className={styles.prompt}>
-          <span className={styles.promptSymbol}>→</span>
-          <span className={styles.path}>{pathToLabel(INITIAL_TERMINAL_CWD)}</span>
-          <span className={styles.command}>ls</span>
-        </p>
-        <ul className={styles.list}>
-          {targets.map((target) => (
-            <li key={target.slug}>
-              <button
-                type="button"
-                className={target.kind === "doc" ? styles.linkDoc : styles.linkProject}
-                onClick={() => activateTarget(target)}
-                aria-label={
-                  target.kind === "external"
-                    ? `Ouvrir ${target.label} dans un nouvel onglet`
-                    : `Ouvrir ${target.label}`
-                }
-              >
-                {target.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-        {entries.map((entry) => (
-          <p
-            key={entry.id}
-            className={
-              entry.line.kind === "error"
-                ? styles.outputError
-                : entry.line.kind === "command"
-                  ? styles.outputCommand
-                  : styles.outputResult
-            }
-          >
-            {entry.line.text}
+    <Window id={id} title="terminal" showContentPadding={false}>
+      <LisaScrollbar orientation="vertical">
+        <div ref={containerRef} className={styles.terminal}>
+          <p className={styles.prompt}>
+            <span className={styles.promptSymbol}>→</span>
+            <span className={styles.path}>{pathToLabel(INITIAL_TERMINAL_CWD)}</span>
+            <span className={styles.command}>ls</span>
           </p>
-        ))}
-        <p className={styles.prompt} data-focused={isFocused}>
-          <span className={styles.promptSymbol}>→</span>
-          <span className={styles.path}>{cwdLabel}</span>
-          <span className={styles.inputGroup}>
-            <span className={styles.inputDisplay}>{input}</span>
-            <span className={styles.cursor} aria-hidden="true" />
-          </span>
-          <input
-            ref={inputRef}
-            type="text"
-            className={styles.inputHidden}
-            value={input}
-            onChange={(e) => {
-              setInput(e.target.value);
-              setTabCycle(null);
-            }}
-            onKeyDown={handleKeyDown}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck={false}
-            aria-label="terminal command"
-          />
-        </p>
-        <div ref={bottomRef} aria-hidden="true" />
-      </div>
+          <ul className={styles.list}>
+            {targets.map((target) => (
+              <li key={target.slug}>
+                <button
+                  type="button"
+                  className={target.kind === "doc" ? styles.linkDoc : styles.linkProject}
+                  onClick={() => activateTarget(target)}
+                  aria-label={
+                    target.kind === "external"
+                      ? `Ouvrir ${target.label} dans un nouvel onglet`
+                      : `Ouvrir ${target.label}`
+                  }
+                >
+                  {target.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+          {entries.map((entry) => (
+            <p
+              key={entry.id}
+              className={
+                entry.line.kind === "error"
+                  ? styles.outputError
+                  : entry.line.kind === "command"
+                    ? styles.outputCommand
+                    : styles.outputResult
+              }
+            >
+              {entry.line.text}
+            </p>
+          ))}
+          <p className={styles.prompt} data-focused={isFocused}>
+            <span className={styles.promptSymbol}>→</span>
+            <span className={styles.path}>{cwdLabel}</span>
+            <span className={styles.inputGroup}>
+              <span className={styles.inputDisplay}>{input}</span>
+              <span className={styles.cursor} aria-hidden="true" />
+            </span>
+            <input
+              ref={inputRef}
+              type="text"
+              className={styles.inputHidden}
+              value={input}
+              onChange={(e) => {
+                setInput(e.target.value);
+                setTabCycle(null);
+              }}
+              onKeyDown={handleKeyDown}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              aria-label="terminal command"
+            />
+          </p>
+          <div ref={bottomRef} aria-hidden="true" />
+        </div>
+      </LisaScrollbar>
     </Window>
   );
 }

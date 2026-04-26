@@ -46,6 +46,7 @@ interface WindowStoreActions {
   focusWindow: (id: string) => void;
   updatePosition: (id: string, position: WindowPosition) => void;
   updateSize: (id: string, size: WindowSize) => void;
+  setTitle: (id: string, title: string) => void;
 }
 
 export type WindowStore = WindowStoreState & WindowStoreActions;
@@ -144,6 +145,18 @@ export const useWindowStore = create<WindowStore>()(
             windows: {
               ...state.windows,
               [id]: { ...existing, size },
+            },
+          };
+        }),
+      setTitle: (id, title) =>
+        set((state) => {
+          const existing = state.windows[id];
+          if (!existing) return state;
+          if (existing.title === title) return state;
+          return {
+            windows: {
+              ...state.windows,
+              [id]: { ...existing, title },
             },
           };
         }),

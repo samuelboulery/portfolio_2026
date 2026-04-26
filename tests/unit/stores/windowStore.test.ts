@@ -121,4 +121,25 @@ describe("windowStore", () => {
   it("selectFocusedId renvoie null quand rien n'est ouvert", () => {
     expect(selectFocusedId(useWindowStore.getState())).toBeNull();
   });
+
+  it("setTitle met à jour le titre d'une fenêtre existante", () => {
+    const store = useWindowStore.getState();
+    store.openWindow({ id: "term", type: "terminal", title: "CommandShell 1" });
+    store.setTitle("term", "CommandShell 1 — ls");
+    expect(useWindowStore.getState().windows.term.title).toBe("CommandShell 1 — ls");
+  });
+
+  it("setTitle est no-op pour un id inconnu", () => {
+    const before = useWindowStore.getState();
+    useWindowStore.getState().setTitle("ghost", "anything");
+    expect(useWindowStore.getState()).toEqual(before);
+  });
+
+  it("setTitle est no-op si le titre n'a pas changé (référence préservée)", () => {
+    const store = useWindowStore.getState();
+    store.openWindow({ id: "a", type: "main", title: "Same" });
+    const refBefore = useWindowStore.getState().windows.a;
+    useWindowStore.getState().setTitle("a", "Same");
+    expect(useWindowStore.getState().windows.a).toBe(refBefore);
+  });
 });
