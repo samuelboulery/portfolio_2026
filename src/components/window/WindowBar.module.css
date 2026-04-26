@@ -4,9 +4,8 @@
   align-items: center;
   gap: var(--window-bar-gap);
   padding: var(--window-bar-padding-y) var(--window-bar-padding-x);
-  background: var(--window-bar-bg);
-  backdrop-filter: blur(var(--window-bar-blur));
-  -webkit-backdrop-filter: blur(var(--window-bar-blur));
+  background-color: var(--window-bar-bg);
+  background-image: var(--window-bar-stripes);
   border-bottom: var(--window-border-width) solid var(--window-border);
   border-top-left-radius: var(--window-radius);
   border-top-right-radius: var(--window-radius);
@@ -26,26 +25,29 @@
   cursor: default;
 }
 
+/* Encart blanc gauche qui « interrompt » les rayures pour héberger les dots. */
 .dots {
   display: flex;
   gap: var(--window-bar-gap);
   align-items: center;
+  background: var(--window-bar-title-bg);
+  padding: 0 var(--space-3xs);
 }
 
 .dot {
   width: var(--window-bar-dot-size);
   height: var(--window-bar-dot-size);
   border-radius: var(--window-bar-dot-radius);
-  border: none;
+  border: var(--window-bar-dot-border-width) solid var(--window-bar-dot-border-color);
   padding: 0;
   cursor: pointer;
   transition:
-    transform var(--dur-fast) var(--ease-out),
-    opacity var(--dur-fast) var(--ease-out);
+    background-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
 }
 
 .dot:hover:not(:disabled) {
-  transform: scale(1.1);
+  background: var(--window-bar-dot-hover-bg);
 }
 
 .dot:focus-visible {
@@ -70,17 +72,22 @@
   background: var(--window-bar-expand);
 }
 
+/* Encart blanc centré qui héberge le titre, par-dessus les rayures. */
 .title {
   justify-self: center;
+  background: var(--window-bar-title-bg);
   color: var(--window-bar-title-color);
   font-family: var(--window-bar-title-font);
   font-size: var(--window-bar-title-size);
   line-height: 1;
+  padding: 0 var(--window-bar-title-padding-x);
   pointer-events: none;
+  white-space: nowrap;
 }
 
+/* Largeur miroir du bloc dots pour conserver le titre centré géométriquement. */
 .spacer {
-  width: calc(var(--window-bar-dot-size) * 3 + var(--window-bar-gap) * 2);
+  width: calc(var(--window-bar-dot-size) * 3 + var(--window-bar-gap) * 2 + var(--space-3xs) * 2);
 }
 
 @media (max-width: 639px) {

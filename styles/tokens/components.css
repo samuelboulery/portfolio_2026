@@ -40,9 +40,14 @@
   --window-bar-gap: var(--space-3xs);
   --window-bar-dot-size: 11px;
   --window-bar-dot-radius: 0;
-  --window-bar-close: var(--color-lisa-black);
-  --window-bar-reduce: var(--color-lisa-black);
-  --window-bar-expand: var(--color-lisa-black);
+  /* Boutons titre Lisa : carrés outlined, intérieur blanc, bordure noire 1px,
+     hover = inversion (rempli noir). */
+  --window-bar-dot-border-width: var(--border-width-lisa);
+  --window-bar-dot-border-color: var(--color-lisa-black);
+  --window-bar-close: var(--color-lisa-white);
+  --window-bar-reduce: var(--color-lisa-white);
+  --window-bar-expand: var(--color-lisa-white);
+  --window-bar-dot-hover-bg: var(--color-lisa-black);
   --window-bar-title-color: var(--color-lisa-black);
   --window-bar-title-font: var(--font-chicago);
   --window-bar-title-size: 13px;
