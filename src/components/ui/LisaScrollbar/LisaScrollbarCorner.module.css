@@ -1,0 +1,13 @@
+.corner {
+  width: var(--lisa-scrollbar-size);
+  height: var(--lisa-scrollbar-size);
+  background: var(--lisa-scrollbar-corner-bg);
+  color: var(--lisa-scrollbar-border-color);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.glyph {
+  display: block;
+}

@@ -1,0 +1,43 @@
+.track {
+  position: relative;
+  background-color: var(--lisa-scrollbar-bg);
+  background-image: var(--lisa-scrollbar-track-bg);
+  background-repeat: repeat;
+  background-size: 2px 2px;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+.track[data-orientation="vertical"] {
+  width: var(--lisa-scrollbar-size);
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.track[data-orientation="horizontal"] {
+  height: var(--lisa-scrollbar-size);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--lisa-scrollbar-thumb-bg);
+  border: var(--lisa-scrollbar-thumb-border);
+  cursor: default;
+  box-sizing: border-box;
+}
+
+.thumb[data-orientation="vertical"] {
+  width: 100%;
+  left: 0;
+}
+
+.thumb[data-orientation="horizontal"] {
+  height: 100%;
+  top: 0;
+}

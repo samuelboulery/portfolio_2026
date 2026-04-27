@@ -1,0 +1,39 @@
+.arrow {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--lisa-scrollbar-size);
+  height: var(--lisa-scrollbar-size);
+  padding: 0;
+  margin: 0;
+  background: var(--lisa-scrollbar-arrow-bg);
+  color: var(--lisa-scrollbar-arrow-color);
+  border: 0;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  flex: 0 0 var(--lisa-scrollbar-size);
+}
+
+.arrow[data-pressed="true"] {
+  background: var(--lisa-scrollbar-arrow-bg-pressed);
+  color: var(--lisa-scrollbar-arrow-color-pressed);
+}
+
+.glyph {
+  display: block;
+  pointer-events: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

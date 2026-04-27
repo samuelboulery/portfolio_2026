@@ -39,7 +39,9 @@ a {
   color: var(--color-white);
 }
 
-/* Scrollbar globale (webkit) — utilise les tokens scrollbar définis dans components.css. */
+/* Scrollbar fallback (webkit) pour les overflow non-wrappés par <LisaScrollbar/>.
+   Utilise les tokens --scrollbar-* (cf. components.css). Le composant React
+   custom cache la scrollbar native sur ses viewports via son propre CSS. */
 *::-webkit-scrollbar {
   width: var(--scrollbar-width);
   height: var(--scrollbar-width);
