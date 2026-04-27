@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode, Ref } from "react";
 import styles from "./Button.module.css";
 
 type ButtonVariant = "outlined" | "plain";
@@ -9,6 +9,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   icon?: ReactNode;
   iconPosition?: "left" | "right";
+  defaultRing?: boolean;
+  fixedMinWidth?: boolean;
+  ref?: Ref<HTMLButtonElement>;
   children: ReactNode;
 }
 
@@ -17,9 +20,12 @@ export function Button({
   size = "m",
   icon,
   iconPosition = "left",
+  defaultRing = false,
+  fixedMinWidth = false,
   className,
   children,
   type = "button",
+  ref,
   ...rest
 }: ButtonProps) {
   const classes = [
@@ -27,6 +33,8 @@ export function Button({
     styles[variant],
     size === "s" ? styles.sizeS : null,
     icon ? styles.withIcon : null,
+    defaultRing ? styles.defaultRing : null,
+    fixedMinWidth ? styles.fixedMinWidth : null,
     className,
   ]
     .filter(Boolean)
@@ -39,7 +47,13 @@ export function Button({
   ) : null;
 
   return (
-    <button className={classes} type={type} {...rest}>
+    <button
+      className={classes}
+      type={type}
+      ref={ref}
+      data-default={defaultRing || undefined}
+      {...rest}
+    >
       {iconPosition === "left" ? iconNode : null}
       <span>{children}</span>
       {iconPosition === "right" ? iconNode : null}

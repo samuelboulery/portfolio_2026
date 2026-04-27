@@ -44,21 +44,30 @@ type InlineKind = Exclude<FinderIconKind, AssetKind>;
 
 interface IconShape {
   viewBox: string;
+  ratio?: number;
   render: (pressed: boolean) => ReactElement;
 }
 
 const SHAPES: Record<InlineKind, IconShape> = {
   hd: {
-    viewBox: "0 0 32 24",
+    viewBox: "0 0 56 19",
+    ratio: 56 / 19,
     render: () => (
-      <g fill="white" stroke="currentColor" strokeWidth="1">
-        <rect x="2.5" y="1.5" width="27" height="21" />
-        <rect x="5.5" y="4.5" width="14" height="10" />
-        <rect x="22.5" y="6.5" width="5" height="1" fill="currentColor" stroke="none" />
-        <line x1="6" y1="17" x2="14" y2="17" />
-        <line x1="6" y1="19" x2="14" y2="19" />
-        <rect x="22.5" y="17.5" width="2" height="2" fill="currentColor" stroke="none" />
-      </g>
+      <>
+        <path d="M8 15H6V13H8V15Z" fill="black" />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M55 18H54V19H2V18H1V17H0V2H1V1H2V0H54V1H55V2H56V17H55V18ZM54 2H2V17H54V2Z"
+          fill="black"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M2 2H54V17H2V2ZM8 15H6V13H8V15Z"
+          fill="white"
+        />
+      </>
     ),
   },
   trash: {
@@ -161,7 +170,10 @@ export function FinderIcon({
   }
 
   const shape = SHAPES[kind];
-  const style: CSSProperties = { width: size, height: size, display: "inline-block" };
+  const ratio = shape.ratio ?? 1;
+  const width = ratio >= 1 ? size : size * ratio;
+  const height = ratio >= 1 ? size / ratio : size;
+  const style: CSSProperties = { width, height, display: "inline-block" };
 
   return (
     <svg

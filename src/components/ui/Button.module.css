@@ -12,17 +12,27 @@
   font-weight: var(--button-font-weight);
   line-height: 1;
   cursor: pointer;
+  box-shadow: var(--button-shadow);
+  transform: translate(0, 0);
   transition:
     background-color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out),
-    opacity var(--dur-fast) var(--ease-out);
+    opacity var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
   white-space: nowrap;
+}
+
+.button:not(:disabled):active {
+  box-shadow: var(--button-shadow-pressed);
+  transform: translate(var(--button-press-offset-x), var(--button-press-offset-y));
 }
 
 .button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .button:focus-visible {
@@ -69,4 +79,30 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.fixedMinWidth {
+  min-width: var(--button-min-width);
+}
+
+.defaultRing {
+  box-shadow:
+    var(--button-shadow),
+    0 0 0 var(--button-default-ring-offset) var(--color-lisa-white),
+    0 0 0 calc(var(--button-default-ring-offset) + var(--button-default-ring-width))
+    var(--color-lisa-black);
+}
+
+.defaultRing:not(:disabled):active {
+  box-shadow:
+    0 0 0 var(--button-default-ring-offset) var(--color-lisa-white),
+    0 0 0 calc(var(--button-default-ring-offset) + var(--button-default-ring-width))
+    var(--color-lisa-black);
+}
+
+.defaultRing:disabled {
+  box-shadow:
+    0 0 0 var(--button-default-ring-offset) var(--color-lisa-white),
+    0 0 0 calc(var(--button-default-ring-offset) + var(--button-default-ring-width))
+    var(--color-lisa-black);
 }

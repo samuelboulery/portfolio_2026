@@ -1,6 +1,7 @@
 "use client";
 
 import { type KeyboardEvent, type ReactNode, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/Button";
 import { FinderIcon } from "@/components/ui/icons/FinderIcon";
 import styles from "./Dialog.module.css";
 
@@ -65,17 +66,17 @@ export function Dialog({ open, onClose, icon, title, message, buttons }: DialogP
         </div>
         <div className={styles.actions}>
           {buttons.map((button) => (
-            <button
+            <Button
               key={button.label}
               ref={button.isDefault ? defaultButtonRef : undefined}
-              type="button"
-              className={styles.button}
-              data-default={button.isDefault || undefined}
+              variant="outlined"
+              defaultRing={button.isDefault}
+              fixedMinWidth
               data-variant={button.variant ?? "neutral"}
               onClick={button.onClick}
             >
               {button.label}
-            </button>
+            </Button>
           ))}
         </div>
       </div>

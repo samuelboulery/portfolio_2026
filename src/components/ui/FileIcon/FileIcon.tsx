@@ -64,7 +64,7 @@ export function FileIcon({
       onDoubleClick={onDoubleClick}
     >
       <span className={styles.glyph} aria-hidden="true">
-        <FinderIcon kind={glyphKind} size={glyphSize ?? 40} />
+        <FinderIcon kind={glyphKind} size={glyphSize ?? 60} />
       </span>
       <span className={styles.label}>{label}</span>
     </button>
